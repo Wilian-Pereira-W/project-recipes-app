@@ -23,11 +23,6 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={ Login } />
-        <Route path="/comidas" component={ Foods } />
-        <Route path="/bebidas" component={ Drinks } />
-        <Route path="/comidas/{id-da-receita}" component={ FoodsRecipeDetails } />
-        <Route path="/bebidas/{id-da-receita}" component={ DrinksRecipeDetails } />
         <Route
           path="/comidas/{id-da-receita}/in-progress"
           component={ RecipeFoodsInProgress }
@@ -36,9 +31,6 @@ function App() {
           path="/bebidas/{id-da-receita}/in-progress"
           component={ RecipeDrinksInProgress }
         />
-        <Route path="/explorar" component={ Explore } />
-        <Route path="/explorar/comidas" component={ ExploreFoods } />
-        <Route path="/explorar/bebidas" component={ ExploreDrinks } />
         <Route
           path="/explorar/comidas/ingredientes"
           component={ ExploreFoodIngredients }
@@ -48,9 +40,17 @@ function App() {
           component={ ExploreDrinkIngredients }
         />
         <Route path="/explorar/comidas/area" component={ ExploreFoodsByLocale } />
-        <Route path="/perfil" component={ Profile } />
+        <Route path="/comidas/{id-da-receita}" component={ FoodsRecipeDetails } />
+        <Route path="/bebidas/{id-da-receita}" component={ DrinksRecipeDetails } />
+        <Route path="/explorar/comidas" component={ ExploreFoods } />
+        <Route path="/explorar/bebidas" component={ ExploreDrinks } />
         <Route path="/receitas-feitas" component={ FinishedRecipes } />
         <Route path="/receitas-favoritas" component={ Favorites } />
+        <Route path="/comidas" component={ Foods } />
+        <Route path="/bebidas" component={ Drinks } />
+        <Route path="/explorar" component={ Explore } />
+        <Route path="/perfil" component={ Profile } />
+        <Route path="/" component={ Login } />
       </Switch>
     </BrowserRouter>
   );
