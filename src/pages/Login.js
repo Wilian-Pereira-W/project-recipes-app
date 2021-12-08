@@ -3,10 +3,7 @@ import React, { useContext } from 'react';
 import { LoginContext } from '../context/RecipesContext';
 
 export default function Login() {
-  const { user, setUser } = useContext(LoginContext);
-
-  const emailFormat = /\S+@\S+\.\S+/;
-  const MIN_LENGTH = 6;
+  const { user, setUser, isDisabled } = useContext(LoginContext);
 
   return (
     <form onSubmit={ () => {} }>
@@ -29,7 +26,7 @@ export default function Login() {
       <button
         type="submit"
         data-testid="login-submit-btn"
-        disabled={ !(emailFormat.test(user.email) && user.password.length > MIN_LENGTH) }
+        disabled={ !isDisabled }
       >
         Entrar
       </button>
