@@ -1,6 +1,5 @@
 // Tela de login: `/`
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { LoginContext } from '../context/RecipesContext';
 import '../styles/login.css';
@@ -25,6 +24,7 @@ export default function Login() {
             type="email"
             onChange={ ({ target: { value } }) => setUser({ ...user, email: value }) }
             data-testid="email-input"
+            placeholder="E-mail"
           />
         </label>
         <label htmlFor="password-input">
@@ -33,6 +33,7 @@ export default function Login() {
             type="password"
             onChange={ ({ target: { value } }) => setUser({ ...user, password: value }) }
             data-testid="password-input"
+            placeholder="Password"
           />
         </label>
         <button
@@ -46,9 +47,3 @@ export default function Login() {
     </div>
   );
 }
-
-Login.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
-};
