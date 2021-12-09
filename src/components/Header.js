@@ -42,7 +42,7 @@ function Header() {
     }
   }
   return (
-    <header data-testid="footer">
+    <header>
       <div>
         <input
           type="image"
