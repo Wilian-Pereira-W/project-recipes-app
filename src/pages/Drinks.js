@@ -5,8 +5,10 @@ import Footer from '../components/Footer';
 
 function Drinks() {
   return (
-    <Header />
-    <Footer />
+    <>
+      <Header />
+      <Footer />
+    </>
   );
 }
 
