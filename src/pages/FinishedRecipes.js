@@ -7,4 +7,5 @@ function FinishedRecipes() {
     <Header />
   );
 }
+
 export default FinishedRecipes;

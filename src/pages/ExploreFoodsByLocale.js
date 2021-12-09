@@ -1,10 +1,15 @@
 // Tela de explorar comidas por local de origem: `/explorar/comidas/area`;
 import React from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function ExploreFoodsByLocale() {
   return (
-    <Header />
+    <div>
+      <Header />
+      <Footer />
+    </div>
   );
 }
+
 export default ExploreFoodsByLocale;

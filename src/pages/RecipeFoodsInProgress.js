@@ -7,4 +7,5 @@ function RecipeFoodsInProgress() {
     </>
   );
 }
+
 export default RecipeFoodsInProgress;

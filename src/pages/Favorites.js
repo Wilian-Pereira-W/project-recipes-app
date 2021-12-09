@@ -7,4 +7,5 @@ function Favorites() {
     <Header />
   );
 }
+
 export default Favorites;

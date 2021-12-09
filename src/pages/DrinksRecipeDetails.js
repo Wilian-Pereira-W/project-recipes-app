@@ -7,4 +7,5 @@ function DrinksRecipeDetails() {
     </>
   );
 }
+
 export default DrinksRecipeDetails;
