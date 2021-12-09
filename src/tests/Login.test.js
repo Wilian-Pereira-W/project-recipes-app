@@ -22,4 +22,14 @@ describe('Testing Login Page', () => {
     const emailInput = screen.getByPlaceholderText(/E-mail/i);
     expect(emailInput).toBeDefined();
   });
+  it('should be a password input in the document', () => {
+    renderWithRouter(
+      <LoginProvider>
+        <App />
+      </LoginProvider>,
+    );
+
+    const passwordInput = screen.getByPlaceholderText(/password/i);
+    expect(passwordInput).toBeDefined();
+  });
 });
