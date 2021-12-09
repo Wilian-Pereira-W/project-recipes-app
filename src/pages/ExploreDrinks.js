@@ -1,6 +1,6 @@
 // Tela de explorar bebidas: `/explorar/bebidas`;
 import React from 'react';
-import Header from '../components/header';
+import Header from '../components/Header';
 
 function ExploreDrinks() {
   return (

@@ -24,11 +24,11 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route
-          path="/comidas/{id-da-receita}/in-progress"
+          path="/comidas/52771/in-progress"
           component={ RecipeFoodsInProgress }
         />
         <Route
-          path="/bebidas/{id-da-receita}/in-progress"
+          path="/bebidas/178319/in-progress"
           component={ RecipeDrinksInProgress }
         />
         <Route
@@ -40,8 +40,8 @@ function App() {
           component={ ExploreDrinkIngredients }
         />
         <Route path="/explorar/comidas/area" component={ ExploreFoodsByLocale } />
-        <Route path="/comidas/{id-da-receita}" component={ FoodsRecipeDetails } />
-        <Route path="/bebidas/{id-da-receita}" component={ DrinksRecipeDetails } />
+        <Route path="/comidas/52771" component={ FoodsRecipeDetails } />
+        <Route path="/bebidas/178319" component={ DrinksRecipeDetails } />
         <Route path="/explorar/comidas" component={ ExploreFoods } />
         <Route path="/explorar/bebidas" component={ ExploreDrinks } />
         <Route path="/receitas-feitas" component={ FinishedRecipes } />
