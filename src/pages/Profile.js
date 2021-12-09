@@ -1,10 +1,11 @@
 // Tela de perfil: `/perfil`;
 import React from 'react';
+import Footer from '../components/Footer';
 
 function Profile() {
   return (
     <div>
-      oi
+      <Footer />
     </div>
   );
 }
