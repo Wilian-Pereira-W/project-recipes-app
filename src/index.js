@@ -6,12 +6,15 @@ import * as serviceWorker from './serviceWorker';
 import DrinkRecipesProvider from './context/DrinkRecipesProvider';
 import LoginProvider from './context/LoginProvider';
 import FoodRecipesProvider from './context/FoodRecipesProvider';
+import HeaderProvider from './context/HeaderProvider'
 
 ReactDOM.render(
   <LoginProvider>
     <FoodRecipesProvider>
       <DrinkRecipesProvider>
-        <App />
+        <HeaderProvider>
+          <App />
+        </HeaderProvider>
       </DrinkRecipesProvider>
     </FoodRecipesProvider>
   </LoginProvider>,
