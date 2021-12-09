@@ -20,4 +20,14 @@ describe('Testing Explore Page', () => {
     const drinkButton = screen.getByText(/Bebidas/i);
     expect(drinkButton).toBeDefined();
   });
+
+  it('should be redirect to explore food page', () => {
+    const { history } = renderWithRouter(
+      <Explore />,
+    );
+    const foodButton = screen.getByText(/Comidas/i);
+    userEvent.click(foodButton);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/explorar/comidas');
+  });
 });
