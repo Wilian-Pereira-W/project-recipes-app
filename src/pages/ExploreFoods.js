@@ -1,10 +1,11 @@
 // Tela de explorar comidas: `/explorar/comidas`;
 import React from 'react';
+import Footer from '../components/Footer';
 
 function ExploreFoods() {
   return (
     <div>
-      oi
+      <Footer />
     </div>
   );
 }

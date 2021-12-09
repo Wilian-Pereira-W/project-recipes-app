@@ -1,6 +1,7 @@
 // Tela de explorar: `/explorar`;
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import Footer from '../components/Footer';
 import '../styles/explore.css';
 
 function Explore() {
@@ -21,6 +22,7 @@ function Explore() {
       >
         Explorar Bebidas
       </button>
+      <Footer />
     </div>
   );
 }
