@@ -9,7 +9,15 @@ describe('Testing footer component', () => {
     renderWithRouter(
       <Footer />,
     );
-    const foodButton = screen.getByAltText(/Ícone de Comidas/i);
-    expect(foodButton).toBeDefined();
+    const foodIcon = screen.getByAltText(/Ícone de Comidas/i);
+    expect(foodIcon).toBeDefined();
+  });
+
+  it('should be render DrinkIcon', () => {
+    renderWithRouter(
+      <Footer />,
+    );
+    const drinkIcon = screen.getByAltText(/Ícone de Bebidas/i);
+    expect(drinkIcon).toBeDefined();
   });
 });
