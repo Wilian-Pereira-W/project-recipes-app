@@ -1,7 +1,6 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/dom';
-import { useHistory } from 'react-router-dom';
 import renderWithRouter from '../services/renderWithRouter';
 import LoginProvider from '../context/LoginProvider';
 import App from '../App';
@@ -109,5 +108,22 @@ describe('Testing Login Page', () => {
     userEvent.click(submitButton);
     const user = JSON.parse(localStorage.getItem('user'));
     expect(user).toEqual({ email: CORRECT_EMAIL });
+  });
+
+  it('should be redirect to food page', () => {
+    const { history } = renderWithRouter(
+      <LoginProvider>
+        <Login />
+      </LoginProvider>,
+    );
+
+    const emailInput = screen.getByPlaceholderText(/E-mail/i);
+    const passwordInput = screen.getByPlaceholderText(/password/i);
+    const submitButton = screen.getByText(/entrar/i);
+    userEvent.type(emailInput, CORRECT_EMAIL);
+    userEvent.type(passwordInput, CORRECT_PASSWORD);
+    userEvent.click(submitButton);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/comidas');
   });
 });
