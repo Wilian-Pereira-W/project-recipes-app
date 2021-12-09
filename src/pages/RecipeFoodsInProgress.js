@@ -3,9 +3,8 @@ import React from 'react';
 
 function RecipeFoodsInProgress() {
   return (
-    <div>
-      oi
-    </div>
+    <>
+    </>
   );
 }
 

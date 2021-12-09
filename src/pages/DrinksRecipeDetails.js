@@ -3,9 +3,8 @@ import React from 'react';
 
 function DrinksRecipeDetails() {
   return (
-    <div>
-      oi
-    </div>
+    <>
+    </>
   );
 }
 
