@@ -38,4 +38,14 @@ describe('Testing footer component', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/comidas');
   });
+
+  it('should be redirect to explore drink page', () => {
+    const { history } = renderWithRouter(
+      <Footer />,
+    );
+    const drinkIcon = screen.getByAltText(/Ícone de Bebidas/i);
+    userEvent.click(drinkIcon);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/bebidas');
+  });
 });
