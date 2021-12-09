@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.ctn-login {
+  align-items: center;
+  background-color: #ad2a25;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 25px;
+  width: 100%;
+}
+
+.ctn-login .food-gif {
+  border-radius: 50%;
+  height: 250px;
+  margin: 30px 0;
+  width: 250px;
+}
+
+.ctn-login form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

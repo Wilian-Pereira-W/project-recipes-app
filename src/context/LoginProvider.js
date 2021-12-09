@@ -19,10 +19,19 @@ function LoginProvider({ children }) {
     verifyEmailAndPassword();
   }, [user]);
 
+  function setUserStorage(event) {
+    event.preventDefault();
+    const TOKEN_NUMBER = 1;
+    localStorage.setItem('mealsToken', JSON.stringify(TOKEN_NUMBER));
+    localStorage.setItem('cocktailsToken', JSON.stringify(TOKEN_NUMBER));
+    localStorage.setItem('user', JSON.stringify({ email: user.email }));
+  }
+
   const context = {
     user,
     setUser,
     isDisabled,
+    setUserStorage,
   };
 
   return (
