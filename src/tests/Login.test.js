@@ -33,6 +33,17 @@ describe('Testing Login Page', () => {
     expect(passwordInput).toBeDefined();
   });
 
+  it('should be a submit button("Entrar") in the document', () => {
+    renderWithRouter(
+      <LoginProvider>
+        <App />
+      </LoginProvider>,
+    );
+
+    const submitButton = screen.getByText(/entrar/i);
+    expect(submitButton).toBeDefined();
+  });
+
   it('should be a valid email and password to enable enter button', () => {
     renderWithRouter(
       <LoginProvider>
@@ -45,7 +56,6 @@ describe('Testing Login Page', () => {
     const submitButton = screen.getByText(/entrar/i);
     userEvent.type(emailInput, CORRECT_EMAIL);
     userEvent.type(passwordInput, CORRECT_PASSWORD);
-    expect(submitButton).toBeDefined();
     expect(submitButton.disabled).toBe(false);
   });
 
@@ -61,7 +71,6 @@ describe('Testing Login Page', () => {
     const submitButton = screen.getByText(/entrar/i);
     userEvent.type(emailInput, INCORRECT_EMAIL);
     userEvent.type(passwordInput, INCORRECT_PASSWORD);
-    expect(submitButton).toBeDefined();
     expect(submitButton.disabled).toBe(true);
   });
 });
