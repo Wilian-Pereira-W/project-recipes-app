@@ -48,4 +48,20 @@ describe('Testing Login Page', () => {
     expect(submitButton).toBeDefined();
     expect(submitButton.disabled).toBe(false);
   });
+
+  it('should be a invalid email and password to disable enter button', () => {
+    renderWithRouter(
+      <LoginProvider>
+        <App />
+      </LoginProvider>,
+    );
+
+    const emailInput = screen.getByPlaceholderText(/E-mail/i);
+    const passwordInput = screen.getByPlaceholderText(/password/i);
+    const submitButton = screen.getByText(/entrar/i);
+    userEvent.type(emailInput, INCORRECT_EMAIL);
+    userEvent.type(passwordInput, INCORRECT_PASSWORD);
+    expect(submitButton).toBeDefined();
+    expect(submitButton.disabled).toBe(true);
+  });
 });
