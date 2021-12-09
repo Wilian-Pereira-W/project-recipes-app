@@ -32,4 +32,20 @@ describe('Testing Login Page', () => {
     const passwordInput = screen.getByPlaceholderText(/password/i);
     expect(passwordInput).toBeDefined();
   });
+
+  it('should be a valid email and password to enable enter button', () => {
+    renderWithRouter(
+      <LoginProvider>
+        <App />
+      </LoginProvider>,
+    );
+
+    const emailInput = screen.getByPlaceholderText(/E-mail/i);
+    const passwordInput = screen.getByPlaceholderText(/password/i);
+    const submitButton = screen.getByText(/entrar/i);
+    userEvent.type(emailInput, CORRECT_EMAIL);
+    userEvent.type(passwordInput, CORRECT_PASSWORD);
+    expect(submitButton).toBeDefined();
+    expect(submitButton.disabled).toBe(false);
+  });
 });
