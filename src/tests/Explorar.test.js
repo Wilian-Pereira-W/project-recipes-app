@@ -30,4 +30,13 @@ describe('Testing Explore Page', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/explorar/comidas');
   });
+  it('should be redirect to explore drink page', () => {
+    const { history } = renderWithRouter(
+      <Explore />,
+    );
+    const drinkButton = screen.getByText(/Bebidas/i);
+    userEvent.click(drinkButton);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/explorar/bebidas');
+  });
 });
