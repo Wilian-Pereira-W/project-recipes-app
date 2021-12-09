@@ -20,4 +20,12 @@ describe('Testing footer component', () => {
     const drinkIcon = screen.getByAltText(/Ícone de Bebidas/i);
     expect(drinkIcon).toBeDefined();
   });
+
+  it('should be render ExplorerIcon', () => {
+    renderWithRouter(
+      <Footer />,
+    );
+    const explorerIcon = screen.getByAltText(/Ícone de Explorar/i);
+    expect(explorerIcon).toBeDefined();
+  });
 });
