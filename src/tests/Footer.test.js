@@ -28,4 +28,14 @@ describe('Testing footer component', () => {
     const explorerIcon = screen.getByAltText(/Ícone de Explorar/i);
     expect(explorerIcon).toBeDefined();
   });
+
+  it('should be redirect to explore food page', () => {
+    const { history } = renderWithRouter(
+      <Footer />,
+    );
+    const foodIcon = screen.getByAltText(/Ícone de Comidas/i);
+    userEvent.click(foodIcon);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/comidas');
+  });
 });
