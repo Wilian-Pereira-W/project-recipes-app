@@ -13,6 +13,8 @@ export default function Login() {
   return (
     <div className="ctn-login">
       <img className="food-gif" src={ foodGif } alt="food" />
+      <h1>My Recipes</h1>
+      <h2>~</h2>
       <form
         onSubmit={ (event) => {
           setUserStorage(event);
