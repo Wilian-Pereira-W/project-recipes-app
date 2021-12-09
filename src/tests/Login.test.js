@@ -94,4 +94,20 @@ describe('Testing Login Page', () => {
     expect(mealsToken).toBe(TOKEN_NUMBER);
     expect(cocktailsToken).toBe(TOKEN_NUMBER);
   });
+  it('should be save user at localStorage', () => {
+    renderWithRouter(
+      <LoginProvider>
+        <Login />
+      </LoginProvider>,
+    );
+
+    const emailInput = screen.getByPlaceholderText(/E-mail/i);
+    const passwordInput = screen.getByPlaceholderText(/password/i);
+    const submitButton = screen.getByText(/entrar/i);
+    userEvent.type(emailInput, CORRECT_EMAIL);
+    userEvent.type(passwordInput, CORRECT_PASSWORD);
+    userEvent.click(submitButton);
+    const user = JSON.parse(localStorage.getItem('user'));
+    expect(user).toEqual({ email: CORRECT_EMAIL });
+  });
 });
