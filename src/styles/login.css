@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Malvie Trial;
+  src: url('./fonts/Malvie\ Trial.otf') format('opentype');
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,13 +21,49 @@
 
 .ctn-login .food-gif {
   border-radius: 50%;
-  height: 250px;
-  margin: 30px 0;
-  width: 250px;
+  height: 200px;
+  margin: 25px 0;
+  width: 200px;
+}
+
+.ctn-login h1 {
+  color: #f1f1f1;
+  font-family: Malvie Trial , sans-serif;
+  margin: 10px 0;
+}
+
+.ctn-login h2 {
+  color: #f1f1f1;
+  font-family: Malvie Trial , sans-serif;
+  font-size: 100px;
+  margin: 0;
 }
 
 .ctn-login form {
   align-items: center;
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.ctn-login form label {
+  width: 80%;
+}
+
+.ctn-login form input {
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  width: 100%;
+}
+
+.ctn-login form button {
+  border: none;
+  border-radius: 5px;
+  color: #ad2a25;
+  font-family: Malvie Trial , sans-serif;
+  margin-bottom: 25px;
+  margin-top: 10px;
+  padding: 10px;
+  width: 80%;
 }
