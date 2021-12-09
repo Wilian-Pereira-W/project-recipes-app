@@ -12,4 +12,12 @@ describe('Testing Explore Page', () => {
     const foodButton = screen.getByText(/Comidas/i);
     expect(foodButton).toBeDefined();
   });
+
+  it('should be render a button with "Bebidas"', () => {
+    renderWithRouter(
+      <Explore />,
+    );
+    const drinkButton = screen.getByText(/Bebidas/i);
+    expect(drinkButton).toBeDefined();
+  });
 });
