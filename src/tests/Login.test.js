@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/dom';
 import renderWithRouter from '../services/renderWithRouter';
 import LoginProvider from '../context/LoginProvider';
-import App from '../App';
 import Login from '../pages/Login';
 
 const CORRECT_EMAIL = 'teste@trybe.com';
@@ -16,7 +15,7 @@ describe('Testing Login Page', () => {
   it('should be a login input in the document', () => {
     renderWithRouter(
       <LoginProvider>
-        <App />
+        <Login />
       </LoginProvider>,
     );
 
@@ -26,7 +25,7 @@ describe('Testing Login Page', () => {
   it('should be a password input in the document', () => {
     renderWithRouter(
       <LoginProvider>
-        <App />
+        <Login />
       </LoginProvider>,
     );
 
@@ -37,7 +36,7 @@ describe('Testing Login Page', () => {
   it('should be a submit button("Entrar") in the document', () => {
     renderWithRouter(
       <LoginProvider>
-        <App />
+        <Login />
       </LoginProvider>,
     );
 
@@ -48,7 +47,7 @@ describe('Testing Login Page', () => {
   it('should be a valid email and password to enable enter button', () => {
     renderWithRouter(
       <LoginProvider>
-        <App />
+        <Login />
       </LoginProvider>,
     );
 
@@ -63,7 +62,7 @@ describe('Testing Login Page', () => {
   it('should be a invalid email and password to disable enter button', () => {
     renderWithRouter(
       <LoginProvider>
-        <App />
+        <Login />
       </LoginProvider>,
     );
 
@@ -78,7 +77,7 @@ describe('Testing Login Page', () => {
   it('should be save tokens at localStorage', () => {
     renderWithRouter(
       <LoginProvider>
-        <App />
+        <Login />
       </LoginProvider>,
     );
 
