@@ -43,29 +43,26 @@ function Header() {
   }
   return (
     <header data-testid="footer">
-      <div>
-        <input
-          type="image"
-          data-testid="profile-top-btn"
-          onClick={ () => history.push('/perfil') }
-          src={ profileIcon }
-          alt="Ícone do perfil"
-        />
-        <h1
-          type="text"
-          data-testid="page-title"
-        >
-          {titleName()}
-        </h1>
-        { exploreButton() && (<input
-          type="image"
-          data-testid="search-top-btn"
-          onClick={ () => history.push('/explorar') }
-          src={ searchIcon }
-          alt="Ícone de explorar"
-        />)}
-
-      </div>
+      <input
+        type="image"
+        data-testid="profile-top-btn"
+        onClick={ () => history.push('/perfil') }
+        src={ profileIcon }
+        alt="Ícone do perfil"
+      />
+      <h1
+        type="text"
+        data-testid="page-title"
+      >
+        {titleName()}
+      </h1>
+      { exploreButton() && (<input
+        type="image"
+        data-testid="search-top-btn"
+        onClick={ () => history.push('/explorar') }
+        src={ searchIcon }
+        alt="Ícone de explorar"
+      />)}
     </header>
   );
 }
