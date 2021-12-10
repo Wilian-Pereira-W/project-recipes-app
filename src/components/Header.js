@@ -68,12 +68,12 @@ function Header() {
         alt="Ícone de explorar"
       />)}
       {showDisplay && (
-      <div>
-       <input
-          data-testid="search-input"
-          type="text"
-        />
-      </div>
+        <div>
+          <input
+            data-testid="search-input"
+            type="text"
+          />
+        </div>
       )}
     </header>
   );
