@@ -10,11 +10,13 @@
 }
 
 header {
-  background-color: #e6e6e9;
+  background-color: #fdfffc;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.164);
   height: 58px;
   left: 0;
   padding: 12px;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
 }
