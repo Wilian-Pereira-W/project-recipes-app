@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { HeaderContext } from './RecipesContext';
 
 function HeaderProvider({ children }) {
+  const [input, setInput] = useState('');
+
+  const handleChange = ({ target }) => {
+    setInput(target.value);
+  };
+
   return (
-    <HeaderContext.Provider>
+    <HeaderContext.Provider value={ { input, handleChange } }>
       {children}
     </HeaderContext.Provider>
   );

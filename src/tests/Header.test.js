@@ -41,14 +41,14 @@ describe('Testing header component', () => {
     expect(pathname).toBe('/explorar');
   });
 
-  test('loads and displays greeting', async () => {
+  test('loads and displays greeting', () => {
     const { history } = renderWithRouter(
       <Header />,
     );
     history.push('/bebidas');
 
     const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-    const titleFood = screen.getByText(/error/i);
+    const titleFood = screen.getByText(/Bebidas/i);
     const searchIcon = screen.getByAltText(/Ícone de explorar/i);
     expect(searchIcon).toBeDefined();
     expect(profileIcon).toBeDefined();

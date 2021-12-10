@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { HeaderContext } from '../context/RecipesContext';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
 function Header() {
+  const { input, handleChange } = useContext(HeaderContext);
+  console.log(input);
   const history = useHistory();
   const { location: { pathname } } = history;
   function titleName() {
@@ -23,6 +26,7 @@ function Header() {
     default: return 'error';
     }
   }
+
   function exploreButton() {
     switch (pathname) {
     case '/perfil': return false;
@@ -41,6 +45,11 @@ function Header() {
     default: return 'error';
     }
   }
+
+  function esconderInput(name) {
+    return input;
+  }
+
   return (
     <header data-testid="footer">
       <input
@@ -59,10 +68,13 @@ function Header() {
       { exploreButton() && (<input
         type="image"
         data-testid="search-top-btn"
-        onClick={ () => history.push('/explorar') }
+        onClick={ handleChange }
         src={ searchIcon }
         alt="Ícone de explorar"
+        value
       />)}
+      {esconderInput(input) && (<input data-testid="search-input" type="text" />
+      )}
     </header>
   );
 }
