@@ -1,0 +1,10 @@
+@font-face {
+  font-family: Malvie Trial;
+  src: url('./fonts/Malvie\ Trial.otf') format('opentype');
+}
+
+.ctn-card-recipes {
+  display: flex;
+  flex-wrap: wrap;
+  width: 150px;
+}
