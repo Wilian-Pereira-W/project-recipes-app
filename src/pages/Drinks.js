@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { DrinkRecipesContext } from '../context/RecipesContext';
 import Card from '../components/Card';
+import '../styles/recipes.css';
 
 const MAX_CARDS = 12;
 
@@ -13,18 +14,20 @@ function Drinks() {
   return (
     <>
       <Header />
-      { drinksRecipes
-        .map(({ idDrink, strDrink, strDrinkThumb }, index) => (
-          index < MAX_CARDS
-          && (
-            <Card
-              key={ idDrink }
-              index={ index }
-              name={ strDrink }
-              img={ strDrinkThumb }
-            />
-          )
-        )) }
+      <section className="ctn-card-recipes">
+        { drinksRecipes
+          .map(({ idDrink, strDrink, strDrinkThumb }, index) => (
+            index < MAX_CARDS
+            && (
+              <Card
+                key={ idDrink }
+                index={ index }
+                name={ strDrink }
+                img={ strDrinkThumb }
+              />
+            )
+          )) }
+      </section>
       <Footer />
     </>
   );
