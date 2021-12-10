@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import '../styles/recipes.css';
 
 function Card(props) {
   const { index, name, img } = props;
@@ -7,7 +8,7 @@ function Card(props) {
   return (
     <div
       data-testid={ `${index}-recipe-card` }
-      className="ctn-card-recipes"
+      className="card-recipes"
     >
       <img
         src={ img }
