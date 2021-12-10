@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import '../styles/header.css';
 
 function Header() {
   const history = useHistory();
@@ -43,29 +44,28 @@ function Header() {
   }
   return (
     <header>
-      <div>
-        <input
-          type="image"
-          data-testid="profile-top-btn"
-          onClick={ () => history.push('/perfil') }
-          src={ profileIcon }
-          alt="Ícone do perfil"
-        />
-        <h1
-          type="text"
-          data-testid="page-title"
-        >
-          {titleName()}
-        </h1>
-        { exploreButton() && (<input
-          type="image"
-          data-testid="search-top-btn"
-          onClick={ () => history.push('/explorar') }
-          src={ searchIcon }
-          alt="Ícone de explorar"
-        />)}
-
-      </div>
+      <input
+        type="image"
+        className="profile-top-btn"
+        data-testid="profile-top-btn"
+        onClick={ () => history.push('/perfil') }
+        src={ profileIcon }
+        alt="Ícone do perfil"
+      />
+      <h1
+        type="text"
+        data-testid="page-title"
+      >
+        {titleName()}
+      </h1>
+      { exploreButton() && (<input
+        type="image"
+        className="search-top-btn"
+        data-testid="search-top-btn"
+        onClick={ () => history.push('/explorar') }
+        src={ searchIcon }
+        alt="Ícone de explorar"
+      />)}
     </header>
   );
 }
