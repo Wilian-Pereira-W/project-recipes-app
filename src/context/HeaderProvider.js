@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 import { HeaderContext } from './RecipesContext';
 
 function HeaderProvider({ children }) {
-  const [input, setInput] = useState('');
+  const [showDisplay, setInput] = useState(false);
 
-  const handleChange = ({ target }) => {
-    setInput(target.value);
+  const handleChange = () => {
+    if (showDisplay === false) {
+      setInput(true);
+    } else {
+      setInput(false);
+    }
   };
 
   return (
-    <HeaderContext.Provider value={ { input, handleChange } }>
+    <HeaderContext.Provider value={ { showDisplay, handleChange } }>
       {children}
     </HeaderContext.Provider>
   );

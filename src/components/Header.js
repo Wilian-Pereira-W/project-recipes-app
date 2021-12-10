@@ -5,8 +5,7 @@ import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
 function Header() {
-  const { input, handleChange } = useContext(HeaderContext);
-  console.log(input);
+  const { showDisplay, handleChange } = useContext(HeaderContext);
   const history = useHistory();
   const { location: { pathname } } = history;
   function titleName() {
@@ -46,10 +45,6 @@ function Header() {
     }
   }
 
-  function esconderInput(name) {
-    return input;
-  }
-
   return (
     <header data-testid="footer">
       <input
@@ -71,9 +66,12 @@ function Header() {
         onClick={ handleChange }
         src={ searchIcon }
         alt="Ícone de explorar"
-        value
       />)}
-      {esconderInput(input) && (<input data-testid="search-input" type="text" />
+      {showDisplay && (
+        <input
+          data-testid="search-input"
+          type="text"
+        />
       )}
     </header>
   );
