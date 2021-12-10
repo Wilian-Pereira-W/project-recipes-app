@@ -8,8 +8,8 @@ function FoodRecipesProvider({ children }) {
 
   useEffect(() => {
     (async () => {
-      const { data } = await foodsAPI.get('/search.php?s=');
-      setMealsRecipes(data.meals);
+      const { meals } = await foodsAPI('search.php?s=');
+      setMealsRecipes(meals);
     })();
   }, []);
 

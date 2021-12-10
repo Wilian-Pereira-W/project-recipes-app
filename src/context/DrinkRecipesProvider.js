@@ -8,8 +8,8 @@ function DrinkRecipesProvider({ children }) {
 
   useEffect(() => {
     (async () => {
-      const { data } = await drinksAPI.get('/search.php?s=');
-      setDrinksRecipes(data.drinks);
+      const { drinks } = await drinksAPI('search.php?s=');
+      setDrinksRecipes(drinks);
     })();
   }, []);
 
