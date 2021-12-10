@@ -1,9 +1,17 @@
-import axios from 'axios';
+export const foodsAPI = async (queryString) => {
+  try {
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/${queryString}`);
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export const foodsAPI = axios.create({
-  baseURL: 'https://www.themealdb.com/api/json/v1/1/',
-});
-
-export const drinksAPI = axios.create({
-  baseURL: 'https://www.thecocktaildb.com/api/json/v1/1/',
-});
+export const drinksAPI = async (queryString) => {
+  try {
+    const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/${queryString}`);
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
