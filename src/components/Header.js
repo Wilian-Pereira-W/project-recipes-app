@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { HeaderContext } from '../context/RecipesContext';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
 function Header() {
+  const { showDisplay, handleChange } = useContext(HeaderContext);
   const history = useHistory();
   const { location: { pathname } } = history;
   function titleName() {
@@ -23,6 +25,7 @@ function Header() {
     default: return 'error';
     }
   }
+
   function exploreButton() {
     switch (pathname) {
     case '/perfil': return false;
@@ -41,31 +44,35 @@ function Header() {
     default: return 'error';
     }
   }
-  return (
-    <header data-testid="footer">
-      <div>
-        <input
-          type="image"
-          data-testid="profile-top-btn"
-          onClick={ () => history.push('/perfil') }
-          src={ profileIcon }
-          alt="Ícone do perfil"
-        />
-        <h1
-          type="text"
-          data-testid="page-title"
-        >
-          {titleName()}
-        </h1>
-        { exploreButton() && (<input
-          type="image"
-          data-testid="search-top-btn"
-          onClick={ () => history.push('/explorar') }
-          src={ searchIcon }
-          alt="Ícone de explorar"
-        />)}
 
-      </div>
+  return (
+    <header>
+      <input
+        type="image"
+        data-testid="profile-top-btn"
+        onClick={ () => history.push('/perfil') }
+        src={ profileIcon }
+        alt="Ícone do perfil"
+      />
+      <h1
+        type="text"
+        data-testid="page-title"
+      >
+        {titleName()}
+      </h1>
+      { exploreButton() && (<input
+        type="image"
+        data-testid="search-top-btn"
+        onClick={ handleChange }
+        src={ searchIcon }
+        alt="Ícone de explorar"
+      />)}
+      {showDisplay && (
+        <input
+          data-testid="search-input"
+          type="text"
+        />
+      )}
     </header>
   );
 }

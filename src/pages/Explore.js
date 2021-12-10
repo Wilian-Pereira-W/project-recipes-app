@@ -1,7 +1,7 @@
 // Tela de explorar: `/explorar`;
 import React from 'react';
-import Header from '../components/Header';
 import { useHistory } from 'react-router-dom';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../styles/explore.css';
 

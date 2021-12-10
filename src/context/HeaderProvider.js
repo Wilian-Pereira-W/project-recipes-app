@@ -3,21 +3,18 @@ import PropTypes from 'prop-types';
 import { HeaderContext } from './RecipesContext';
 
 function HeaderProvider({ children }) {
-  // const { pathname } = window.location;
-  // const { newTitle, setTitle } = useState('');
-  // const value = { newTitle, setTitle };
-  // function title(pathname) {
-  //   console.log(pathname);
-  //   switch (pathname) {
-  //   case '/comidas':
-  //     return setTitle('Comidas');
-  //   default:
-  //     return console.log('Olá');
-  //   }
-  // }
-  // console.log(title(pathname));
+  const [showDisplay, setInput] = useState(false);
+
+  const handleChange = () => {
+    if (showDisplay === false) {
+      setInput(true);
+    } else {
+      setInput(false);
+    }
+  };
+
   return (
-    <HeaderContext.Provider>
+    <HeaderContext.Provider value={ { showDisplay, handleChange } }>
       {children}
     </HeaderContext.Provider>
   );
