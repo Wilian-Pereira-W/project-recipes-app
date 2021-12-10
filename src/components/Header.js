@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import { HeaderContext } from '../context/RecipesContext';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import '../styles/header.css';
 
 function Header() {
+  const { showDisplay, handleChange } = useContext(HeaderContext);
   const history = useHistory();
   const { location: { pathname } } = history;
   function titleName() {
@@ -24,6 +26,7 @@ function Header() {
     default: return 'error';
     }
   }
+
   function exploreButton() {
     switch (pathname) {
     case '/perfil': return false;
@@ -42,6 +45,7 @@ function Header() {
     default: return 'error';
     }
   }
+
   return (
     <header>
       <input
@@ -66,6 +70,19 @@ function Header() {
         src={ searchIcon }
         alt="Ícone de explorar"
       />)}
+        data-testid="search-top-btn"
+        onClick={ handleChange }
+        src={ searchIcon }
+        alt="Ícone de explorar"
+      />)}
+      {showDisplay && (
+        <div>
+          <input
+            data-testid="search-input"
+            type="text"
+          />
+        </div>
+      )}
     </header>
   );
 }
