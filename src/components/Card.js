@@ -3,8 +3,12 @@ import React from 'react';
 
 function Card(props) {
   const { index, name, img } = props;
+
   return (
-    <section data-testid={ `${index}-recipe-card` }>
+    <div
+      data-testid={ `${index}-recipe-card` }
+      className="ctn-card-recipes"
+    >
       <img
         src={ img }
         alt={ name }
@@ -15,7 +19,7 @@ function Card(props) {
       >
         {name}
       </span>
-    </section>
+    </div>
   );
 }
 
