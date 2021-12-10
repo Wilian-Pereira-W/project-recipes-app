@@ -16,7 +16,14 @@ function Foods() {
       { mealsRecipes
         .map(({ idMeal, strMeal, strMealThumb }, index) => (
           index < MAX_CARDS
-          && <Card key={ idMeal } index={ index } name={ strMeal } img={ strMealThumb } />
+          && (
+            <Card
+              key={ idMeal }
+              index={ index }
+              name={ strMeal }
+              img={ strMealThumb }
+            />
+          )
         )) }
       <Footer />
     </>
