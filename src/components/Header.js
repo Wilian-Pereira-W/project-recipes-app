@@ -9,6 +9,7 @@ function Header() {
   const { showDisplay, handleClick } = useContext(HeaderContext);
   const history = useHistory();
   const { location: { pathname } } = history;
+
   function titleName() {
     switch (pathname) {
     case '/perfil': return 'Perfil';
@@ -27,7 +28,7 @@ function Header() {
     }
   }
 
-  function exploreButton() {
+  function searchButton() {
     switch (pathname) {
     case '/perfil': return false;
     case '/explorar': return false;
@@ -62,7 +63,7 @@ function Header() {
       >
         {titleName()}
       </h1>
-      { exploreButton() && (<input
+      { searchButton() && (<input
         type="image"
         className="search-top-btn"
         data-testid="search-top-btn"
