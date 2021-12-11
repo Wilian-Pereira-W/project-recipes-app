@@ -66,11 +66,6 @@ function Header() {
         type="image"
         className="search-top-btn"
         data-testid="search-top-btn"
-        onClick={ () => history.push('/explorar') }
-        src={ searchIcon }
-        alt="Ícone de explorar"
-      />)}
-        data-testid="search-top-btn"
         onClick={ handleChange }
         src={ searchIcon }
         alt="Ícone de explorar"
