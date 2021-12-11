@@ -3,11 +3,15 @@ import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/dom';
 import renderWithRouter from '../services/renderWithRouter';
 import Explore from '../pages/Explore';
+import HeaderProvider from '../context/HeaderProvider';
 
 describe('Testing Explore Page', () => {
   it('should be render a button with "Comidas"', () => {
     renderWithRouter(
-      <Explore />,
+      <HeaderProvider>
+        <Explore />
+        ,
+      </HeaderProvider>,
     );
     const foodButton = screen.getByText(/Comidas/i);
     expect(foodButton).toBeDefined();
@@ -15,7 +19,10 @@ describe('Testing Explore Page', () => {
 
   it('should be render a button with "Bebidas"', () => {
     renderWithRouter(
-      <Explore />,
+      <HeaderProvider>
+        <Explore />
+        ,
+      </HeaderProvider>,
     );
     const drinkButton = screen.getByText(/Bebidas/i);
     expect(drinkButton).toBeDefined();
@@ -23,7 +30,10 @@ describe('Testing Explore Page', () => {
 
   it('should be redirect to explore food page', () => {
     const { history } = renderWithRouter(
-      <Explore />,
+      <HeaderProvider>
+        <Explore />
+        ,
+      </HeaderProvider>,
     );
     const foodButton = screen.getByText(/Comidas/i);
     userEvent.click(foodButton);
@@ -32,7 +42,10 @@ describe('Testing Explore Page', () => {
   });
   it('should be redirect to explore drink page', () => {
     const { history } = renderWithRouter(
-      <Explore />,
+      <HeaderProvider>
+        <Explore />
+        ,
+      </HeaderProvider>,
     );
     const drinkButton = screen.getByText(/Bebidas/i);
     userEvent.click(drinkButton);
