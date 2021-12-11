@@ -6,9 +6,10 @@ import searchIcon from '../images/searchIcon.svg';
 import '../styles/header.css';
 
 function Header() {
-  const { showDisplay, handleChange } = useContext(HeaderContext);
+  const { showDisplay, handleClick } = useContext(HeaderContext);
   const history = useHistory();
   const { location: { pathname } } = history;
+
   function titleName() {
     switch (pathname) {
     case '/perfil': return 'Perfil';
@@ -27,7 +28,7 @@ function Header() {
     }
   }
 
-  function exploreButton() {
+  function searchButton() {
     switch (pathname) {
     case '/perfil': return false;
     case '/explorar': return false;
@@ -62,13 +63,13 @@ function Header() {
       >
         {titleName()}
       </h1>
-      { exploreButton() && (<input
+      { searchButton() && (<input
         type="image"
         className="search-top-btn"
         data-testid="search-top-btn"
-        onClick={ handleChange }
+        onClick={ handleClick }
         src={ searchIcon }
-        alt="Ícone de explorar"
+        alt="Ícone de procurar"
       />)}
       {showDisplay && (
         <div>

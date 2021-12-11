@@ -24,8 +24,19 @@ describe('Testing header component', () => {
         ,
       </HeaderProvider>,
     );
-    const searchIcon = screen.getByAltText(/Ícone de explorar/i);
+    const searchIcon = screen.getByAltText(/Ícone de procurar/i);
     expect(searchIcon).toBeDefined();
+  });
+
+  it('should be render a title', () => {
+    renderWithRouter(
+      <HeaderProvider>
+        <Header />
+        ,
+      </HeaderProvider>,
+    );
+    const title = screen.getByRole('heading');
+    expect(title).toBeDefined();
   });
 
   it('should be redirect to profile page', () => {
@@ -41,18 +52,30 @@ describe('Testing header component', () => {
     expect(pathname).toBe('/perfil');
   });
 
-  // it('should be redirect to search page', () => {
-  //   const { history } = renderWithRouter(
-  //     <LoginProvider>
-  //       <HeaderProvider>
-  //         <Header />
-  //         ,
-  //       </HeaderProvider>
-  //     </LoginProvider>,
-  //   );
-  //   const profileIcon = screen.getByAltText(/Ícone de explorar/i);
-  //   userEvent.click(profileIcon);
-  //   const { pathname } = history.location;
-  //   expect(pathname).toBe('/explorar');
-  // });
+  it('should be render search bar after clicking at search Icon', () => {
+    renderWithRouter(
+      <HeaderProvider>
+        <Header />
+        ,
+      </HeaderProvider>,
+    );
+    const searchIcon = screen.getByAltText(/Ícone de procurar/i);
+    userEvent.click(searchIcon);
+    const searchBar = screen.getByTestId('search-input');
+    expect(searchBar).toBeDefined();
+  });
+
+  it('should be render correct title at "Comidas" page', () => {
+    const { history } = renderWithRouter(
+      <HeaderProvider>
+        <Header />
+      </HeaderProvider>,
+
+    );
+    history.push('/comidas');
+    const { pathname } = history.location;
+    expect(pathname).toBe('/comidas');
+    const title = screen.queryByRole('heading');
+    expect(title.textContent).toEqual(/Comidas/i);
+  });
 });
