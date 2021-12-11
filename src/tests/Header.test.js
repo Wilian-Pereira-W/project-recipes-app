@@ -24,8 +24,19 @@ describe('Testing header component', () => {
         ,
       </HeaderProvider>,
     );
-    const searchIcon = screen.getByAltText(/Ícone de explorar/i);
+    const searchIcon = screen.getByAltText(/Ícone de procurar/i);
     expect(searchIcon).toBeDefined();
+  });
+
+  it('should be render a title', () => {
+    renderWithRouter(
+      <HeaderProvider>
+        <Header />
+        ,
+      </HeaderProvider>,
+    );
+    const title = screen.getByRole('heading');
+    expect(title).toBeDefined();
   });
 
   it('should be redirect to profile page', () => {
