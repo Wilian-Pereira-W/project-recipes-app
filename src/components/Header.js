@@ -68,7 +68,7 @@ function Header() {
         data-testid="search-top-btn"
         onClick={ handleChange }
         src={ searchIcon }
-        alt="Ícone de explorar"
+        alt="Ícone de procurar"
       />)}
       {showDisplay && (
         <div>
