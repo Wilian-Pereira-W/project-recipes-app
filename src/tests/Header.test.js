@@ -3,11 +3,15 @@ import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/dom';
 import renderWithRouter from '../services/renderWithRouter';
 import Header from '../components/Header';
+import HeaderProvider from '../context/HeaderProvider';
 
 describe('Testing header component', () => {
   it('should be render profileIcon', () => {
     renderWithRouter(
-      <Header />,
+      <HeaderProvider>
+        <Header />
+        ,
+      </HeaderProvider>,
     );
     const profileIcon = screen.getByAltText(/Ícone do perfil/i);
     expect(profileIcon).toBeDefined();
@@ -15,7 +19,10 @@ describe('Testing header component', () => {
 
   it('should be render searchIcon', () => {
     renderWithRouter(
-      <Header />,
+      <HeaderProvider>
+        <Header />
+        ,
+      </HeaderProvider>,
     );
     const searchIcon = screen.getByAltText(/Ícone de explorar/i);
     expect(searchIcon).toBeDefined();
@@ -23,7 +30,10 @@ describe('Testing header component', () => {
 
   it('should be redirect to profile page', () => {
     const { history } = renderWithRouter(
-      <Header />,
+      <HeaderProvider>
+        <Header />
+        ,
+      </HeaderProvider>,
     );
     const profileIcon = screen.getByAltText(/Ícone do perfil/i);
     userEvent.click(profileIcon);
@@ -31,27 +41,18 @@ describe('Testing header component', () => {
     expect(pathname).toBe('/perfil');
   });
 
-  it('should be redirect to search page', () => {
-    const { history } = renderWithRouter(
-      <Header />,
-    );
-    const profileIcon = screen.getByAltText(/Ícone de explorar/i);
-    userEvent.click(profileIcon);
-    const { pathname } = history.location;
-    expect(pathname).toBe('/explorar');
-  });
-
-  test('loads and displays greeting', () => {
-    const { history } = renderWithRouter(
-      <Header />,
-    );
-    history.push('/bebidas');
-
-    const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-    const titleFood = screen.getByText(/Bebidas/i);
-    const searchIcon = screen.getByAltText(/Ícone de explorar/i);
-    expect(searchIcon).toBeDefined();
-    expect(profileIcon).toBeDefined();
-    expect(titleFood).toBeDefined();
-  });
+  // it('should be redirect to search page', () => {
+  //   const { history } = renderWithRouter(
+  //     <LoginProvider>
+  //       <HeaderProvider>
+  //         <Header />
+  //         ,
+  //       </HeaderProvider>
+  //     </LoginProvider>,
+  //   );
+  //   const profileIcon = screen.getByAltText(/Ícone de explorar/i);
+  //   userEvent.click(profileIcon);
+  //   const { pathname } = history.location;
+  //   expect(pathname).toBe('/explorar');
+  // });
 });
