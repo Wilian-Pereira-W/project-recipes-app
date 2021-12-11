@@ -6,7 +6,7 @@ import searchIcon from '../images/searchIcon.svg';
 import '../styles/header.css';
 
 function Header() {
-  const { showDisplay, handleChange } = useContext(HeaderContext);
+  const { showDisplay, handleClick } = useContext(HeaderContext);
   const history = useHistory();
   const { location: { pathname } } = history;
   function titleName() {
@@ -66,7 +66,7 @@ function Header() {
         type="image"
         className="search-top-btn"
         data-testid="search-top-btn"
-        onClick={ handleChange }
+        onClick={ handleClick }
         src={ searchIcon }
         alt="Ícone de procurar"
       />)}
