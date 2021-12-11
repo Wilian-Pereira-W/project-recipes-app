@@ -5,7 +5,8 @@
 }
 
 footer {
-  background-color: #e6e6e9;
+  background-color: #fdfffc;
+  border-radius: 6px 6px 0 0;
   bottom: 0;
   display: flex;
   justify-content: space-around;

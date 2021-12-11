@@ -1,0 +1,52 @@
+@font-face {
+  font-family: Malvie Trial;
+  src: url('./fonts/Malvie\ Trial.otf') format('opentype');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #fdfffc;
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.164);
+  height: 58px;
+  left: 0;
+  padding: 12px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+header .profile-top-btn {
+  height: 30px;
+  left: 15px;
+  top: 12px;
+  width: 30px;
+}
+
+header h1 {
+  align-items: flex-end;
+  display: flex;
+  font-family: Montserrat , sans-serif;
+  font-size: 23px;
+  height: 35px;
+  justify-content: center;
+  left: 42px;
+  margin: 0;
+  padding: 0 8px;
+  position: absolute;
+  top: 12px;
+  width: 267px;
+}
+
+header .search-top-btn {
+  height: 30px;
+  position: absolute;
+  right: 15px;
+  top: 12px;
+  width: 30px;
+}

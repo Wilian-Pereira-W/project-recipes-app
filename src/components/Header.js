@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { HeaderContext } from '../context/RecipesContext';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import '../styles/header.css';
 
 function Header() {
   const { showDisplay, handleChange } = useContext(HeaderContext);
@@ -49,6 +50,7 @@ function Header() {
     <header>
       <input
         type="image"
+        className="profile-top-btn"
         data-testid="profile-top-btn"
         onClick={ () => history.push('/perfil') }
         src={ profileIcon }
@@ -62,6 +64,12 @@ function Header() {
       </h1>
       { exploreButton() && (<input
         type="image"
+        className="search-top-btn"
+        data-testid="search-top-btn"
+        onClick={ () => history.push('/explorar') }
+        src={ searchIcon }
+        alt="Ícone de explorar"
+      />)}
         data-testid="search-top-btn"
         onClick={ handleChange }
         src={ searchIcon }

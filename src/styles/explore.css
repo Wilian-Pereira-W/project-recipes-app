@@ -5,7 +5,8 @@
 
 .ctn-explore {
   align-items: center;
-  background-color: #ad2a25;
+  background-color: #fdfffc;
+  box-shadow: inset 0 -50px 20px 0 rgba(36, 33, 33, 0.664);
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -14,10 +15,10 @@
 }
 
 .ctn-explore button {
-  background-color: #e6e6e9;
+  background-color: #ad2a25;
   border: none;
   border-radius: 5px;
-  color: #ad2a25;
+  color: #fdfffc;
   font-family: Malvie Trial , sans-serif;
   font-size: 1.3em;
   padding: 15px;

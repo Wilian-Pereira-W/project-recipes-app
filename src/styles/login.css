@@ -27,13 +27,13 @@
 }
 
 .ctn-login h1 {
-  color: #e6e6e9;
+  color: #fdfffc;
   font-family: Malvie Trial , sans-serif;
   margin: 10px 0;
 }
 
 .ctn-login h2 {
-  color: #e6e6e9;
+  color: #fdfffc;
   font-family: Malvie Trial , sans-serif;
   font-size: 100px;
   margin: 0;
@@ -51,7 +51,7 @@
 }
 
 .ctn-login form input {
-  background-color: #e6e6e9;
+  background-color: #fdfffc;
   border: none;
   border-radius: 5px;
   padding: 8px;
@@ -70,5 +70,5 @@
 }
 
 .ctn-login form button:enabled {
-  background-color: #e6e6e9;
+  background-color: #fdfffc;
 }
