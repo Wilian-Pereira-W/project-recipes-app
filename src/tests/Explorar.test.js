@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/dom';
 import renderWithRouter from '../services/renderWithRouter';
 import Explore from '../pages/Explore';
-import HeaderProvider from '../context/HeaderProvider';
 
 describe('Testing Explore Page', () => {
   it('should be render a button with "Comidas"', () => {

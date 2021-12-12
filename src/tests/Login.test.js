@@ -2,7 +2,6 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/dom';
 import renderWithRouter from '../services/renderWithRouter';
-import LoginProvider from '../context/LoginProvider';
 import Login from '../pages/Login';
 
 const CORRECT_EMAIL = 'teste@trybe.com';
