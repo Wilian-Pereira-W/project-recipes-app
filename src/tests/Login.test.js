@@ -13,43 +13,27 @@ const TOKEN_NUMBER = '1';
 
 describe('Testing Login Page', () => {
   it('should be a login input in the document', () => {
-    renderWithRouter(
-      <LoginProvider>
-        <Login />
-      </LoginProvider>,
-    );
+    renderWithRouter(<Login />);
 
     const emailInput = screen.getByPlaceholderText(/E-mail/i);
     expect(emailInput).toBeDefined();
   });
   it('should be a password input in the document', () => {
-    renderWithRouter(
-      <LoginProvider>
-        <Login />
-      </LoginProvider>,
-    );
+    renderWithRouter(<Login />);
 
     const passwordInput = screen.getByPlaceholderText(/password/i);
     expect(passwordInput).toBeDefined();
   });
 
   it('should be a submit button("Entrar") in the document', () => {
-    renderWithRouter(
-      <LoginProvider>
-        <Login />
-      </LoginProvider>,
-    );
+    renderWithRouter(<Login />);
 
     const submitButton = screen.getByText(/entrar/i);
     expect(submitButton).toBeDefined();
   });
 
   it('should be a valid email and password to enable enter button', () => {
-    renderWithRouter(
-      <LoginProvider>
-        <Login />
-      </LoginProvider>,
-    );
+    renderWithRouter(<Login />);
 
     const emailInput = screen.getByPlaceholderText(/E-mail/i);
     const passwordInput = screen.getByPlaceholderText(/password/i);
@@ -60,11 +44,7 @@ describe('Testing Login Page', () => {
   });
 
   it('should be a invalid email and password to disable enter button', () => {
-    renderWithRouter(
-      <LoginProvider>
-        <Login />
-      </LoginProvider>,
-    );
+    renderWithRouter(<Login />);
 
     const emailInput = screen.getByPlaceholderText(/E-mail/i);
     const passwordInput = screen.getByPlaceholderText(/password/i);
@@ -75,11 +55,7 @@ describe('Testing Login Page', () => {
   });
 
   it('should be save tokens at localStorage', () => {
-    renderWithRouter(
-      <LoginProvider>
-        <Login />
-      </LoginProvider>,
-    );
+    renderWithRouter(<Login />);
 
     const emailInput = screen.getByPlaceholderText(/E-mail/i);
     const passwordInput = screen.getByPlaceholderText(/password/i);
@@ -93,11 +69,7 @@ describe('Testing Login Page', () => {
     expect(cocktailsToken).toBe(TOKEN_NUMBER);
   });
   it('should be save user at localStorage', () => {
-    renderWithRouter(
-      <LoginProvider>
-        <Login />
-      </LoginProvider>,
-    );
+    renderWithRouter(<Login />);
 
     const emailInput = screen.getByPlaceholderText(/E-mail/i);
     const passwordInput = screen.getByPlaceholderText(/password/i);
@@ -110,11 +82,7 @@ describe('Testing Login Page', () => {
   });
 
   it('should be redirect to food page', () => {
-    const { history } = renderWithRouter(
-      <LoginProvider>
-        <Login />
-      </LoginProvider>,
-    );
+    const { history } = renderWithRouter(<Login />);
 
     const emailInput = screen.getByPlaceholderText(/E-mail/i);
     const passwordInput = screen.getByPlaceholderText(/password/i);
