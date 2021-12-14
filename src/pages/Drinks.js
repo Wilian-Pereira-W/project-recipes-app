@@ -17,6 +17,9 @@ function Drinks() {
     <>
       <Header />
       <div className="ctn-btn-categories">
+        <button type="button">
+          All
+        </button>
         { drinksCategories.map(({ strCategory }, index) => (
           index < MAX_CATEGORIES && (
             <Categories key={ index } categoryName={ strCategory } />

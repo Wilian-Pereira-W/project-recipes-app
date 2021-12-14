@@ -17,6 +17,9 @@ function Foods() {
     <>
       <Header />
       <div className="ctn-btn-categories">
+        <button type="button">
+          All
+        </button>
         { mealsCategories.map(({ strCategory }, index) => (
           index < MAX_CATEGORIES && (
             <Categories key={ index } categoryName={ strCategory } />
