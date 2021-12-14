@@ -49,8 +49,13 @@ function Header({ title, isEnableSearchIcon }) {
 }
 
 Header.propTypes = {
-  isEnableSearchIcon: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
+  isEnableSearchIcon: PropTypes.bool,
+  title: PropTypes.string,
+};
+
+Header.defaultProps = {
+  isEnableSearchIcon: false,
+  title: '',
 };
 
 export default Header;
