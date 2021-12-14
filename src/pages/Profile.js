@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 function Profile() {
   return (
     <div>
-      <Header title="Perfil" />
+      <Header title="Perfil" isEnableSearchIcon={ false } />
       <Footer />
     </div>
   );

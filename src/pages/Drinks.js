@@ -14,7 +14,7 @@ function Drinks() {
 
   return (
     <>
-      <Header title="Bebidas" />
+      <Header title="Bebidas" isEnableSearchIcon />
       <div className="ctn-btn-categories">
         <button type="button">
           All

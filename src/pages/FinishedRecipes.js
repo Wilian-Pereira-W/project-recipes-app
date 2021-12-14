@@ -4,7 +4,7 @@ import Header from '../components/Header';
 
 function FinishedRecipes() {
   return (
-    <Header title="Receitas Feitas" />
+    <Header title="Receitas Feitas" isEnableSearchIcon={ false } />
   );
 }
 
