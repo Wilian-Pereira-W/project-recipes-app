@@ -9,7 +9,7 @@ function Explore() {
   const history = useHistory();
   return (
     <div className="ctn-explore">
-      <Header />
+      <Header title="Explorar" isEnableSearchIcon={ false } />
       <button
         type="button"
         data-testid="explore-food"
