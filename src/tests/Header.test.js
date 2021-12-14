@@ -3,20 +3,25 @@ import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/dom';
 import renderWithRouter from '../services/renderWithRouter';
 import Header from '../components/Header';
+import Foods from '../pages/Foods';
+import Drinks from '../pages/Drinks';
+import Explore from '../pages/Explore';
+import ExploreFoods from '../pages/ExploreFoods';
+import ExploreDrinks from '../pages/ExploreDrinks';
+import ExploreFoodIngredients from '../pages/ExploreFoodIngredients';
+import ExploreDrinkIngredients from '../pages/ExploreDrinkIngredients';
+import ExploreFoodsByLocale from '../pages/ExploreFoodsByLocale';
+import Profile from '../pages/Profile';
+import FinishedRecipes from '../pages/FinishedRecipes';
+import Favorites from '../pages/Favorites';
 
 describe('Testing header component', () => {
+  const SEARCH_INPUT = 'search-input';
   it('should be render profileIcon', () => {
     renderWithRouter(<Header />);
 
     const profileIcon = screen.getByAltText(/Ícone do perfil/i);
     expect(profileIcon).toBeDefined();
-  });
-
-  it('should be render searchIcon', () => {
-    renderWithRouter(<Header />);
-
-    const searchIcon = screen.getByAltText(/Ícone de procurar/i);
-    expect(searchIcon).toBeDefined();
   });
 
   it('should be render a title', () => {
@@ -34,212 +39,153 @@ describe('Testing header component', () => {
     expect(pathname).toBe('/perfil');
   });
 
-  it('should be render search bar after clicking at search Icon', () => {
-    renderWithRouter(<Header />);
-
-    const searchIcon = screen.getByAltText(/Ícone de procurar/i);
-    userEvent.click(searchIcon);
-    const searchBar = screen.getByTestId('search-input');
-    expect(searchBar).toBeDefined();
-  });
-
   it('should be render correct elements at "Comidas" page', () => {
-    const { history } = renderWithRouter(<Header />);
-    history.push('/comidas');
-    const { pathname } = history.location;
-    expect(pathname).toBe('/comidas');
-    const title = screen.getByRole('heading');
+    renderWithRouter(<Foods />);
+    const title = screen.getByRole('heading', {
+      leve: 1,
+    });
     const profileIcon = screen.getByAltText(/Ícone do perfil/i);
     const searchIcon = screen.getByAltText(/Ícone de procurar/i);
-    expect(title).toBeDefined();
-    expect(profileIcon).toBeDefined();
+    userEvent.click(searchIcon);
+    const searchBar = screen.getByTestId(SEARCH_INPUT);
+    expect(searchBar).toBeDefined();
+    userEvent.click(searchIcon);
+    expect(searchBar).not.toBeInTheDocument();
     expect(searchIcon).toBeDefined();
+    expect(title.innerHTML).toBe('Comidas');
+    expect(profileIcon).toBeDefined();
   });
 
   it('should be render correct elements at "Bebidas" page', () => {
-    const { history } = renderWithRouter(<Header />);
-    history.push('/bebidas');
-    const { pathname } = history.location;
-    expect(pathname).toBe('/bebidas');
+    renderWithRouter(<Drinks />);
+    const title = screen.getByRole('heading', {
+      leve: 1,
+    });
     const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-    const title = screen.getByRole('heading');
     const searchIcon = screen.getByAltText(/Ícone de procurar/i);
-    expect(profileIcon).toBeDefined();
-    expect(title).toBeDefined();
+    userEvent.click(searchIcon);
+    const searchBar = screen.getByTestId(SEARCH_INPUT);
+    expect(searchBar).toBeDefined();
+    userEvent.click(searchIcon);
+    expect(searchBar).not.toBeInTheDocument();
     expect(searchIcon).toBeDefined();
+    expect(title.innerHTML).toBe('Bebidas');
+    expect(profileIcon).toBeDefined();
   });
 
   it('should be render correct elements at "Explorar" page', () => {
-    const { history } = renderWithRouter(<Header />);
-    history.push('/explorar');
-    const { pathname } = history.location;
-    expect(pathname).toBe('/explorar');
-
+    renderWithRouter(<Explore />);
+    const title = screen.getByRole('heading', {
+      leve: 1,
+    });
     const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-    const title = screen.getByRole('heading');
-    const searchIcon = screen.getByAltText(/Ícone de procurar/i);
+    const searchIcon = screen.queryByAltText(/Ícone de procurar/i);
+    expect(searchIcon).not.toBeInTheDocument();
+    expect(title.innerHTML).toBe('Explorar');
     expect(profileIcon).toBeDefined();
-    expect(title).toBeDefined();
-    expect('/explorar').not.toContain(searchIcon);
   });
 
   it('should be render correct elements at "Perfil" page', () => {
-    const { history } = renderWithRouter(<Header />);
-    history.push('/perfil');
-    const { pathname } = history.location;
-    expect(pathname).toBe('/perfil');
-
+    renderWithRouter(<Profile />);
+    const title = screen.getByRole('heading', {
+      leve: 1,
+    });
     const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-    const title = screen.getByRole('heading');
-    const searchIcon = screen.getByAltText(/Ícone de procurar/i);
+    const searchIcon = screen.queryByAltText(/Ícone de procurar/i);
+    expect(searchIcon).not.toBeInTheDocument();
+    expect(title.innerHTML).toBe('Perfil');
     expect(profileIcon).toBeDefined();
-    expect(title).toBeDefined();
-    expect('/perfil').not.toContain(searchIcon);
   });
 
   it('should be render correct elements at "Receitas Favoritas" page', () => {
-    const { history } = renderWithRouter(<Header />);
-
-    const END_POINT = '/receitas-favoritas';
-    history.push(END_POINT);
-    const { pathname } = history.location;
-    expect(pathname).toBe(END_POINT);
-
+    renderWithRouter(<Favorites />);
+    const title = screen.getByRole('heading', {
+      leve: 1,
+    });
     const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-    const title = screen.getByRole('heading');
-    const searchIcon = screen.getByAltText(/Ícone de procurar/i);
+    const searchIcon = screen.queryByAltText(/Ícone de procurar/i);
+    expect(searchIcon).not.toBeInTheDocument();
+    expect(title.innerHTML).toBe('Receitas Favoritas');
     expect(profileIcon).toBeDefined();
-    expect(title).toBeDefined();
-    expect(END_POINT).not.toContain(searchIcon);
   });
 
   it('should be render correct elements at "Explorar Bebidas" page', () => {
-    const { history } = renderWithRouter(<Header />);
-
-    const END_POINT = '/explorar/bebidas';
-    history.push(END_POINT);
-    const { pathname } = history.location;
-    expect(pathname).toBe(END_POINT);
-
+    renderWithRouter(<ExploreDrinks />);
+    const title = screen.getByRole('heading', {
+      leve: 1,
+    });
     const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-    const title = screen.getByRole('heading');
-    const searchIcon = screen.getByAltText(/Ícone de procurar/i);
+    const searchIcon = screen.queryByAltText(/Ícone de procurar/i);
+    expect(searchIcon).not.toBeInTheDocument();
+    expect(title.innerHTML).toBe('Explorar Bebidas');
     expect(profileIcon).toBeDefined();
-    expect(title).toBeDefined();
-    expect(END_POINT).not.toContain(searchIcon);
   });
 
   it('should be render correct elements at "Explorar Comidas" page', () => {
-    const { history } = renderWithRouter(<Header />);
-
-    const END_POINT = '/explorar/comidas';
-    history.push(END_POINT);
-    const { pathname } = history.location;
-    expect(pathname).toBe(END_POINT);
-
+    renderWithRouter(<ExploreFoods />);
+    const title = screen.getByRole('heading', {
+      leve: 1,
+    });
     const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-    const title = screen.getByRole('heading');
-    const searchIcon = screen.getByAltText(/Ícone de procurar/i);
+    const searchIcon = screen.queryByAltText(/Ícone de procurar/i);
+    expect(searchIcon).not.toBeInTheDocument();
+    expect(title.innerHTML).toBe('Explorar Comidas');
     expect(profileIcon).toBeDefined();
-    expect(title).toBeDefined();
-    expect(END_POINT).not.toContain(searchIcon);
   });
 
   it('should be render correct elements at "Explorar Comidas por ingredientes" page',
     () => {
-      const { history } = renderWithRouter(<Header />);
-
-      const END_POINT = '/explorar/comidas/ingredientes';
-      history.push(END_POINT);
-      const { pathname } = history.location;
-      expect(pathname).toBe(END_POINT);
-
+      renderWithRouter(<ExploreFoodIngredients />);
+      const title = screen.getByRole('heading', {
+        leve: 1,
+      });
       const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-      const title = screen.getByRole('heading');
-      const searchIcon = screen.getByAltText(/Ícone de procurar/i);
+      const searchIcon = screen.queryByAltText(/Ícone de procurar/i);
+      expect(searchIcon).not.toBeInTheDocument();
+      expect(title.innerHTML).toBe('Explorar Ingredientes');
       expect(profileIcon).toBeDefined();
-      expect(title).toBeDefined();
-      expect(END_POINT).not.toContain(searchIcon);
     });
   it('should be render correct elements at "Explorar Bebidas por ingredientes" page',
     () => {
-      const { history } = renderWithRouter(<Header />);
-
-      const END_POINT = '/explorar/bebidas/ingredientes';
-      history.push(END_POINT);
-      const { pathname } = history.location;
-      expect(pathname).toBe(END_POINT);
-
+      renderWithRouter(<ExploreDrinkIngredients />);
+      const title = screen.getByRole('heading', {
+        leve: 1,
+      });
       const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-      const title = screen.getByRole('heading');
-      const searchIcon = screen.getByAltText(/Ícone de procurar/i);
+      const searchIcon = screen.queryByAltText(/Ícone de procurar/i);
+      expect(searchIcon).not.toBeInTheDocument();
+      expect(title.innerHTML).toBe('Explorar Ingredientes');
       expect(profileIcon).toBeDefined();
-      expect(title).toBeDefined();
-      expect(END_POINT).not.toContain(searchIcon);
     });
   it('should be render correct elements at "Explorar Bebidas por Origem" page',
     () => {
-      const { history } = renderWithRouter(<Header />);
-
-      const END_POINT = '/explorar/bebidas/area';
-      history.push(END_POINT);
-      const { pathname } = history.location;
-      expect(pathname).toBe(END_POINT);
-
+      renderWithRouter(<ExploreFoodsByLocale />);
+      const title = screen.getByRole('heading', {
+        name: 'Explorar Origem',
+        leve: 1,
+      });
       const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-      const title = screen.getByRole('heading');
       const searchIcon = screen.getByAltText(/Ícone de procurar/i);
+      userEvent.click(searchIcon);
+      const searchBar = screen.getByTestId(SEARCH_INPUT);
+      expect(searchBar).toBeDefined();
+      userEvent.click(searchIcon);
+      expect(searchBar).not.toBeInTheDocument();
+      expect(searchIcon).toBeDefined();
+      expect(title.innerHTML).toBe('Explorar Origem');
       expect(profileIcon).toBeDefined();
-      expect(title).toBeDefined();
-      expect(END_POINT).not.toContain(searchIcon);
     });
 
-  it('should be render correct elements at "Explorar Comidas por Origem" page',
+  it('should be render correct elements at "Receita-feitas" page',
     () => {
-      const { history } = renderWithRouter(<Header />);
-
-      const END_POINT = '/explorar/comidas/area';
-      history.push(END_POINT);
-      const { pathname } = history.location;
-      expect(pathname).toBe(END_POINT);
-
+      renderWithRouter(<FinishedRecipes />);
+      const title = screen.getByRole('heading', {
+        leve: 1,
+      });
       const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-      const title = screen.getByRole('heading');
-      const searchIcon = screen.getByAltText(/Ícone de procurar/i);
+      const searchIcon = screen.queryByAltText(/Ícone de procurar/i);
+      expect(searchIcon).not.toBeInTheDocument();
+      expect(title.innerHTML).toBe('Receitas Feitas');
       expect(profileIcon).toBeDefined();
-      expect(title).toBeDefined();
-      expect(END_POINT).not.toContain(searchIcon);
-    });
-  it('should be render correct elements at "Explorar Receita feitas" page',
-    () => {
-      const { history } = renderWithRouter(<Header />);
-
-      const END_POINT = '/receitas-feitas';
-      history.push(END_POINT);
-      const { pathname } = history.location;
-      expect(pathname).toBe(END_POINT);
-
-      const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-      const title = screen.getByRole('heading');
-      const searchIcon = screen.getByAltText(/Ícone de procurar/i);
-      expect(profileIcon).toBeDefined();
-      expect(title).toBeDefined();
-      expect(END_POINT).not.toContain(searchIcon);
-    });
-  it('should be not render header at "Explorar Receita feitas" page',
-    () => {
-      const { history } = renderWithRouter(<Header />);
-
-      const END_POINT = '/comidas/:id';
-      history.push(END_POINT);
-      const { pathname } = history.location;
-      expect(pathname).toBe(END_POINT);
-
-      const profileIcon = screen.getByAltText(/Ícone do perfil/i);
-      const title = screen.getByRole('heading');
-      const searchIcon = screen.getByAltText(/Ícone de procurar/i);
-      expect(profileIcon).not.toBeDefined();
-      expect(title).not.toBeDefined();
-      expect(searchIcon).not.toBeDefined();
     });
 });
