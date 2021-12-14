@@ -15,7 +15,7 @@ function Foods() {
 
   return (
     <>
-      <Header />
+      <Header title="Comidas" isEnableSearchIcon />
       <div className="ctn-btn-categories">
         <button type="button">
           All

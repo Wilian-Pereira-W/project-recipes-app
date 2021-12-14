@@ -7,15 +7,14 @@ import Card from '../components/Card';
 import Categories from '../components/Categories';
 import '../styles/recipes.css';
 
-const MAX_CARDS = 12;
-const MAX_CATEGORIES = 5;
-
 function Drinks() {
+  const MAX_CARDS = 12;
+  const MAX_CATEGORIES = 5;
   const { drinksRecipes, drinksCategories } = useContext(DrinkRecipesContext);
 
   return (
     <>
-      <Header />
+      <Header title="Bebidas" isEnableSearchIcon />
       <div className="ctn-btn-categories">
         <button type="button">
           All

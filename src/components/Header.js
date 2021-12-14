@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { HeaderContext } from '../context/RecipesContext';
@@ -5,47 +6,9 @@ import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import '../styles/header.css';
 
-function Header() {
+function Header({ title, isEnableSearchIcon }) {
   const { showDisplay, handleClick } = useContext(HeaderContext);
   const history = useHistory();
-  const { location: { pathname } } = history;
-
-  function titleName() {
-    switch (pathname) {
-    case '/perfil': return 'Perfil';
-    case '/explorar': return 'Explorar';
-    case '/bebidas': return 'Bebidas';
-    case '/comidas': return 'Comidas';
-    case '/receitas-favoritas': return 'Receitas Favoritas';
-    case '/explorar/bebidas': return 'Explorar Bebidas';
-    case '/explorar/comidas': return 'Explorar Comidas';
-    case '/explorar/comidas/ingredientes': return 'Explorar Ingredientes';
-    case '/explorar/bebidas/ingredientes': return 'Explorar Ingredientes';
-    case '/explorar/comidas/area': return 'Explorar Origem';
-    case '/explorar/bebidas/area': return 'Explorar Origem';
-    case '/receitas-feitas': return 'Receitas Feitas';
-    default: return 'error';
-    }
-  }
-
-  function searchButton() {
-    switch (pathname) {
-    case '/perfil': return false;
-    case '/explorar': return false;
-    case '/bebidas': return true;
-    case '/comidas': return true;
-    case '/receitas-favoritas': return false;
-    case '/explorar/bebidas': return false;
-    case '/explorar/comidas': return false;
-    case '/explorar/comidas/area': return true;
-    case '/explorar/bebidas/area': return true;
-    case '/explorar/comidas/ingredientes': return false;
-    case '/explorar/bebidas/ingredientes': return false;
-    case '/receitas-feitas': return false;
-
-    default: return 'error';
-    }
-  }
 
   return (
     <header>
@@ -61,16 +24,18 @@ function Header() {
         type="text"
         data-testid="page-title"
       >
-        {titleName()}
+        {title}
       </h1>
-      { searchButton() && (<input
-        type="image"
-        className="search-top-btn"
-        data-testid="search-top-btn"
-        onClick={ handleClick }
-        src={ searchIcon }
-        alt="Ícone de procurar"
-      />)}
+      { isEnableSearchIcon && (
+        <input
+          type="image"
+          className="search-top-btn"
+          data-testid="search-top-btn"
+          onClick={ handleClick }
+          src={ searchIcon }
+          alt="Ícone de procurar"
+        />
+      )}
       {showDisplay && (
         <div>
           <input
@@ -82,5 +47,10 @@ function Header() {
     </header>
   );
 }
+
+Header.propTypes = {
+  isEnableSearchIcon: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 export default Header;
