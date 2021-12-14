@@ -1,9 +1,9 @@
 import React from 'react';
 
-function ExploreInput() {
+function SearchInput() {
   return (
     <input data-testid="search-input" type="text" />
   );
 }
 
-export default ExploreInput;
+export default SearchInput;
