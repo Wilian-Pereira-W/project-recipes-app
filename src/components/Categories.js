@@ -9,7 +9,7 @@ function Categories(props) {
       type="button"
       data-testid={ `${categoryName}-category-filter` }
     >
-      { categoryName }
+      { categoryName.split(' ')[0].split('/')[0] }
     </button>
   );
 }
