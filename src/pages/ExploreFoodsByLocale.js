@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 function ExploreFoodsByLocale() {
   return (
     <div>
-      <Header />
+      <Header title="Explorar Origem" />
       <Footer />
     </div>
   );

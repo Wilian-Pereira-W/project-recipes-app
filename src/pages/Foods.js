@@ -15,7 +15,7 @@ function Foods() {
 
   return (
     <>
-      <Header />
+      <Header title="Comidas" />
       <div className="ctn-btn-categories">
         <button type="button">
           All

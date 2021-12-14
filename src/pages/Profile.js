@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 function Profile() {
   return (
     <div>
-      <Header />
+      <Header title="Perfil" />
       <Footer />
     </div>
   );
