@@ -6,6 +6,7 @@ import { drinksAPI } from '../services/resquestAPI';
 function DrinkRecipesProvider({ children }) {
   const [drinksRecipes, setDrinksRecipes] = useState([]);
   const [drinksCategories, setDrinksCategories] = useState([]);
+  const [selectedCategoryDrinks, setSelectedCategoryDrinks] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -18,9 +19,19 @@ function DrinkRecipesProvider({ children }) {
     })();
   }, []);
 
+  useEffect(() => {
+    if (selectedCategoryDrinks !== '') {
+      (async () => {
+        const { drinks } = await drinksAPI(`filter.php?c=${selectedCategoryDrinks}`);
+        setDrinksRecipes(drinks);
+      })();
+    }
+  }, [selectedCategoryDrinks]);
+
   const context = {
     drinksRecipes,
     drinksCategories,
+    setSelectedCategoryDrinks,
   };
 
   return (
