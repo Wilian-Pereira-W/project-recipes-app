@@ -4,7 +4,7 @@ import { HeaderContext } from '../context/RecipesContext';
 function SearchInput() {
   const { setFilters, handleSearch, search, setSearch } = useContext(HeaderContext);
   return (
-    <div>
+    <div className="searchBar">
       <input
         data-testid="search-input"
         type="text"

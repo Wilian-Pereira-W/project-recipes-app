@@ -12,35 +12,37 @@ function Header({ title, isEnableSearchIcon }) {
   const history = useHistory();
 
   return (
-    <header>
-      <input
-        type="image"
-        className="profile-top-btn"
-        data-testid="profile-top-btn"
-        onClick={ () => history.push('/perfil') }
-        src={ profileIcon }
-        alt="Ícone do perfil"
-      />
-      <h1
-        type="text"
-        data-testid="page-title"
-      >
-        {title}
-      </h1>
-      { isEnableSearchIcon && (
+    <>
+      <header>
         <input
           type="image"
-          className="search-top-btn"
-          data-testid="search-top-btn"
-          onClick={ handleClick }
-          src={ searchIcon }
-          alt="Ícone de procurar"
+          className="profile-top-btn"
+          data-testid="profile-top-btn"
+          onClick={ () => history.push('/perfil') }
+          src={ profileIcon }
+          alt="Ícone do perfil"
         />
-      )}
+        <h1
+          type="text"
+          data-testid="page-title"
+        >
+          {title}
+        </h1>
+        { isEnableSearchIcon && (
+          <input
+            type="image"
+            className="search-top-btn"
+            data-testid="search-top-btn"
+            onClick={ handleClick }
+            src={ searchIcon }
+            alt="Ícone de procurar"
+          />
+        )}
+      </header>
       {showDisplay && (
         <SearchInput />
       )}
-    </header>
+    </>
   );
 }
 

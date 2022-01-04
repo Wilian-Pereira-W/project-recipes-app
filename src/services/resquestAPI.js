@@ -18,7 +18,7 @@ export const drinksAPI = async (queryString) => {
 
 export const ingredientsAPI = async (queryString) => {
   try {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${queryString}`);
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/${queryString}`);
     return response.json();
   } catch (error) {
     console.log(error);
@@ -27,7 +27,7 @@ export const ingredientsAPI = async (queryString) => {
 
 export const nameAPI = async (queryString) => {
   try {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${queryString}`);
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/${queryString}`);
     return response.json();
   } catch (error) {
     console.log(error);
@@ -36,7 +36,7 @@ export const nameAPI = async (queryString) => {
 
 export const firstLetterAPI = async (queryString) => {
   try {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${queryString}`);
+    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/${queryString}`);
     return response.json();
   } catch (error) {
     console.log(error);

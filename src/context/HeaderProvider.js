@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { HeaderContext } from './RecipesContext';
-import { ingredientsAPI, nameAPI, firstLetterAPI } from '../services/resquestAPI';
+import { FoodRecipesContext, HeaderContext } from './RecipesContext';
+import { foodsAPI } from '../services/resquestAPI';
 
 function HeaderProvider({ children }) {
   const [showDisplay, setShowDisplay] = useState(false);
   const [filters, setFilters] = useState('');
   const [search, setSearch] = useState('');
-
-  console.log(search);
+  const { setMealsRecipes, mealsRecipes } = useContext(FoodRecipesContext);
 
   const handleClick = () => {
     if (showDisplay === false) {
@@ -18,17 +17,24 @@ function HeaderProvider({ children }) {
     }
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (filters === 'Ingrediente') {
-      console.log(ingredientsAPI(search));
+      const { meals } = await foodsAPI(`filter.php?i=${search}`);
+      setMealsRecipes(meals);
     } else if (filters === 'Nome') {
-      console.log(nameAPI(search));
+      const { meals } = await foodsAPI(`search.php?s=${search}`);
+      setMealsRecipes(meals);
     } else if (search.length === 1) {
-      console.log(firstLetterAPI(search));
+      const { meals } = await foodsAPI(`search.php?f=${search}`);
+      setMealsRecipes(meals);
     } else {
       global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
   };
+
+  useEffect(() => {
+    console.log(mealsRecipes);
+  }, [mealsRecipes]);
 
   return (
     <HeaderContext.Provider

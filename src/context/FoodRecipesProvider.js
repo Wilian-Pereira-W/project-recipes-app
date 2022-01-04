@@ -21,6 +21,7 @@ function FoodRecipesProvider({ children }) {
   const context = {
     mealsRecipes,
     mealsCategories,
+    setMealsRecipes,
   };
 
   return (
