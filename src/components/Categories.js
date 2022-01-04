@@ -1,10 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
-import { FoodRecipesContext } from '../context/RecipesContext';
+import { FoodRecipesContext, DrinkRecipesContext } from '../context/RecipesContext';
 
-function Categories(props) {
-  const { categoryName } = props;
-  const { setSelectedCategory } = useContext(FoodRecipesContext);
+function Categories({ categoryName, title }) {
+  const { setSelectedCategoryFoods } = useContext(FoodRecipesContext);
+  const { setSelectedCategoryDrinks } = useContext(DrinkRecipesContext);
+
+  const setSelectedCategory = (name) => (title === 'Comidas'
+    ? setSelectedCategoryFoods(name)
+    : setSelectedCategoryDrinks(name)
+  );
 
   return (
     <button
