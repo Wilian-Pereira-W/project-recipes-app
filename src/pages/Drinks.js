@@ -21,7 +21,7 @@ function Drinks() {
         </button>
         { drinksCategories.map(({ strCategory }, index) => (
           index < MAX_CATEGORIES && (
-            <Categories key={ index } categoryName={ strCategory } />
+            <Categories key={ index } categoryName={ strCategory } title="Bebidas" />
           )
         )) }
       </div>
