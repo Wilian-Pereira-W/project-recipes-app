@@ -8,7 +8,10 @@ import '../styles/header.css';
 import SearchInput from './SearchInput';
 
 function Header({ title, isEnableSearchIcon }) {
-  const { showDisplay, handleClick } = useContext(HeaderContext);
+  const {
+    showDisplay,
+    handleClick,
+  } = useContext(HeaderContext);
   const history = useHistory();
 
   return (
@@ -40,7 +43,7 @@ function Header({ title, isEnableSearchIcon }) {
         )}
       </header>
       {showDisplay && (
-        <SearchInput />
+        <SearchInput title={ title } />
       )}
     </>
   );

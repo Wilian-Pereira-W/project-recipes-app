@@ -1,8 +1,14 @@
+import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { HeaderContext } from '../context/RecipesContext';
 
-function SearchInput() {
-  const { setFilters, handleSearch, search, setSearch } = useContext(HeaderContext);
+function SearchInput({ title }) {
+  const {
+    setFilters,
+    search,
+    setSearch,
+    handleSearchFoods,
+    handleSearchDrinks } = useContext(HeaderContext);
   return (
     <div className="searchBar">
       <input
@@ -51,12 +57,20 @@ function SearchInput() {
       <button
         type="button"
         data-testid="exec-search-btn"
-        onClick={ handleSearch }
+        onClick={ title === 'Comidas' ? handleSearchFoods : handleSearchDrinks }
       >
         Buscar
       </button>
     </div>
   );
 }
+
+SearchInput.propTypes = {
+  title: PropTypes.string,
+};
+
+SearchInput.defaultProps = {
+  title: '',
+};
 
 export default SearchInput;

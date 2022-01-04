@@ -21,6 +21,7 @@ function DrinkRecipesProvider({ children }) {
   const context = {
     drinksRecipes,
     drinksCategories,
+    setDrinksRecipes,
   };
 
   return (
