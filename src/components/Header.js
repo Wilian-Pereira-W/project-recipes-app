@@ -5,6 +5,7 @@ import { HeaderContext } from '../context/RecipesContext';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import '../styles/header.css';
+import SearchInput from './SearchInput';
 
 function Header({ title, isEnableSearchIcon }) {
   const { showDisplay, handleClick } = useContext(HeaderContext);
@@ -37,12 +38,7 @@ function Header({ title, isEnableSearchIcon }) {
         />
       )}
       {showDisplay && (
-        <div>
-          <input
-            data-testid="search-input"
-            type="text"
-          />
-        </div>
+        <SearchInput />
       )}
     </header>
   );
