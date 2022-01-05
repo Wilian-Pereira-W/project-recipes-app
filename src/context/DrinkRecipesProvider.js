@@ -20,9 +20,15 @@ function DrinkRecipesProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    if (selectedCategoryDrinks !== '') {
+    if (selectedCategoryDrinks !== '' && selectedCategoryDrinks !== 'All') {
       (async () => {
         const { drinks } = await drinksAPI(`filter.php?c=${selectedCategoryDrinks}`);
+        setDrinksRecipes(drinks);
+      })();
+    }
+    if (selectedCategoryDrinks === 'All') {
+      (async () => {
+        const { drinks } = await drinksAPI('search.php?s=');
         setDrinksRecipes(drinks);
       })();
     }
