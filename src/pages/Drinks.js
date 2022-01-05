@@ -10,18 +10,26 @@ import '../styles/recipes.css';
 function Drinks() {
   const MAX_CARDS = 12;
   const MAX_CATEGORIES = 5;
-  const { drinksRecipes, drinksCategories } = useContext(DrinkRecipesContext);
+  const { drinksRecipes,
+    drinksCategories,
+    setSelectedCategoryDrinks,
+  } = useContext(DrinkRecipesContext);
 
   return (
     <>
       <Header title="Bebidas" isEnableSearchIcon />
       <div className="ctn-btn-categories">
-        <button type="button">
+        <button
+          type="button"
+          name="All"
+          data-testid="All-category-filter"
+          onClick={ ({ target: { name } }) => setSelectedCategoryDrinks(name) }
+        >
           All
         </button>
         { drinksCategories.map(({ strCategory }, index) => (
           index < MAX_CATEGORIES && (
-            <Categories key={ index } categoryName={ strCategory } />
+            <Categories key={ index } categoryName={ strCategory } title="Bebidas" />
           )
         )) }
       </div>
@@ -32,6 +40,7 @@ function Drinks() {
             && (
               <Card
                 key={ idDrink }
+                id={ idDrink }
                 index={ index }
                 name={ strDrink }
                 img={ strDrinkThumb }

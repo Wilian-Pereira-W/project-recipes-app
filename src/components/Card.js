@@ -1,14 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import '../styles/recipes.css';
 
-function Card(props) {
-  const { index, name, img } = props;
+function Card({ index, name, img, id }) {
+  const history = useHistory();
+  const { location: { pathname } } = history;
 
   return (
-    <div
+    <button
+      type="button"
       data-testid={ `${index}-recipe-card` }
       className="card-recipes"
+      onClick={ () => history.push(`${pathname}/${id}`) }
     >
       <img
         src={ img }
@@ -20,7 +24,7 @@ function Card(props) {
       >
         {name}
       </span>
-    </div>
+    </button>
   );
 }
 
