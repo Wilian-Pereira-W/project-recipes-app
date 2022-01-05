@@ -6,6 +6,7 @@ import { drinksAPI } from '../services/resquestAPI';
 function DrinkRecipesProvider({ children }) {
   const [drinksRecipes, setDrinksRecipes] = useState([]);
   const [drinksCategories, setDrinksCategories] = useState([]);
+  const [selectedCategoryDrinks, setSelectedCategoryDrinks] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -18,9 +19,26 @@ function DrinkRecipesProvider({ children }) {
     })();
   }, []);
 
+  useEffect(() => {
+    if (selectedCategoryDrinks !== '' && selectedCategoryDrinks !== 'All') {
+      (async () => {
+        const { drinks } = await drinksAPI(`filter.php?c=${selectedCategoryDrinks}`);
+        setDrinksRecipes(drinks);
+      })();
+    }
+    if (selectedCategoryDrinks === 'All') {
+      (async () => {
+        const { drinks } = await drinksAPI('search.php?s=');
+        setDrinksRecipes(drinks);
+      })();
+    }
+  }, [selectedCategoryDrinks]);
+
   const context = {
     drinksRecipes,
     drinksCategories,
+    selectedCategoryDrinks,
+    setSelectedCategoryDrinks,
   };
 
   return (

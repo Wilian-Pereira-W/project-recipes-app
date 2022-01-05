@@ -6,6 +6,8 @@ import { foodsAPI } from '../services/resquestAPI';
 function FoodRecipesProvider({ children }) {
   const [mealsRecipes, setMealsRecipes] = useState([]);
   const [mealsCategories, setMealsCategories] = useState([]);
+  const [selectedCategoryFoods, setSelectedCategoryFoods] = useState('');
+  const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -18,9 +20,28 @@ function FoodRecipesProvider({ children }) {
     })();
   }, []);
 
+  useEffect(() => {
+    if (selectedCategoryFoods !== '' && selectedCategoryFoods !== 'All') {
+      (async () => {
+        const { meals } = await foodsAPI(`filter.php?c=${selectedCategoryFoods}`);
+        setMealsRecipes(meals);
+      })();
+    }
+    if (selectedCategoryFoods === 'All') {
+      (async () => {
+        const { meals } = await foodsAPI('search.php?s=');
+        setMealsRecipes(meals);
+      })();
+    }
+  }, [selectedCategoryFoods]);
+
   const context = {
     mealsRecipes,
     mealsCategories,
+    setSelectedCategoryFoods,
+    selectedCategoryFoods,
+    isSelected,
+    setIsSelected,
   };
 
   return (
