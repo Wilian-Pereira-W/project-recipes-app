@@ -38,14 +38,11 @@ function FoodRecipesProvider({ children }) {
   const context = {
     mealsRecipes,
     mealsCategories,
-<<<<<<< HEAD
     setMealsRecipes,
-=======
     setSelectedCategoryFoods,
     selectedCategoryFoods,
     isSelected,
     setIsSelected,
->>>>>>> 492a636169a9f5c4ec1490b248f3b25a106188ec
   };
 
   return (

@@ -37,12 +37,9 @@ function DrinkRecipesProvider({ children }) {
   const context = {
     drinksRecipes,
     drinksCategories,
-<<<<<<< HEAD
     setDrinksRecipes,
-=======
     selectedCategoryDrinks,
     setSelectedCategoryDrinks,
->>>>>>> 492a636169a9f5c4ec1490b248f3b25a106188ec
   };
 
   return (
