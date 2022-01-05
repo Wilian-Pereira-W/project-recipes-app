@@ -40,8 +40,8 @@ function App() {
           component={ ExploreDrinkIngredients }
         />
         <Route path="/explorar/comidas/area" component={ ExploreFoodsByLocale } />
-        <Route path="/comidas/52771" component={ FoodsRecipeDetails } />
-        <Route path="/bebidas/178319" component={ DrinksRecipeDetails } />
+        <Route path="/comidas/:id" component={ FoodsRecipeDetails } />
+        <Route path="/bebidas/:id" component={ DrinksRecipeDetails } />
         <Route path="/explorar/comidas" component={ ExploreFoods } />
         <Route path="/explorar/bebidas" component={ ExploreDrinks } />
         <Route path="/receitas-feitas" component={ FinishedRecipes } />
