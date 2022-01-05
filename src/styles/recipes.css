@@ -21,8 +21,13 @@
   font-family: Malvie Trial , sans-serif;
   height: 35px;
   margin-bottom: 10px;
+  outline: none;
   padding: 5px;
   width: 100px;
+}
+
+.ctn-btn-categories button:focus {
+  background-color: #c97516;
 }
 
 .ctn-card-recipes {
@@ -39,7 +44,7 @@
 .card-recipes {
   background-color: #fafafa;
   border-radius: 6px;
-  box-shadow: 5px 5px 4px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: -6px 4px 20px 1px rgb(0 0 0 / 25%);
   display: flex;
   flex-direction: column;
   height: 150px;
@@ -60,5 +65,6 @@
   color: #ad2a25;
   font-family: Malvie Trial , sans-serif;
   font-size: 18px;
+  overflow-x: hidden;
   padding: 0 0 10px 10px;
 }
