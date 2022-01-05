@@ -7,6 +7,7 @@ function FoodRecipesProvider({ children }) {
   const [mealsRecipes, setMealsRecipes] = useState([]);
   const [mealsCategories, setMealsCategories] = useState([]);
   const [selectedCategoryFoods, setSelectedCategoryFoods] = useState('');
+  const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -39,6 +40,8 @@ function FoodRecipesProvider({ children }) {
     mealsCategories,
     setSelectedCategoryFoods,
     selectedCategoryFoods,
+    isSelected,
+    setIsSelected,
   };
 
   return (
