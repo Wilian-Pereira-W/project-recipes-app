@@ -62,7 +62,7 @@ function SearchInput({ title }) {
       />
 
       <label htmlFor="ingredients">
-        Ingredientes
+        Ingrediente
         <input
           id="ingredients"
           value="Ingrediente"

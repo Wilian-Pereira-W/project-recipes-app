@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
-
 import { DrinkRecipesContext, FoodRecipesContext, HeaderContext } from './RecipesContext';
 import { foodsAPI, drinksAPI } from '../services/resquestAPI';
 
@@ -82,6 +81,7 @@ function HeaderProvider({ children }) {
         setDrink(drinks);
       }
       noDrinkRecipe(drinks);
+      setDrinksRecipes(drinks);
     } else {
       global.alert('Sua busca deve conter somente 1 (um) caracter');
     }

@@ -43,6 +43,7 @@ function FoodRecipesProvider({ children }) {
     selectedCategoryFoods,
     isSelected,
     setIsSelected,
+
   };
 
   return (
