@@ -41,6 +41,7 @@ function Foods() {
           && (
             <Card
               key={ idMeal }
+              id={ idMeal }
               index={ index }
               name={ strMeal }
               img={ strMealThumb }

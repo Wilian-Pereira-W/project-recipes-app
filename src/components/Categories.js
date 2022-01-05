@@ -43,7 +43,6 @@ function Categories({ categoryName, title }) {
       } }
       data-testid={ `${categoryName}-category-filter` }
       name={ categoryName }
-
     >
       { categoryName.split(' ')[0].split('/')[0] }
     </button>
