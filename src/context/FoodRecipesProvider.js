@@ -20,9 +20,15 @@ function FoodRecipesProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    if (selectedCategoryFoods !== '') {
+    if (selectedCategoryFoods !== '' && selectedCategoryFoods !== 'All') {
       (async () => {
         const { meals } = await foodsAPI(`filter.php?c=${selectedCategoryFoods}`);
+        setMealsRecipes(meals);
+      })();
+    }
+    if (selectedCategoryFoods === 'All') {
+      (async () => {
+        const { meals } = await foodsAPI('search.php?s=');
         setMealsRecipes(meals);
       })();
     }

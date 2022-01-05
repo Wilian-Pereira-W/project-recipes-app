@@ -11,13 +11,20 @@ const MAX_CARDS = 12;
 const MAX_CATEGORIES = 5;
 
 function Foods() {
-  const { mealsRecipes, mealsCategories } = useContext(FoodRecipesContext);
+  const { mealsRecipes,
+    mealsCategories,
+    setSelectedCategoryFoods,
+  } = useContext(FoodRecipesContext);
 
   return (
     <>
       <Header title="Comidas" isEnableSearchIcon />
       <div className="ctn-btn-categories">
-        <button type="button">
+        <button
+          type="button"
+          name="All"
+          onClick={ ({ target: { name } }) => setSelectedCategoryFoods(name) }
+        >
           All
         </button>
         { mealsCategories.map(({ strCategory }, index) => (
@@ -30,14 +37,14 @@ function Foods() {
         { mealsRecipes
           .map(({ idMeal, strMeal, strMealThumb }, index) => (
             index < MAX_CARDS
-            && (
-              <Card
-                key={ idMeal }
-                index={ index }
-                name={ strMeal }
-                img={ strMealThumb }
-              />
-            )
+          && (
+            <Card
+              key={ idMeal }
+              index={ index }
+              name={ strMeal }
+              img={ strMealThumb }
+            />
+          )
           )) }
       </section>
       <Footer />
