@@ -18,7 +18,6 @@ function InProgressRecipes() {
         Favoritar
       </button>
       <h3 data-testid="recipe-category">category</h3>
-      <input type="radio" data-testid="${index}-ingredient-step"/>
     </div>
   );
 }
