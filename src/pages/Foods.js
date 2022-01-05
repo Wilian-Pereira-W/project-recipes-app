@@ -23,6 +23,7 @@ function Foods() {
         <button
           type="button"
           name="All"
+          data-testid="All-category-filter"
           onClick={ ({ target: { name } }) => setSelectedCategoryFoods(name) }
         >
           All
