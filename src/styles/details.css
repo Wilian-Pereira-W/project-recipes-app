@@ -1,0 +1,23 @@
+@font-face {
+  font-family: Malvie Trial;
+  src: url('./fonts/Malvie\ Trial.otf') format('opentype');
+}
+
+.recipe-photo {
+  width: 100%;
+}
+
+.carousel {
+  box-sizing: border-box;
+  height: 170px;
+  margin: 30px 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.carousel .card-recipes {
+  display: inline-block;
+  margin-left: 20px;
+}

@@ -62,10 +62,10 @@
   width: 100%;
 }
 
-.card-recipes span {
+.card-recipes .card-name {
   color: #ad2a25;
   font-family: Malvie Trial , sans-serif;
   font-size: 18px;
-  overflow-x: hidden;
+  overflow-wrap: break-word;
   padding: 0 0 10px 10px;
 }
