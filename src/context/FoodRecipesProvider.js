@@ -37,19 +37,6 @@ function FoodRecipesProvider({ children }) {
     }
   }, [selectedCategoryFoods]);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     if (idFood !== '') {
-  //       const { meals } = await foodsAPI(`lookup.php?i=${idFood}`);
-  //       setMealsDetails(meals[0]);
-  //       const baseURL = 'https://www.youtube.com/embed/';
-  //       const videoID = meals[0].strYoutube.split('=')[1];
-  //       const URL = `${baseURL}${videoID}`;
-  //       setVideoURL(URL);
-  //     }
-  //   })();
-  // }, [idFood]);
-
   const context = {
     mealsRecipes,
     mealsCategories,
