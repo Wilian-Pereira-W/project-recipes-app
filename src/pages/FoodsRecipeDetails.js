@@ -33,7 +33,19 @@ function FoodsRecipeDetails() {
 
   const filteredIngredients = Object.entries(mealsDetails)
     .filter((item) => item[0].includes('strIngredient'))
-    .filter((ingredient) => ingredient[1] !== '' && ingredient[1] !== null);
+    .filter((ingredient) => ingredient[1] !== '' && ingredient[1] !== null)
+    .map((ingredient) => ingredient[1]);
+
+  const filteredMeasure = Object.entries(mealsDetails)
+    .filter((item) => item[0].includes('strMeasure'))
+    .filter((measure) => measure[1] !== '' && measure[1] !== null)
+    .map((measure) => measure[1]);
+
+  const ingredients = {};
+  filteredIngredients
+    .forEach((ingredient, index) => {
+      ingredients[ingredient] = filteredMeasure[index];
+    });
 
   const {
     strMeal,
@@ -60,12 +72,12 @@ function FoodsRecipeDetails() {
       <span data-testid="recipe-category">{strCategory}</span>
       <h5>Ingredients</h5>
       <ul>
-        { filteredIngredients.map((ingredient, index) => (
+        { Object.entries(ingredients).map((ingredient, index) => (
           <li
             key={ index }
             data-testid={ `${index}-ingredient-name-and-measure` }
           >
-            {ingredient[1]}
+            {`${ingredient[0]} ${ingredient[1]}`}
           </li>
         )) }
       </ul>
