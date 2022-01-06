@@ -10,7 +10,8 @@ function Card({ index, name, img, id }) {
   return (
     <button
       type="button"
-      data-testid={ `${index}-recipe-card` }
+      data-testid={ pathname === '/comidas' || pathname === '/bebidas'
+        ? `${index}-recipe-card` : `${index}-recomendation-card` }
       className="card-recipes"
       onClick={ () => history.push(`${pathname}/${id}`) }
     >
