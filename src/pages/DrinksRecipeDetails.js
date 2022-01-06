@@ -1,11 +1,25 @@
 // Tela de detalhes de uma receita de bebida: `/bebidas/{id-da-receita}`;
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { DrinkRecipesContext } from '../context/RecipesContext';
+import { drinksAPI } from '../services/resquestAPI';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function DrinksRecipeDetails() {
-  const { drinksDetails } = useContext(DrinkRecipesContext);
+  const { drinksDetails, setDrinksDetails } = useContext(DrinkRecipesContext);
+  const history = useHistory();
+  const { location: { pathname } } = history;
+  const ID = pathname.split('/')[2];
+
+  useEffect(() => {
+    (async () => {
+      if (ID !== '') {
+        const { drinks } = await drinksAPI(`lookup.php?i=${ID}`);
+        setDrinksDetails(drinks[0]);
+      }
+    })();
+  }, [ID, setDrinksDetails]);
 
   const filteredIngredients = Object.entries(drinksDetails)
     .filter((item) => item[0].includes('strIngredient'))

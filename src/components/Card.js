@@ -1,33 +1,18 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { FoodRecipesContext, DrinkRecipesContext } from '../context/RecipesContext';
 import '../styles/recipes.css';
 
 function Card({ index, name, img, id }) {
-  const { setIdFood } = useContext(FoodRecipesContext);
-  const { setIdDrink } = useContext(DrinkRecipesContext);
   const history = useHistory();
   const { location: { pathname } } = history;
-
-  const foodOrDrink = (idRecipe) => {
-    if (pathname.includes('comidas')) {
-      setIdFood(idRecipe);
-    }
-    if (pathname.includes('bebidas')) {
-      setIdDrink(idRecipe);
-    }
-  };
 
   return (
     <button
       type="button"
       data-testid={ `${index}-recipe-card` }
       className="card-recipes"
-      onClick={ () => {
-        history.push(`${pathname}/${id}`);
-        foodOrDrink(id);
-      } }
+      onClick={ () => history.push(`${pathname}/${id}`) }
     >
       <img
         src={ img }

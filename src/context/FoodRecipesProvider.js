@@ -8,9 +8,9 @@ function FoodRecipesProvider({ children }) {
   const [mealsCategories, setMealsCategories] = useState([]);
   const [selectedCategoryFoods, setSelectedCategoryFoods] = useState('');
   const [isSelected, setIsSelected] = useState(false);
-  const [idFood, setIdFood] = useState('');
   const [mealsDetails, setMealsDetails] = useState({});
   const [videoURL, setVideoURL] = useState('');
+
   useEffect(() => {
     (async () => {
       const { meals } = await foodsAPI('search.php?s=');
@@ -37,21 +37,18 @@ function FoodRecipesProvider({ children }) {
     }
   }, [selectedCategoryFoods]);
 
-  useEffect(() => {
-    (async () => {
-      const path = window.location.pathname.split('/')[1];
-      const idRecipe = window.location.pathname.split('/')[2];
-
-      if (path === 'comidas') {
-        const { meals } = await foodsAPI(`lookup.php?i=${idFood || idRecipe}`);
-        setMealsDetails(meals[0]);
-        const baseURL = 'https://www.youtube.com/embed/';
-        const videoID = meals[0].strYoutube.split('=')[1];
-        const URL = `${baseURL}${videoID}`;
-        setVideoURL(URL);
-      }
-    })();
-  }, [idFood]);
+  // useEffect(() => {
+  //   (async () => {
+  //     if (idFood !== '') {
+  //       const { meals } = await foodsAPI(`lookup.php?i=${idFood}`);
+  //       setMealsDetails(meals[0]);
+  //       const baseURL = 'https://www.youtube.com/embed/';
+  //       const videoID = meals[0].strYoutube.split('=')[1];
+  //       const URL = `${baseURL}${videoID}`;
+  //       setVideoURL(URL);
+  //     }
+  //   })();
+  // }, [idFood]);
 
   const context = {
     mealsRecipes,
@@ -61,9 +58,10 @@ function FoodRecipesProvider({ children }) {
     selectedCategoryFoods,
     isSelected,
     setIsSelected,
-    setIdFood,
     mealsDetails,
+    setMealsDetails,
     videoURL,
+    setVideoURL,
   };
 
   return (

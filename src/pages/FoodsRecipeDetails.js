@@ -1,11 +1,35 @@
 // Tela de detalhes de uma receita de comida: `/comidas/{id-da-receita}`;
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { FoodRecipesContext } from '../context/RecipesContext';
+import { foodsAPI } from '../services/resquestAPI';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FoodsRecipeDetails() {
-  const { mealsDetails, videoURL } = useContext(FoodRecipesContext);
+  const {
+    mealsDetails,
+    videoURL,
+    setMealsDetails,
+    setVideoURL,
+  } = useContext(FoodRecipesContext);
+
+  const history = useHistory();
+  const { location: { pathname } } = history;
+  const ID = pathname.split('/')[2];
+
+  useEffect(() => {
+    (async () => {
+      if (ID !== '') {
+        const { meals } = await foodsAPI(`lookup.php?i=${ID}`);
+        setMealsDetails(meals[0]);
+        const baseURL = 'https://www.youtube.com/embed/';
+        const videoID = meals[0].strYoutube.split('=')[1];
+        const URL = `${baseURL}${videoID}`;
+        setVideoURL(URL);
+      }
+    })();
+  }, [ID, setMealsDetails, setVideoURL]);
 
   const filteredIngredients = Object.entries(mealsDetails)
     .filter((item) => item[0].includes('strIngredient'))
