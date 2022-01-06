@@ -7,6 +7,8 @@ function DrinkRecipesProvider({ children }) {
   const [drinksRecipes, setDrinksRecipes] = useState([]);
   const [drinksCategories, setDrinksCategories] = useState([]);
   const [selectedCategoryDrinks, setSelectedCategoryDrinks] = useState('');
+  const [idDrink, setIdDrink] = useState('');
+  const [drinksDetails, setDrinksDetails] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -34,12 +36,26 @@ function DrinkRecipesProvider({ children }) {
     }
   }, [selectedCategoryDrinks]);
 
+  useEffect(() => {
+    (async () => {
+      const path = window.location.pathname.split('/')[1];
+      const idRecipe = window.location.pathname.split('/')[2];
+
+      if (path === 'bebidas') {
+        const { drinks } = await drinksAPI(`lookup.php?i=${idDrink || idRecipe}`);
+        setDrinksDetails(drinks[0]);
+      }
+    })();
+  }, [idDrink]);
+
   const context = {
     drinksRecipes,
     drinksCategories,
     setDrinksRecipes,
     selectedCategoryDrinks,
     setSelectedCategoryDrinks,
+    drinksDetails,
+    setIdDrink,
   };
 
   return (
