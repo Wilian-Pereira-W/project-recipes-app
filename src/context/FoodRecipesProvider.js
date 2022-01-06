@@ -38,10 +38,12 @@ function FoodRecipesProvider({ children }) {
   const context = {
     mealsRecipes,
     mealsCategories,
+    setMealsRecipes,
     setSelectedCategoryFoods,
     selectedCategoryFoods,
     isSelected,
     setIsSelected,
+
   };
 
   return (
