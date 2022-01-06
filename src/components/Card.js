@@ -20,11 +20,12 @@ function Card({ index, name, img, id }) {
         alt={ name }
         data-testid={ `${index}-card-img` }
       />
-      <span
+      <p
+        className="card-name"
         data-testid={ `${index}-card-name` }
       >
         {name}
-      </span>
+      </p>
     </button>
   );
 }
