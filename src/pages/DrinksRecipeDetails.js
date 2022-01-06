@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { drinksAPI } from '../services/resquestAPI';
 import Card from '../components/Card';
+import '../styles/details.css';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
@@ -54,6 +55,7 @@ function DrinksRecipeDetails() {
       <img
         src={ strDrinkThumb }
         alt="Foto da receita"
+        className="recipe-photo"
         data-testid="recipe-photo"
       />
       <h3 data-testid="recipe-title">{strDrink}</h3>
@@ -78,20 +80,21 @@ function DrinksRecipeDetails() {
       </ul>
       <h5>Instructions</h5>
       <p data-testid="instructions">{strInstructions}</p>
-      { mealsRecipes
-        .map(({ idMeal, strMeal, strMealThumb }, index) => (
-          index < MAX_CARDS
-          && (
-            <Card
-              key={ idMeal }
-              id={ idMeal }
-              index={ index }
-              name={ strMeal }
-              img={ strMealThumb }
-            />
-          )
-        )) }
-      <div data-testid="0-recomendation-card" />
+      <div className="carousel">
+        { mealsRecipes
+          .map(({ idMeal, strMeal, strMealThumb }, index) => (
+            index < MAX_CARDS
+            && (
+              <Card
+                key={ idMeal }
+                id={ idMeal }
+                index={ index }
+                name={ strMeal }
+                img={ strMealThumb }
+              />
+            )
+          )) }
+      </div>
       <button type="button" data-testid="start-recipe-btn">
         Iniciar Receita
       </button>

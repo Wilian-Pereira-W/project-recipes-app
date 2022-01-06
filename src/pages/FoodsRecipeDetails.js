@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { foodsAPI } from '../services/resquestAPI';
 import Card from '../components/Card';
+import '../styles/details.css';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
@@ -63,6 +64,7 @@ function FoodsRecipeDetails() {
       <img
         src={ strMealThumb }
         alt="Foto da receita"
+        className="recipe-photo"
         data-testid="recipe-photo"
       />
       <h3 data-testid="recipe-title">{strMeal}</h3>
@@ -89,27 +91,28 @@ function FoodsRecipeDetails() {
       <p data-testid="instructions">{strInstructions}</p>
       <iframe
         data-testid="video"
-        width="560"
+        width="360"
         height="315"
         src={ videoURL }
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; clipboard-write; encrypted-media; gyroscope"
       />
-      { drinksRecipes
-        .map(({ idDrink, strDrink, strDrinkThumb }, index) => (
-          index < MAX_CARDS
-          && (
-            <Card
-              key={ idDrink }
-              id={ idDrink }
-              index={ index }
-              name={ strDrink }
-              img={ strDrinkThumb }
-            />
-          )
-        )) }
-      <div data-testid="0-recomendation-card" />
+      <div className="carousel">
+        { drinksRecipes
+          .map(({ idDrink, strDrink, strDrinkThumb }, index) => (
+            index < MAX_CARDS
+            && (
+              <Card
+                key={ idDrink }
+                id={ idDrink }
+                index={ index }
+                name={ strDrink }
+                img={ strDrinkThumb }
+              />
+            )
+          )) }
+      </div>
       <button type="button" data-testid="start-recipe-btn">
         Iniciar Receita
       </button>
