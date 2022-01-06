@@ -1,13 +1,17 @@
 // Tela de detalhes de uma receita de bebida: `/bebidas/{id-da-receita}`;
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { DrinkRecipesContext } from '../context/RecipesContext';
+import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { drinksAPI } from '../services/resquestAPI';
+import Card from '../components/Card';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
+const MAX_CARDS = 6;
+
 function DrinksRecipeDetails() {
   const { drinksDetails, setDrinksDetails } = useContext(DrinkRecipesContext);
+  const { mealsRecipes } = useContext(FoodRecipesContext);
   const history = useHistory();
   const { location: { pathname } } = history;
   const ID = pathname.split('/')[2];
@@ -74,6 +78,19 @@ function DrinksRecipeDetails() {
       </ul>
       <h5>Instructions</h5>
       <p data-testid="instructions">{strInstructions}</p>
+      { mealsRecipes
+        .map(({ idMeal, strMeal, strMealThumb }, index) => (
+          index < MAX_CARDS
+          && (
+            <Card
+              key={ idMeal }
+              id={ idMeal }
+              index={ index }
+              name={ strMeal }
+              img={ strMealThumb }
+            />
+          )
+        )) }
       <div data-testid="0-recomendation-card" />
       <button type="button" data-testid="start-recipe-btn">
         Iniciar Receita
