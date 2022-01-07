@@ -8,7 +8,6 @@ function ExploreFood() {
     const { meals } = await foodsAPI('random.php');
     const { idMeal } = meals[0];
     history.push(`/comidas/${idMeal}`);
-    console.log(idMeal);
   };
   return (
     <div className="exploreFood">
