@@ -3,16 +3,17 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import '../styles/recipes.css';
 
-function Card({ index, name, img, id }) {
+function Card({ index, name, img, onClick }) {
   const history = useHistory();
   const { location: { pathname } } = history;
-
   return (
     <button
       type="button"
-      data-testid={ `${index}-recipe-card` }
+      data-testid={ pathname === '/comidas'
+       || pathname === '/bebidas' || pathname === '/explorar/comidas/area'
+        ? `${index}-recipe-card` : `${index}-recomendation-card` }
       className="card-recipes"
-      onClick={ () => history.push(`${pathname}/${id}`) }
+      onClick={ onClick }
     >
       <img
         src={ img }
@@ -20,7 +21,9 @@ function Card({ index, name, img, id }) {
         data-testid={ `${index}-card-img` }
       />
       <span
-        data-testid={ `${index}-card-name` }
+        data-testid={ pathname === '/comidas'
+        || pathname === '/bebidas' || pathname === '/explorar/comidas/area'
+          ? `${index}-card-name` : `${index}-recomendation-title` }
       >
         {name}
       </span>
