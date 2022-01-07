@@ -7,6 +7,7 @@ import Card from '../components/Card';
 import '../styles/details.css';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 const MAX_CARDS = 6;
 
@@ -16,6 +17,14 @@ function FoodsRecipeDetails() {
     videoURL,
     setMealsDetails,
     setVideoURL,
+    setIsStarted,
+    isStarted,
+    setRecipesStarted,
+    recipesStarted,
+    toggleHeart,
+    setToggleHeart,
+    favoriteRecipesId,
+    setFavoriteRecipesId,
   } = useContext(FoodRecipesContext);
   const {
     drinksRecipes,
@@ -61,6 +70,16 @@ function FoodsRecipeDetails() {
     setShare(true);
   };
 
+  useEffect(() => {
+    const containsId = recipesStarted.some((item) => item === ID);
+    return containsId ? setIsStarted(true) : setIsStarted(false);
+  }, [ID, recipesStarted, setIsStarted]);
+
+  useEffect(() => {
+    const containsFavoriteId = favoriteRecipesId.some((item) => item === ID);
+    return containsFavoriteId ? setToggleHeart(true) : setToggleHeart(false);
+  }, [ID, favoriteRecipesId, setToggleHeart]);
+
   const {
     strMeal,
     strMealThumb,
@@ -94,9 +113,12 @@ function FoodsRecipeDetails() {
       />
       <input
         type="image"
-        src={ whiteHeartIcon }
+        src={ toggleHeart ? blackHeartIcon : whiteHeartIcon }
         alt="favoritar"
         data-testid="favorite-btn"
+        onClick={ () => {
+          setFavoriteRecipesId([...favoriteRecipesId, ID]);
+        } }
       />
       <span data-testid="recipe-category">{strCategory}</span>
       <section className="recipe-text-details">
@@ -143,8 +165,11 @@ function FoodsRecipeDetails() {
           type="button"
           className="start-recipe-btn"
           data-testid="start-recipe-btn"
+          onClick={ () => {
+            setRecipesStarted([...recipesStarted, ID]);
+          } }
         >
-          Iniciar Receita
+          { isStarted ? 'Continuar Receita' : 'Iniciar Receita' }
         </button>
       </Link>
     </div>
