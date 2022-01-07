@@ -11,7 +11,20 @@
   font-family: Montserrat , sans-serif;
 }
 
+.details-container h3 {
+  background-color: #701d28;
+  color: #fdfffc;
+  font-family: Malvie Trial , sans-serif;
+  letter-spacing: 3px;
+  padding: 5px;
+  text-align: center;
+  width: 100%;
+}
+
 .recipe-photo {
+  height: 200px;
+  object-fit: cover;
+  object-position: center 35%;
   width: 100%;
 }
 
@@ -23,16 +36,6 @@
 .recipe-text-details h5 {
   letter-spacing: 3px;
   padding-bottom: 5px;
-}
-
-.details-container h3 {
-  background-color: #701d28;
-  color: #fdfffc;
-  font-family: Malvie Trial , sans-serif;
-  letter-spacing: 3px;
-  padding: 5px;
-  text-align: center;
-  width: 100%;
 }
 
 .carousel {
