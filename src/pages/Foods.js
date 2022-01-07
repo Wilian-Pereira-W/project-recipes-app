@@ -1,5 +1,6 @@
 // Tela principal de receitas de comidas: `/comidas`
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { FoodRecipesContext } from '../context/RecipesContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -11,10 +12,15 @@ const MAX_CARDS = 12;
 const MAX_CATEGORIES = 5;
 
 function Foods() {
+  const history = useHistory();
   const { mealsRecipes,
     mealsCategories,
     setSelectedCategoryFoods,
   } = useContext(FoodRecipesContext);
+
+  const handleCardClick = (id) => {
+    history.push(`/comidas/${id}`);
+  };
 
   return (
     <>
@@ -45,6 +51,7 @@ function Foods() {
               index={ index }
               name={ strMeal }
               img={ strMealThumb }
+              onClick={ () => handleCardClick(idMeal) }
             />
           )
           )) }
