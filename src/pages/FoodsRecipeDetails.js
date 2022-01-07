@@ -60,7 +60,7 @@ function FoodsRecipeDetails() {
   } = mealsDetails;
 
   return (
-    <>
+    <div className="details-container">
       <img
         src={ strMealThumb }
         alt="Foto da receita"
@@ -76,19 +76,21 @@ function FoodsRecipeDetails() {
         data-testid="favorite-btn"
       />
       <span data-testid="recipe-category">{strCategory}</span>
-      <h5>Ingredients</h5>
-      <ul>
-        { Object.entries(ingredients).map((ingredient, index) => (
-          <li
-            key={ index }
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
-            {`${ingredient[0]} ${ingredient[1]}`}
-          </li>
-        )) }
-      </ul>
-      <h5>Instructions</h5>
-      <p data-testid="instructions">{strInstructions}</p>
+      <section className="recipe-text-details">
+        <h5>Ingredients</h5>
+        <ul>
+          { Object.entries(ingredients).map((ingredient, index) => (
+            <li
+              key={ index }
+              data-testid={ `${index}-ingredient-name-and-measure` }
+            >
+              {`${ingredient[0]} ${ingredient[1]}`}
+            </li>
+          )) }
+        </ul>
+        <h5>Instructions</h5>
+        <p data-testid="instructions">{strInstructions}</p>
+      </section>
       <iframe
         data-testid="video"
         width="360"
@@ -113,10 +115,10 @@ function FoodsRecipeDetails() {
             )
           )) }
       </div>
-      <button type="button" data-testid="start-recipe-btn">
+      <button className="start-recipe-btn" type="button" data-testid="start-recipe-btn">
         Iniciar Receita
       </button>
-    </>
+    </div>
   );
 }
 

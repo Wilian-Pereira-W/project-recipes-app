@@ -95,7 +95,7 @@ function DrinksRecipeDetails() {
             )
           )) }
       </div>
-      <button type="button" data-testid="start-recipe-btn">
+      <button className="start-recipe-btn" type="button" data-testid="start-recipe-btn">
         Iniciar Receita
       </button>
     </>
