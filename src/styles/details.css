@@ -63,3 +63,31 @@
   position: fixed;
   width: 100%;
 }
+
+.alert-container {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.788);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+}
+
+.alert {
+  align-items: center;
+  backdrop-filter: blur(5px) saturate(200%);
+  background-color: rgba(209, 20, 45, 0.431);
+  border-radius: 8px;
+  color: #fdfffc;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.alert button {
+  border: none;
+  border-radius: 6px;
+  padding: 3px 10px;
+}
