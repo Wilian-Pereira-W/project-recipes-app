@@ -11,7 +11,7 @@
 
 .ctn-login {
   align-items: center;
-  background-color: #ad2a25;
+  background-color: #701d28;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -61,7 +61,7 @@
 .ctn-login form button {
   border: none;
   border-radius: 5px;
-  color: #ad2a25;
+  color: #701d28;
   font-family: Malvie Trial , sans-serif;
   margin-bottom: 25px;
   margin-top: 10px;

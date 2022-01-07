@@ -3,14 +3,42 @@
   src: url('./fonts/Malvie\ Trial.otf') format('opentype');
 }
 
+* {
+  list-style: none;
+}
+
+.details-container {
+  font-family: Montserrat , sans-serif;
+}
+
 .recipe-photo {
+  width: 100%;
+}
+
+.recipe-text-details {
+  padding: 12px;
+  text-align: justify;
+}
+
+.recipe-text-details h5 {
+  letter-spacing: 3px;
+  padding-bottom: 5px;
+}
+
+.details-container h3 {
+  background-color: #701d28;
+  color: #fdfffc;
+  font-family: Malvie Trial , sans-serif;
+  letter-spacing: 3px;
+  padding: 5px;
+  text-align: center;
   width: 100%;
 }
 
 .carousel {
   box-sizing: border-box;
   height: 170px;
-  margin: 30px 0;
+  margin: 20px 0 40px;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
@@ -20,4 +48,15 @@
 .carousel .card-recipes {
   display: inline-block;
   margin-left: 20px;
+}
+
+.start-recipe-btn {
+  background-color: #701d28;
+  border: none;
+  bottom: 0;
+  color: #fdfffc;
+  font-family: Malvie Trial , sans-serif;
+  padding: 8px;
+  position: fixed;
+  width: 100%;
 }
