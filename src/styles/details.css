@@ -16,7 +16,7 @@
   color: #fdfffc;
   font-family: Malvie Trial , sans-serif;
   letter-spacing: 3px;
-  padding: 5px;
+  padding: 10px 0;
   text-align: center;
   width: 100%;
 }
@@ -41,7 +41,7 @@
 .carousel {
   box-sizing: border-box;
   height: 170px;
-  margin: 20px 0 40px;
+  margin: 0 0 60px;
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
@@ -59,6 +59,8 @@
   bottom: 0;
   color: #fdfffc;
   font-family: Malvie Trial , sans-serif;
+  font-size: 1.4rem;
+  height: 64px;
   padding: 8px;
   position: fixed;
   width: 100%;
