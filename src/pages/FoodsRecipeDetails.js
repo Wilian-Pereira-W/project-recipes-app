@@ -1,12 +1,12 @@
 // Tela de detalhes de uma receita de comida: `/comidas/{id-da-receita}`;
 import React, { useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { foodsAPI } from '../services/resquestAPI';
 import Card from '../components/Card';
 import '../styles/details.css';
 import shareIcon from '../images/shareIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
 const MAX_CARDS = 6;
 
@@ -19,8 +19,7 @@ function FoodsRecipeDetails() {
   } = useContext(FoodRecipesContext);
   const { drinksRecipes } = useContext(DrinkRecipesContext);
 
-  const history = useHistory();
-  const { location: { pathname } } = history;
+  const { pathname } = useLocation();
   const ID = pathname.split('/')[2];
 
   useEffect(() => {
@@ -71,7 +70,7 @@ function FoodsRecipeDetails() {
       <input type="image" src={ shareIcon } alt="compartilhar" data-testid="share-btn" />
       <input
         type="image"
-        src={ blackHeartIcon }
+        src={ whiteHeartIcon }
         alt="favoritar"
         data-testid="favorite-btn"
       />

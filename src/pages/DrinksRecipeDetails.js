@@ -1,20 +1,19 @@
 // Tela de detalhes de uma receita de bebida: `/bebidas/{id-da-receita}`;
 import React, { useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { drinksAPI } from '../services/resquestAPI';
 import Card from '../components/Card';
 import '../styles/details.css';
 import shareIcon from '../images/shareIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
 const MAX_CARDS = 6;
 
 function DrinksRecipeDetails() {
   const { drinksDetails, setDrinksDetails } = useContext(DrinkRecipesContext);
   const { mealsRecipes } = useContext(FoodRecipesContext);
-  const history = useHistory();
-  const { location: { pathname } } = history;
+  const { pathname } = useLocation();
   const ID = pathname.split('/')[2];
 
   useEffect(() => {
@@ -51,7 +50,7 @@ function DrinksRecipeDetails() {
   } = drinksDetails;
 
   return (
-    <>
+    <div className="details-container">
       <img
         src={ strDrinkThumb }
         alt="Foto da receita"
@@ -62,24 +61,26 @@ function DrinksRecipeDetails() {
       <input type="image" src={ shareIcon } alt="compartilhar" data-testid="share-btn" />
       <input
         type="image"
-        src={ blackHeartIcon }
+        src={ whiteHeartIcon }
         alt="favoritar"
         data-testid="favorite-btn"
       />
       <span data-testid="recipe-category">{`${strCategory} - ${strAlcoholic}`}</span>
-      <h5>Ingredients</h5>
-      <ul>
-        { Object.entries(ingredients).map((ingredient, index) => (
-          <li
-            key={ index }
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
-            {`${ingredient[0]} ${ingredient[1]}`}
-          </li>
-        )) }
-      </ul>
-      <h5>Instructions</h5>
-      <p data-testid="instructions">{strInstructions}</p>
+      <section className="recipe-text-details">
+        <h5>Ingredients</h5>
+        <ul>
+          { Object.entries(ingredients).map((ingredient, index) => (
+            <li
+              key={ index }
+              data-testid={ `${index}-ingredient-name-and-measure` }
+            >
+              {`${ingredient[0]} ${ingredient[1]}`}
+            </li>
+          )) }
+        </ul>
+        <h5>Instructions</h5>
+        <p data-testid="instructions">{strInstructions}</p>
+      </section>
       <div className="carousel">
         { mealsRecipes
           .map(({ idMeal, strMeal, strMealThumb }, index) => (
@@ -98,7 +99,7 @@ function DrinksRecipeDetails() {
       <button className="start-recipe-btn" type="button" data-testid="start-recipe-btn">
         Iniciar Receita
       </button>
-    </>
+    </div>
   );
 }
 
