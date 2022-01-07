@@ -1,6 +1,6 @@
 // Tela de detalhes de uma receita de comida: `/comidas/{id-da-receita}`;
 import React, { useContext, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { foodsAPI } from '../services/resquestAPI';
 import Card from '../components/Card';
@@ -114,9 +114,15 @@ function FoodsRecipeDetails() {
             )
           )) }
       </div>
-      <button className="start-recipe-btn" type="button" data-testid="start-recipe-btn">
-        Iniciar Receita
-      </button>
+      <Link to={ `/comidas/${ID}/in-progress` }>
+        <button
+          type="button"
+          className="start-recipe-btn"
+          data-testid="start-recipe-btn"
+        >
+          Iniciar Receita
+        </button>
+      </Link>
     </div>
   );
 }
