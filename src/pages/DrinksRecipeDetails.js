@@ -11,7 +11,13 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 const MAX_CARDS = 6;
 
 function DrinksRecipeDetails() {
-  const { drinksDetails, setDrinksDetails } = useContext(DrinkRecipesContext);
+  const {
+    drinksDetails,
+    setDrinksDetails,
+    share,
+    setShare,
+    setClipboard,
+  } = useContext(DrinkRecipesContext);
   const { mealsRecipes } = useContext(FoodRecipesContext);
   const { pathname } = useLocation();
   const ID = pathname.split('/')[2];
@@ -41,6 +47,11 @@ function DrinksRecipeDetails() {
       ingredients[ingredient] = filteredMeasure[index];
     });
 
+  const copyOnClipboard = () => {
+    setClipboard(window.location.href);
+    setShare(true);
+  };
+
   const {
     strDrink,
     strDrinkThumb,
@@ -51,6 +62,14 @@ function DrinksRecipeDetails() {
 
   return (
     <div className="details-container">
+      { share
+        && (
+          <div className="alert-container">
+            <div className="alert">
+              <p>Link copiado!</p>
+              <button type="button" onClick={ () => setShare(false) }>X</button>
+            </div>
+          </div>)}
       <img
         src={ strDrinkThumb }
         alt="Foto da receita"
@@ -58,7 +77,13 @@ function DrinksRecipeDetails() {
         data-testid="recipe-photo"
       />
       <h3 data-testid="recipe-title">{strDrink}</h3>
-      <input type="image" src={ shareIcon } alt="compartilhar" data-testid="share-btn" />
+      <input
+        type="image"
+        src={ shareIcon }
+        alt="compartilhar"
+        data-testid="share-btn"
+        onClick={ copyOnClipboard }
+      />
       <input
         type="image"
         src={ whiteHeartIcon }

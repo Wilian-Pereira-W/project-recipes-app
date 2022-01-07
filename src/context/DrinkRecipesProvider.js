@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import useClippy from 'use-clippy';
 import { DrinkRecipesContext } from './RecipesContext';
 import { drinksAPI } from '../services/resquestAPI';
 
 function DrinkRecipesProvider({ children }) {
+  const [clipboard, setClipboard] = useClippy();
   const [drinksRecipes, setDrinksRecipes] = useState([]);
   const [drinksCategories, setDrinksCategories] = useState([]);
   const [selectedCategoryDrinks, setSelectedCategoryDrinks] = useState('');
   const [drinksDetails, setDrinksDetails] = useState({});
+  const [share, setShare] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -43,6 +46,10 @@ function DrinkRecipesProvider({ children }) {
     setSelectedCategoryDrinks,
     setDrinksDetails,
     drinksDetails,
+    share,
+    setShare,
+    clipboard,
+    setClipboard,
   };
 
   return (
