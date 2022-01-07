@@ -22,7 +22,8 @@ function Card({ index, name, img, id }) {
       />
       <p
         className="card-name"
-        data-testid={ `${index}-card-name` }
+        data-testid={ pathname === '/comidas' || pathname === '/bebidas'
+          ? `${index}-card-name` : `${index}-recomendation-title` }
       >
         {name}
       </p>
