@@ -8,8 +8,8 @@ function ExploreDrink() {
     const { drinks } = await drinksAPI('random.php');
     const { idDrink } = drinks[0];
     history.push(`/bebidas/${idDrink}`);
-    console.log(idDrink);
   };
+
   return (
     <div className="exploreDrink">
       <button
