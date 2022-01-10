@@ -4,9 +4,12 @@ import { Link, useLocation } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { drinksAPI } from '../services/resquestAPI';
 import Card from '../components/Card';
+import ingredientsAndMeasures from '../helpers/ingredientsAndMeasures';
+import { addFavoriteRecipe, removeFavoriteRecipe } from '../helpers/favoriteDrinks';
 import '../styles/details.css';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 const MAX_CARDS = 6;
 
@@ -17,8 +20,21 @@ function DrinksRecipeDetails() {
     share,
     setShare,
     setClipboard,
+    isFavorite,
+    setIsFavorite,
+    ingredients,
+    setIngredients,
   } = useContext(DrinkRecipesContext);
   const { mealsRecipes } = useContext(FoodRecipesContext);
+  const {
+    idDrink,
+    strDrink,
+    strDrinkThumb,
+    strCategory,
+    strInstructions,
+    strAlcoholic,
+  } = drinksDetails;
+
   const { pathname } = useLocation();
   const ID = pathname.split('/')[2];
 
@@ -31,34 +47,30 @@ function DrinksRecipeDetails() {
     })();
   }, [ID, setDrinksDetails]);
 
-  const filteredIngredients = Object.entries(drinksDetails)
-    .filter((item) => item[0].includes('strIngredient'))
-    .filter((ingredient) => ingredient[1] !== '' && ingredient[1] !== null)
-    .map((ingredient) => ingredient[1]);
+  useEffect(() => {
+    ingredientsAndMeasures(drinksDetails, setIngredients);
+  }, [drinksDetails, setIngredients]);
 
-  const filteredMeasure = Object.entries(drinksDetails)
-    .filter((item) => item[0].includes('strMeasure'))
-    .filter((measure) => measure[1] !== '' && measure[1] !== null)
-    .map((measure) => measure[1]);
+  useEffect(() => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    const isFavoriteRecipe = favoriteRecipes.some(({ id }) => id === idDrink);
+    return isFavoriteRecipe ? setIsFavorite(true) : setIsFavorite(false);
+  }, [idDrink, setIsFavorite]);
 
-  const ingredients = {};
-  filteredIngredients
-    .forEach((ingredient, index) => {
-      ingredients[ingredient] = filteredMeasure[index];
-    });
+  const toggleFavoriteRecipes = () => {
+    if (isFavorite) {
+      setIsFavorite(false);
+      removeFavoriteRecipe(idDrink);
+    } else {
+      setIsFavorite(true);
+      addFavoriteRecipe(drinksDetails);
+    }
+  };
 
   const copyOnClipboard = () => {
     setClipboard(window.location.href);
     setShare(true);
   };
-
-  const {
-    strDrink,
-    strDrinkThumb,
-    strCategory,
-    strInstructions,
-    strAlcoholic,
-  } = drinksDetails;
 
   return (
     <div className="details-container">
@@ -86,9 +98,10 @@ function DrinksRecipeDetails() {
       />
       <input
         type="image"
-        src={ whiteHeartIcon }
+        src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
         alt="favoritar"
         data-testid="favorite-btn"
+        onClick={ toggleFavoriteRecipes }
       />
       <span data-testid="recipe-category">{`${strCategory} - ${strAlcoholic}`}</span>
       <section className="recipe-text-details">
@@ -99,7 +112,7 @@ function DrinksRecipeDetails() {
               key={ index }
               data-testid={ `${index}-ingredient-name-and-measure` }
             >
-              {`${ingredient[0]} ${ingredient[1]}`}
+              {`${ingredient[0]} ${ingredient[1] ? ingredient[1] : ''}`}
             </li>
           )) }
         </ul>
