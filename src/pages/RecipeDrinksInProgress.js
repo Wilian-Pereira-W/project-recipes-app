@@ -1,10 +1,10 @@
 // Tela de receita em processo de bebida: `/bebidas/{id-da-receita}/in-progress`;
 import React from 'react';
-import InProgressRecipes from '../components/InProgressRecipes ';
+import DrinksDetails from '../components/DrinksDetails';
 
 function RecipeDrinksInProgress() {
   return (
-    <InProgressRecipes />
+    <DrinksDetails />
   );
 }
 
