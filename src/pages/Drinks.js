@@ -1,5 +1,6 @@
 // Tela principal de receitas de bebidas: `/bebidas`;
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { DrinkRecipesContext } from '../context/RecipesContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -8,12 +9,17 @@ import Categories from '../components/Categories';
 import '../styles/recipes.css';
 
 function Drinks() {
+  const history = useHistory();
   const MAX_CARDS = 12;
   const MAX_CATEGORIES = 5;
   const { drinksRecipes,
     drinksCategories,
     setSelectedCategoryDrinks,
   } = useContext(DrinkRecipesContext);
+
+  const handleCardClick = (id) => {
+    history.push(`/bebidas/${id}`);
+  };
 
   return (
     <>
@@ -44,6 +50,7 @@ function Drinks() {
                 index={ index }
                 name={ strDrink }
                 img={ strDrinkThumb }
+                onClick={ () => handleCardClick(idDrink) }
               />
             )
           )) }

@@ -18,6 +18,7 @@ import ExploreFoodsByLocale from './pages/ExploreFoodsByLocale';
 import Profile from './pages/Profile';
 import FinishedRecipes from './pages/FinishedRecipes';
 import Favorites from './pages/Favorites';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -43,14 +44,15 @@ function App() {
         <Route path="/comidas/:id" component={ FoodsRecipeDetails } />
         <Route path="/bebidas/:id" component={ DrinksRecipeDetails } />
         <Route path="/explorar/comidas" component={ ExploreFoods } />
-        <Route path="/explorar/bebidas" component={ ExploreDrinks } />
+        <Route exact path="/explorar/bebidas" component={ ExploreDrinks } />
         <Route path="/receitas-feitas" component={ FinishedRecipes } />
         <Route path="/receitas-favoritas" component={ Favorites } />
         <Route path="/comidas" component={ Foods } />
         <Route path="/bebidas" component={ Drinks } />
-        <Route path="/explorar" component={ Explore } />
+        <Route exact path="/explorar" component={ Explore } />
         <Route path="/perfil" component={ Profile } />
-        <Route path="/" component={ Login } />
+        <Route exact path="/" component={ Login } />
+        <Route path="*" component={ NotFound } />
       </Switch>
     </BrowserRouter>
   );
