@@ -3,6 +3,8 @@ import React, { useContext, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { foodsAPI } from '../services/resquestAPI';
+import ingredientsAndMeasures from '../helpers/ingredientsAndMeasures';
+import { addFavoriteRecipe, removeFavoriteRecipe } from '../helpers/favoriteMeals';
 import Card from '../components/Card';
 import '../styles/details.css';
 import shareIcon from '../images/shareIcon.svg';
@@ -21,17 +23,24 @@ function FoodsRecipeDetails() {
     isStarted,
     setRecipesStarted,
     recipesStarted,
-    toggleHeart,
-    setToggleHeart,
-    favoriteRecipesId,
-    setFavoriteRecipesId,
   } = useContext(FoodRecipesContext);
   const {
     drinksRecipes,
     setClipboard,
     share,
     setShare,
+    ingredients,
+    setIngredients,
+    isFavorite,
+    setIsFavorite,
   } = useContext(DrinkRecipesContext);
+  const {
+    idMeal,
+    strMeal,
+    strMealThumb,
+    strCategory,
+    strInstructions,
+  } = mealsDetails;
 
   const { pathname } = useLocation();
   const ID = pathname.split('/')[2];
@@ -49,25 +58,24 @@ function FoodsRecipeDetails() {
     })();
   }, [ID, setMealsDetails, setVideoURL]);
 
-  const filteredIngredients = Object.entries(mealsDetails)
-    .filter((item) => item[0].includes('strIngredient'))
-    .filter((ingredient) => ingredient[1] !== '' && ingredient[1] !== null)
-    .map((ingredient) => ingredient[1]);
+  useEffect(() => {
+    ingredientsAndMeasures(mealsDetails, setIngredients);
+  }, [mealsDetails, setIngredients]);
 
-  const filteredMeasure = Object.entries(mealsDetails)
-    .filter((item) => item[0].includes('strMeasure'))
-    .filter((measure) => measure[1] !== '' && measure[1] !== null)
-    .map((measure) => measure[1]);
+  useEffect(() => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
+    const isFavoriteRecipe = favoriteRecipes.some(({ id }) => id === idMeal);
+    return isFavoriteRecipe ? setIsFavorite(true) : setIsFavorite(false);
+  }, [idMeal, setIsFavorite]);
 
-  const ingredients = {};
-  filteredIngredients
-    .forEach((ingredient, index) => {
-      ingredients[ingredient] = filteredMeasure[index];
-    });
-
-  const copyOnClipboard = () => {
-    setClipboard(window.location.href);
-    setShare(true);
+  const toggleFavoriteRecipes = () => {
+    if (isFavorite) {
+      setIsFavorite(false);
+      removeFavoriteRecipe(idMeal);
+    } else {
+      setIsFavorite(true);
+      addFavoriteRecipe(mealsDetails);
+    }
   };
 
   useEffect(() => {
@@ -75,17 +83,10 @@ function FoodsRecipeDetails() {
     return containsId ? setIsStarted(true) : setIsStarted(false);
   }, [ID, recipesStarted, setIsStarted]);
 
-  useEffect(() => {
-    const containsFavoriteId = favoriteRecipesId.some((item) => item === ID);
-    return containsFavoriteId ? setToggleHeart(true) : setToggleHeart(false);
-  }, [ID, favoriteRecipesId, setToggleHeart]);
-
-  const {
-    strMeal,
-    strMealThumb,
-    strCategory,
-    strInstructions,
-  } = mealsDetails;
+  const copyOnClipboard = () => {
+    setClipboard(window.location.href);
+    setShare(true);
+  };
 
   return (
     <div className="details-container">
@@ -113,12 +114,10 @@ function FoodsRecipeDetails() {
       />
       <input
         type="image"
-        src={ toggleHeart ? blackHeartIcon : whiteHeartIcon }
+        src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
         alt="favoritar"
         data-testid="favorite-btn"
-        onClick={ () => {
-          setFavoriteRecipesId([...favoriteRecipesId, ID]);
-        } }
+        onClick={ toggleFavoriteRecipes }
       />
       <span data-testid="recipe-category">{strCategory}</span>
       <section className="recipe-text-details">
