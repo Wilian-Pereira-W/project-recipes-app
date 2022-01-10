@@ -12,8 +12,6 @@ function FoodRecipesProvider({ children }) {
   const [videoURL, setVideoURL] = useState('');
   const [isStarted, setIsStarted] = useState(false);
   const [recipesStarted, setRecipesStarted] = useState([]);
-  const [toggleHeart, setToggleHeart] = useState(false);
-  const [favoriteRecipesId, setFavoriteRecipesId] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -57,10 +55,6 @@ function FoodRecipesProvider({ children }) {
     isStarted,
     setRecipesStarted,
     recipesStarted,
-    toggleHeart,
-    setToggleHeart,
-    favoriteRecipesId,
-    setFavoriteRecipesId,
   };
 
   return (
