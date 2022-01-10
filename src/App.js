@@ -25,11 +25,11 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route
-          path="/comidas/52771/in-progress"
+          path="/comidas/:id/in-progress"
           component={ RecipeFoodsInProgress }
         />
         <Route
-          path="/bebidas/178319/in-progress"
+          path="/bebidas/:id/in-progress"
           component={ RecipeDrinksInProgress }
         />
         <Route

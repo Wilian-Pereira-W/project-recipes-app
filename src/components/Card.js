@@ -20,13 +20,14 @@ function Card({ index, name, img, onClick }) {
         alt={ name }
         data-testid={ `${index}-card-img` }
       />
-      <span
+      <p
+        className="card-name"
         data-testid={ pathname === '/comidas'
         || pathname === '/bebidas' || pathname === '/explorar/comidas/area'
           ? `${index}-card-name` : `${index}-recomendation-title` }
       >
         {name}
-      </span>
+      </p>
     </button>
   );
 }

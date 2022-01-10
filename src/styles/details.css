@@ -1,0 +1,95 @@
+@font-face {
+  font-family: Malvie Trial;
+  src: url('./fonts/Malvie\ Trial.otf') format('opentype');
+}
+
+* {
+  list-style: none;
+}
+
+.details-container {
+  font-family: Montserrat , sans-serif;
+}
+
+.details-container h3 {
+  background-color: #701d28;
+  color: #fdfffc;
+  font-family: Malvie Trial , sans-serif;
+  letter-spacing: 3px;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.recipe-photo {
+  height: 200px;
+  object-fit: cover;
+  object-position: center 35%;
+  width: 100%;
+}
+
+.recipe-text-details {
+  padding: 12px;
+  text-align: justify;
+}
+
+.recipe-text-details h5 {
+  letter-spacing: 3px;
+  padding-bottom: 5px;
+}
+
+.carousel {
+  box-sizing: border-box;
+  height: 170px;
+  margin: 0 0 60px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.carousel .card-recipes {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.start-recipe-btn {
+  background-color: #701d28;
+  border: none;
+  bottom: 0;
+  color: #fdfffc;
+  font-family: Malvie Trial , sans-serif;
+  font-size: 1.4rem;
+  height: 64px;
+  padding: 8px;
+  position: fixed;
+  width: 100%;
+}
+
+.alert-container {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.788);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+}
+
+.alert {
+  align-items: center;
+  backdrop-filter: blur(5px) saturate(200%);
+  background-color: rgba(209, 20, 45, 0.431);
+  border-radius: 8px;
+  color: #fdfffc;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.alert button {
+  border: none;
+  border-radius: 6px;
+  padding: 3px 10px;
+}

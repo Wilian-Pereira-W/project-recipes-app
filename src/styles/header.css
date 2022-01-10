@@ -10,8 +10,7 @@
 }
 
 header {
-  background-color: #fdfffc;
-  border-radius: 0 0 6px 6px;
+  background-color: #701d28;
   box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.164);
   height: 58px;
   left: 0;
@@ -30,8 +29,9 @@ header .profile-top-btn {
 
 header h1 {
   align-items: flex-end;
+  color: #fdfffc;
   display: flex;
-  font-family: Montserrat , sans-serif;
+  font-family: Malvie Trial , sans-serif;
   font-size: 23px;
   height: 35px;
   justify-content: center;
@@ -53,4 +53,9 @@ header .search-top-btn {
 
 .searchBar {
   margin-top: 180px;
+}
+
+.searchBar button {
+  margin-left: 18px;
+  padding: 30px;
 }
