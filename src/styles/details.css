@@ -4,14 +4,11 @@
 }
 
 * {
+  font-family: Montserrat , sans-serif;
   list-style: none;
 }
 
-.details-container {
-  font-family: Montserrat , sans-serif;
-}
-
-.details-container h3 {
+.recipe-title {
   background-color: #701d28;
   color: #fdfffc;
   font-family: Malvie Trial , sans-serif;
@@ -29,6 +26,8 @@
 }
 
 .recipe-text-details {
+  display: flex;
+  flex-direction: column;
   padding: 12px;
   text-align: justify;
 }
@@ -36,6 +35,18 @@
 .recipe-text-details h5 {
   letter-spacing: 3px;
   padding-bottom: 5px;
+}
+
+.ingredients-list {
+  line-height: 30px;
+}
+
+.ingredient-step {
+  margin-right: 10px;
+}
+
+.ingredient-step:checked + span {
+  text-decoration: line-through;
 }
 
 .carousel {
@@ -53,7 +64,7 @@
   margin-left: 20px;
 }
 
-.start-recipe-btn {
+.start-recipe-btn, .finish-recipe-btn {
   background-color: #701d28;
   border: none;
   bottom: 0;
