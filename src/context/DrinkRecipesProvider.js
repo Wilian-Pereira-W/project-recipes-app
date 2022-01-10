@@ -11,6 +11,8 @@ function DrinkRecipesProvider({ children }) {
   const [selectedCategoryDrinks, setSelectedCategoryDrinks] = useState('');
   const [drinksDetails, setDrinksDetails] = useState({});
   const [share, setShare] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [ingredients, setIngredients] = useState({});
 
   useEffect(() => {
     (async () => {
@@ -50,6 +52,10 @@ function DrinkRecipesProvider({ children }) {
     setShare,
     clipboard,
     setClipboard,
+    isFavorite,
+    setIsFavorite,
+    ingredients,
+    setIngredients,
   };
 
   return (
