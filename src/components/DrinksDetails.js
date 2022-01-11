@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { drinksAPI } from '../services/resquestAPI';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -10,9 +10,12 @@ import ingredientsAndMeasures from '../helpers/ingredientsAndMeasures';
 import toggleFavoriteRecipes from '../helpers/toggleFavoriteRecipes';
 import copyOnClipboard from '../helpers/copyOnClipboard';
 import handleFavoriteRecipes from '../helpers/handleFavoriteRecipes';
+import IngredientsCheckbox from './IngredientsCheckbox';
+import IngredientsList from './IngredientsList';
 
 function DrinksDetails() {
   const [checked, setChecked] = useState([]);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const { drinksDetails,
     setShare,
@@ -67,8 +70,13 @@ function DrinksDetails() {
   useEffect(() => {
     const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
     Object.assign(inProgressRecipes.cocktails, { [ID]: checked });
+    if (inProgressRecipes.cocktails[ID].length === Object.entries(ingredients).length) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
     localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
-  }, [ID, checked]);
+  }, [ID, checked, ingredients]);
 
   return (
     <div>
@@ -114,36 +122,22 @@ function DrinksDetails() {
         <h5>Ingredients</h5>
         { checkPathInProgress
           && Object.entries(ingredients).map((ingredient, index) => (
-            <label
-              htmlFor={ `${index}-ingredient-step` }
+            <IngredientsCheckbox
               key={ index }
-              data-testid={ `${index}-ingredient-step` }
-            >
-              <input
-                className="ingredient-step"
-                id={ `${index}-ingredient-step` }
-                type="checkbox"
-                onChange={ () => {
-                  if (checked.includes(index)) {
-                    setChecked(checked.filter((item) => item !== index));
-                  } else {
-                    setChecked([...checked, index]);
-                  }
-                } }
-                checked={ checked.includes(index) }
-              />
-              <span>{`${ingredient[0]} ${ingredient[1] ? ingredient[1] : ''}`}</span>
-            </label>
+              index={ index }
+              ingredient={ ingredient }
+              checked={ checked }
+              setChecked={ setChecked }
+            />
           ))}
         { !checkPathInProgress && (
           <ul>
             { Object.entries(ingredients).map((ingredient, index) => (
-              <li
+              <IngredientsList
                 key={ index }
-                data-testid={ `${index}-ingredient-name-and-measure` }
-              >
-                {`${ingredient[0]} ${ingredient[1] ? ingredient[1] : ''}`}
-              </li>
+                index={ index }
+                ingredient={ ingredient }
+              />
             )) }
           </ul>
         )}
@@ -151,13 +145,16 @@ function DrinksDetails() {
         <p data-testid="instructions">{strInstructions}</p>
       </section>
       { checkPathInProgress && (
-        <button
-          type="button"
-          className="finish-recipe-btn"
-          data-testid="finish-recipe-btn"
-        >
-          Finalizar Receita
-        </button>
+        <Link to="/receitas-feitas">
+          <button
+            type="button"
+            className="finish-recipe-btn"
+            data-testid="finish-recipe-btn"
+            disabled={ isDisabled }
+          >
+            Finalizar Receita
+          </button>
+        </Link>
       )}
     </div>
   );
