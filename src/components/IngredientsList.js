@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-function IngredientsList(key, index, ingredient) {
+function IngredientsList({ key, index, ingredient }) {
   return (
     <li
       key={ key }
@@ -10,5 +11,11 @@ function IngredientsList(key, index, ingredient) {
     </li>
   );
 }
+
+IngredientsList.propTypes = {
+  index: PropTypes.number.isRequired,
+  ingredient: PropTypes.arrayOf.isRequired,
+  key: PropTypes.number.isRequired,
+};
 
 export default IngredientsList;
