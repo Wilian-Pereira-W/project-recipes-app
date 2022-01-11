@@ -4,21 +4,8 @@
 }
 
 * {
-  list-style: none;
-}
-
-.details-container {
   font-family: Montserrat , sans-serif;
-}
-
-.details-container h3 {
-  background-color: #701d28;
-  color: #fdfffc;
-  font-family: Malvie Trial , sans-serif;
-  letter-spacing: 3px;
-  padding: 10px 0;
-  text-align: center;
-  width: 100%;
+  list-style: none;
 }
 
 .recipe-photo {
@@ -28,7 +15,31 @@
   width: 100%;
 }
 
+.recipe-title {
+  background-color: #701d28;
+  color: #fdfffc;
+  font-family: Malvie Trial , sans-serif;
+  letter-spacing: 3px;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.icons-and-category {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  min-height: 31px;
+  padding: 0 12px;
+}
+
+.icons > input {
+  margin-left: 10px;
+}
+
 .recipe-text-details {
+  display: flex;
+  flex-direction: column;
   padding: 12px;
   text-align: justify;
 }
@@ -38,8 +49,22 @@
   padding-bottom: 5px;
 }
 
+.ingredients-list {
+  line-height: 30px;
+}
+
+.ingredient-step {
+  margin-right: 10px;
+}
+
+.ingredient-step:checked + span {
+  text-decoration: line-through;
+}
+
 .carousel {
   box-sizing: border-box;
+  display: flex;
+  flex-flow: column wrap;
   height: 170px;
   margin: 0 0 60px;
   overflow-x: scroll;
@@ -51,9 +76,10 @@
 .carousel .card-recipes {
   display: inline-block;
   margin-left: 20px;
+  white-space: normal;
 }
 
-.start-recipe-btn {
+.start-recipe-btn, .finish-recipe-btn {
   background-color: #701d28;
   border: none;
   bottom: 0;
@@ -64,6 +90,10 @@
   padding: 8px;
   position: fixed;
   width: 100%;
+}
+
+.finish-recipe-btn:disabled {
+  background-color: #aa9797;
 }
 
 .alert-container {
