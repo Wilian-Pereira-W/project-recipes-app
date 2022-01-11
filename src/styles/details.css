@@ -77,6 +77,10 @@
   width: 100%;
 }
 
+.finish-recipe-btn:disabled {
+  background-color: #aa9797;
+}
+
 .alert-container {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.788);
