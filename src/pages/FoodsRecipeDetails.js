@@ -26,7 +26,6 @@ function FoodsRecipeDetails() {
     share,
     setShare,
     setIngredients,
-    setIsFavorite,
   } = useContext(DrinkRecipesContext);
 
   const { pathname } = useLocation();
@@ -48,12 +47,6 @@ function FoodsRecipeDetails() {
   useEffect(() => {
     ingredientsAndMeasures(mealsDetails, setIngredients);
   }, [mealsDetails, setIngredients]);
-
-  useEffect(() => {
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-    const isFavoriteRecipe = favoriteRecipes.some(({ id }) => id === ID);
-    return isFavoriteRecipe ? setIsFavorite(true) : setIsFavorite(false);
-  }, [ID, setIsFavorite]);
 
   useEffect(() => {
     const containsId = recipesStarted.some((item) => item === ID);

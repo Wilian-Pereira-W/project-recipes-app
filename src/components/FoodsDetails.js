@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { foodsAPI } from '../services/resquestAPI';
 import shareIcon from '../images/shareIcon.svg';
@@ -7,8 +7,13 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { addFavoriteRecipe, removeFavoriteRecipe } from '../helpers/favoriteMeals';
 import ingredientsAndMeasures from '../helpers/ingredientsAndMeasures';
+import toggleFavoriteRecipes from '../helpers/toggleFavoriteRecipes';
+import copyOnClipboard from '../helpers/copyOnClipboard';
+import handleFavoriteRecipes from '../helpers/handleFavoriteRecipes';
 
 function FoodsDetails() {
+  const [checked, setChecked] = useState([]);
+
   const {
     mealsDetails,
     setMealsDetails,
@@ -38,10 +43,8 @@ function FoodsDetails() {
 
   useEffect(() => {
     (async () => {
-      if (ID !== '') {
-        const { meals } = await foodsAPI(`lookup.php?i=${ID}`);
-        setMealsDetails(meals[0]);
-      }
+      const { meals } = await foodsAPI(`lookup.php?i=${ID}`);
+      setMealsDetails(meals[0]);
     })();
   }, [ID, setMealsDetails]);
 
@@ -49,20 +52,26 @@ function FoodsDetails() {
     ingredientsAndMeasures(mealsDetails, setIngredients);
   }, [mealsDetails, setIngredients]);
 
-  const toggleFavoriteRecipes = () => {
-    if (isFavorite) {
-      setIsFavorite(false);
-      removeFavoriteRecipe(idMeal);
-    } else {
-      setIsFavorite(true);
-      addFavoriteRecipe(mealsDetails);
-    }
-  };
+  useEffect(() => {
+    const dependencies = { ID, setIsFavorite };
+    handleFavoriteRecipes(dependencies);
+  }, [ID, setIsFavorite]);
 
-  const copyOnClipboard = () => {
-    setClipboard(window.location.href);
-    setShare(true);
-  };
+  useEffect(() => {
+    const inProgressDefault = { cocktails: {}, meals: {} };
+    const inProgressRecipes = JSON.parse(localStorage
+      .getItem('inProgressRecipes')) || inProgressDefault;
+    if (inProgressRecipes.meals[ID]) {
+      setChecked(inProgressRecipes.meals[ID]);
+    }
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
+  }, [ID, setChecked]);
+
+  useEffect(() => {
+    const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    Object.assign(inProgressRecipes.meals, { [ID]: checked });
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
+  }, [ID, checked]);
 
   return (
     <div>
@@ -78,14 +87,30 @@ function FoodsDetails() {
         src={ shareIcon }
         alt="compartilhar"
         data-testid="share-btn"
-        onClick={ copyOnClipboard }
+        onClick={ () => {
+          const dependencies = {
+            setClipboard,
+            setShare,
+          };
+          copyOnClipboard(dependencies);
+        } }
       />
       <input
         type="image"
         src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
         alt="favoritar"
         data-testid="favorite-btn"
-        onClick={ toggleFavoriteRecipes }
+        onClick={ () => {
+          const dependencies = {
+            isFavorite,
+            setIsFavorite,
+            addFavoriteRecipe,
+            removeFavoriteRecipe,
+            idRecipe: idMeal,
+            recipeDetails: mealsDetails,
+          };
+          toggleFavoriteRecipes(dependencies);
+        } }
       />
       <span data-testid="recipe-category">{strCategory}</span>
       <section className="recipe-text-details">
@@ -101,6 +126,14 @@ function FoodsDetails() {
                 className="ingredient-step"
                 id={ `${index}-ingredient-step` }
                 type="checkbox"
+                onChange={ () => {
+                  if (checked.includes(index)) {
+                    setChecked(checked.filter((item) => item !== index));
+                  } else {
+                    setChecked([...checked, index]);
+                  }
+                } }
+                checked={ checked.includes(index) }
               />
               <span>{`${ingredient[0]} ${ingredient[1] ? ingredient[1] : ''}`}</span>
             </label>
