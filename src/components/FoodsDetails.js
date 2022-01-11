@@ -90,37 +90,41 @@ function FoodsDetails() {
         data-testid="recipe-photo"
       />
       <h3 className="recipe-title" data-testid="recipe-title">{strMeal}</h3>
-      <input
-        type="image"
-        src={ shareIcon }
-        alt="compartilhar"
-        data-testid="share-btn"
-        onClick={ () => {
-          const dependencies = {
-            setClipboard,
-            setShare,
-          };
-          copyOnClipboard(dependencies);
-        } }
-      />
-      <input
-        type="image"
-        src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-        alt="favoritar"
-        data-testid="favorite-btn"
-        onClick={ () => {
-          const dependencies = {
-            isFavorite,
-            setIsFavorite,
-            addFavoriteRecipe,
-            removeFavoriteRecipe,
-            idRecipe: idMeal,
-            recipeDetails: mealsDetails,
-          };
-          toggleFavoriteRecipes(dependencies);
-        } }
-      />
-      <span data-testid="recipe-category">{strCategory}</span>
+      <div className="icons-and-category">
+        <span data-testid="recipe-category">{strCategory}</span>
+        <div className="icons">
+          <input
+            type="image"
+            src={ shareIcon }
+            alt="compartilhar"
+            data-testid="share-btn"
+            onClick={ () => {
+              const dependencies = {
+                setClipboard,
+                setShare,
+              };
+              copyOnClipboard(dependencies);
+            } }
+          />
+          <input
+            type="image"
+            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            alt="favoritar"
+            data-testid="favorite-btn"
+            onClick={ () => {
+              const dependencies = {
+                isFavorite,
+                setIsFavorite,
+                addFavoriteRecipe,
+                removeFavoriteRecipe,
+                idRecipe: idMeal,
+                recipeDetails: mealsDetails,
+              };
+              toggleFavoriteRecipes(dependencies);
+            } }
+          />
+        </div>
+      </div>
       <section className="recipe-text-details">
         <h5>Ingredients</h5>
         { checkPathInProgress
