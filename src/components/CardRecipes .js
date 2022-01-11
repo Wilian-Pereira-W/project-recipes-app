@@ -1,13 +1,12 @@
 // Tela de receitas favoritas: `/receitas-favoritas`.
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
-import '../styles/recipes.css';
 import shareIcon from '../images/shareIcon.svg';
 import { DrinkRecipesContext } from '../context/RecipesContext';
 
 const HREF_LENGTH = 22;
 
-function CardDoneRecipes({ index,
+function CardRecipes({ index,
   category,
   image,
   doneDate,
@@ -18,7 +17,6 @@ function CardDoneRecipes({ index,
   onClick,
   type,
   alcoholicOrNot,
-  onClickFilter,
 }) {
   const {
     setClipboard,
@@ -42,7 +40,7 @@ function CardDoneRecipes({ index,
   }, []);
 
   return (
-    <div className="cardDoneRecipes">
+    <div>
       { share
         && (
           <div className="alert-container">
@@ -51,35 +49,6 @@ function CardDoneRecipes({ index,
               <button type="button" onClick={ () => setShare(false) }>X</button>
             </div>
           </div>)}
-      <div>
-        <button
-          type="button"
-          data-testid="filter-by-all-btn"
-          onClick={ onClickFilter }
-          value="All"
-        >
-          All
-
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-food-btn"
-          onClick={ onClickFilter }
-          value="Food"
-        >
-          Food
-
-        </button>
-        <button
-          type="button"
-          data-testid="filter-by-drink-btn"
-          onClick={ onClickFilter }
-          value="Drink"
-        >
-          Drink
-
-        </button>
-      </div>
       <div>
         <button
           type="button"
@@ -132,7 +101,7 @@ function CardDoneRecipes({ index,
   );
 }
 
-CardDoneRecipes.propTypes = {
+CardRecipes.propTypes = {
   category: PropTypes.string,
   doneDate: PropTypes.string,
   image: PropTypes.string,
@@ -141,4 +110,4 @@ CardDoneRecipes.propTypes = {
   tagName: PropTypes.string,
 }.isRequired;
 
-export default CardDoneRecipes;
+export default CardRecipes;
