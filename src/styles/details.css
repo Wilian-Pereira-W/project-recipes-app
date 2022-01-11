@@ -63,6 +63,8 @@
 
 .carousel {
   box-sizing: border-box;
+  display: flex;
+  flex-flow: column wrap;
   height: 170px;
   margin: 0 0 60px;
   overflow-x: scroll;
@@ -74,6 +76,7 @@
 .carousel .card-recipes {
   display: inline-block;
   margin-left: 20px;
+  white-space: normal;
 }
 
 .start-recipe-btn, .finish-recipe-btn {

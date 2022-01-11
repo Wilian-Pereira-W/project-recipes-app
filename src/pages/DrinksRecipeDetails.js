@@ -6,6 +6,7 @@ import { drinksAPI } from '../services/resquestAPI';
 import Card from '../components/Card';
 import ingredientsAndMeasures from '../helpers/ingredientsAndMeasures';
 import '../styles/details.css';
+import '../styles/recipes.css';
 import DrinksDetails from '../components/DrinksDetails';
 
 const MAX_CARDS = 6;
