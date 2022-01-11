@@ -12,6 +12,7 @@ import copyOnClipboard from '../helpers/copyOnClipboard';
 import handleFavoriteRecipes from '../helpers/handleFavoriteRecipes';
 import IngredientsCheckbox from './IngredientsCheckbox';
 import IngredientsList from './IngredientsList';
+import { doneFoodsRecipes } from '../helpers/doneRecipes';
 
 function FoodsDetails() {
   const [checked, setChecked] = useState([]);
@@ -158,6 +159,7 @@ function FoodsDetails() {
             className="finish-recipe-btn"
             data-testid="finish-recipe-btn"
             disabled={ isDisabled }
+            onClick={ () => doneFoodsRecipes(mealsDetails) }
           >
             Finalizar Receita
           </button>

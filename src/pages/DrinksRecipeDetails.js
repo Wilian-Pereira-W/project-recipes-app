@@ -1,5 +1,5 @@
 // Tela de detalhes de uma receita de bebida: `/bebidas/{id-da-receita}`;
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { drinksAPI } from '../services/resquestAPI';
@@ -8,10 +8,15 @@ import ingredientsAndMeasures from '../helpers/ingredientsAndMeasures';
 import '../styles/details.css';
 import '../styles/recipes.css';
 import DrinksDetails from '../components/DrinksDetails';
+import { verifyDoneRecipe } from '../helpers/doneRecipes';
+import { verifyInProgressDrinks } from '../helpers/verifyInProgress';
 
 const MAX_CARDS = 6;
 
 function DrinksRecipeDetails() {
+  const [showButton, setShowButton] = useState(true);
+  const [inProgress, setInProgress] = useState(false);
+
   const {
     drinksDetails,
     setDrinksDetails,
@@ -36,6 +41,11 @@ function DrinksRecipeDetails() {
   useEffect(() => {
     ingredientsAndMeasures(drinksDetails, setIngredients);
   }, [drinksDetails, setIngredients]);
+
+  useEffect(() => {
+    setShowButton(verifyDoneRecipe(ID));
+    setInProgress(verifyInProgressDrinks(ID));
+  }, [ID]);
 
   return (
     <div className="details-container">
@@ -63,15 +73,18 @@ function DrinksRecipeDetails() {
             )
           )) }
       </div>
-      <Link to={ `/bebidas/${ID}/in-progress` }>
-        <button
-          type="button"
-          className="start-recipe-btn"
-          data-testid="start-recipe-btn"
-        >
-          Iniciar Receita
-        </button>
-      </Link>
+      {!showButton
+      && (
+        <Link to={ `/bebidas/${ID}/in-progress` }>
+          <button
+            type="button"
+            className="start-recipe-btn"
+            data-testid="start-recipe-btn"
+          >
+            {inProgress ? 'Continuar Receita' : 'Iniciar Receita'}
+          </button>
+        </Link>
+      )}
     </div>
   );
 }

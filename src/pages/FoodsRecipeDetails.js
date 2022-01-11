@@ -1,5 +1,5 @@
 // Tela de detalhes de uma receita de comida: `/comidas/{id-da-receita}`;
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { foodsAPI } from '../services/resquestAPI';
@@ -8,19 +8,18 @@ import Card from '../components/Card';
 import '../styles/details.css';
 import '../styles/recipes.css';
 import FoodsDetails from '../components/FoodsDetails';
+import { verifyDoneRecipe } from '../helpers/doneRecipes';
 
 const MAX_CARDS = 6;
 
 function FoodsRecipeDetails() {
+  const [showButton, setShowButton] = useState();
+
   const {
     mealsDetails,
     videoURL,
     setMealsDetails,
     setVideoURL,
-    setIsStarted,
-    isStarted,
-    setRecipesStarted,
-    recipesStarted,
   } = useContext(FoodRecipesContext);
   const {
     drinksRecipes,
@@ -50,9 +49,8 @@ function FoodsRecipeDetails() {
   }, [mealsDetails, setIngredients]);
 
   useEffect(() => {
-    const containsId = recipesStarted.some((item) => item === ID);
-    return containsId ? setIsStarted(true) : setIsStarted(false);
-  }, [ID, recipesStarted, setIsStarted]);
+    setShowButton(verifyDoneRecipe(ID));
+  }, [ID]);
 
   return (
     <div className="details-container">
@@ -89,18 +87,18 @@ function FoodsRecipeDetails() {
             )
           )) }
       </div>
-      <Link to={ `/comidas/${ID}/in-progress` }>
-        <button
-          type="button"
-          className="start-recipe-btn"
-          data-testid="start-recipe-btn"
-          onClick={ () => {
-            setRecipesStarted([...recipesStarted, ID]);
-          } }
-        >
-          { isStarted ? 'Continuar Receita' : 'Iniciar Receita' }
-        </button>
-      </Link>
+      {!showButton
+      && (
+        <Link to={ `/comidas/${ID}/in-progress` }>
+          <button
+            type="button"
+            className="start-recipe-btn"
+            data-testid="start-recipe-btn"
+          >
+            Iniciar Receita
+          </button>
+        </Link>
+      )}
     </div>
   );
 }
