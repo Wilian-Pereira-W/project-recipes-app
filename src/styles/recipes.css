@@ -69,3 +69,7 @@
   overflow-wrap: break-word;
   padding: 0 0 10px 10px;
 }
+
+.cardDoneRecipes {
+  margin-top: 80px;
+}
