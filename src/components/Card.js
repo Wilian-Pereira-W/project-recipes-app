@@ -10,7 +10,7 @@ function Card({ index, name, img, onClick }) {
     <button
       type="button"
       data-testid={ pathname === '/comidas'
-       || pathname === '/bebidas' || pathname === '/explorar/comidas/area'
+      || pathname === '/bebidas' || pathname === '/explorar/comidas/area'
         ? `${index}-recipe-card` : `${index}-recomendation-card` }
       className="card-recipes"
       onClick={ onClick }

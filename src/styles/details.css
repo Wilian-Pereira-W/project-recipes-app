@@ -8,21 +8,33 @@
   list-style: none;
 }
 
-.recipe-title {
-  background-color: #701d28;
-  color: #fdfffc;
-  font-family: Malvie Trial , sans-serif;
-  letter-spacing: 3px;
-  padding: 10px 0;
-  text-align: center;
-  width: 100%;
-}
-
 .recipe-photo {
   height: 200px;
   object-fit: cover;
   object-position: center 35%;
   width: 100%;
+}
+
+.recipe-title {
+  background-color: #701d28;
+  color: #fdfffc;
+  font-family: Malvie Trial , sans-serif;
+  letter-spacing: 3px;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.icons-and-category {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  min-height: 31px;
+  padding: 0 12px;
+}
+
+.icons > input {
+  margin-left: 10px;
 }
 
 .recipe-text-details {

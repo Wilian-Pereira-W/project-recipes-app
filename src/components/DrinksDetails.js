@@ -87,37 +87,46 @@ function DrinksDetails() {
         data-testid="recipe-photo"
       />
       <h3 className="recipe-title" data-testid="recipe-title">{strDrink}</h3>
-      <input
-        type="image"
-        src={ shareIcon }
-        alt="compartilhar"
-        data-testid="share-btn"
-        onClick={ () => {
-          const dependencies = {
-            setClipboard,
-            setShare,
-          };
-          copyOnClipboard(dependencies);
-        } }
-      />
-      <input
-        type="image"
-        src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-        alt="favoritar"
-        data-testid="favorite-btn"
-        onClick={ () => {
-          const dependencies = {
-            isFavorite,
-            setIsFavorite,
-            addFavoriteRecipe,
-            removeFavoriteRecipe,
-            idRecipe: idDrink,
-            recipeDetails: drinksDetails,
-          };
-          toggleFavoriteRecipes(dependencies);
-        } }
-      />
-      <span data-testid="recipe-category">{`${strCategory} - ${strAlcoholic}`}</span>
+      <div className="icons-and-category">
+        <span
+          className="recipe-category"
+          data-testid="recipe-category"
+        >
+          {`${strCategory} - ${strAlcoholic}`}
+        </span>
+        <div className="icons">
+          <input
+            type="image"
+            src={ shareIcon }
+            alt="compartilhar"
+            data-testid="share-btn"
+            onClick={ () => {
+              const dependencies = {
+                setClipboard,
+                setShare,
+              };
+              copyOnClipboard(dependencies);
+            } }
+          />
+          <input
+            type="image"
+            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
+            alt="favoritar"
+            data-testid="favorite-btn"
+            onClick={ () => {
+              const dependencies = {
+                isFavorite,
+                setIsFavorite,
+                addFavoriteRecipe,
+                removeFavoriteRecipe,
+                idRecipe: idDrink,
+                recipeDetails: drinksDetails,
+              };
+              toggleFavoriteRecipes(dependencies);
+            } }
+          />
+        </div>
+      </div>
       <section className="recipe-text-details">
         <h5>Ingredients</h5>
         { checkPathInProgress
