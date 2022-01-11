@@ -16,7 +16,6 @@ function DrinksRecipeDetails() {
     setDrinksDetails,
     share,
     setShare,
-    setIsFavorite,
     setIngredients,
   } = useContext(DrinkRecipesContext);
   const { mealsRecipes } = useContext(FoodRecipesContext);
@@ -36,12 +35,6 @@ function DrinksRecipeDetails() {
   useEffect(() => {
     ingredientsAndMeasures(drinksDetails, setIngredients);
   }, [drinksDetails, setIngredients]);
-
-  useEffect(() => {
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
-    const isFavoriteRecipe = favoriteRecipes.some(({ id }) => id === ID);
-    return isFavoriteRecipe ? setIsFavorite(true) : setIsFavorite(false);
-  }, [ID, setIsFavorite]);
 
   return (
     <div className="details-container">
