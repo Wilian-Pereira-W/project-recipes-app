@@ -40,6 +40,14 @@ function DrinkRecipesProvider({ children }) {
     }
   }, [selectedCategoryDrinks]);
 
+  useEffect(() => {
+    const inProgressDefault = { cocktails: {}, meals: {} };
+    const inProgressRecipes = JSON.parse(
+      localStorage.getItem('inProgressRecipes'),
+    ) || inProgressDefault;
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
+  }, []);
+
   const context = {
     drinksRecipes,
     drinksCategories,

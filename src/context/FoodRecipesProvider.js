@@ -10,8 +10,6 @@ function FoodRecipesProvider({ children }) {
   const [isSelected, setIsSelected] = useState(false);
   const [mealsDetails, setMealsDetails] = useState({});
   const [videoURL, setVideoURL] = useState('');
-  const [isStarted, setIsStarted] = useState(false);
-  const [recipesStarted, setRecipesStarted] = useState([]);
 
   useEffect(() => {
     (async () => {
@@ -39,6 +37,14 @@ function FoodRecipesProvider({ children }) {
     }
   }, [selectedCategoryFoods]);
 
+  useEffect(() => {
+    const inProgressDefault = { cocktails: {}, meals: {} };
+    const inProgressRecipes = JSON.parse(
+      localStorage.getItem('inProgressRecipes'),
+    ) || inProgressDefault;
+    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
+  }, []);
+
   const context = {
     mealsRecipes,
     mealsCategories,
@@ -51,10 +57,6 @@ function FoodRecipesProvider({ children }) {
     setMealsDetails,
     videoURL,
     setVideoURL,
-    setIsStarted,
-    isStarted,
-    setRecipesStarted,
-    recipesStarted,
   };
 
   return (
