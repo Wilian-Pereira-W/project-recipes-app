@@ -31,7 +31,7 @@ export function doneFoodsRecipes(mealsDetails) {
     name: mealsDetails.strMeal,
     image: mealsDetails.strMealThumb,
     doneDate: new Date().toLocaleDateString('pt-br'),
-    tags: mealsDetails.strTags || [],
+    tags: mealsDetails.strTags.split(',') || [],
   };
 
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
