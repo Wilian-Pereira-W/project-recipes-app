@@ -1,7 +1,9 @@
 // Tela de receitas favoritas: `/receitas-favoritas`.
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { DrinkRecipesContext } from '../context/RecipesContext';
 
 const HREF_LENGTH = 22;
@@ -17,11 +19,15 @@ function CardRecipes({ index,
   onClick,
   type,
   alcoholicOrNot,
+  onClickRemoveFavoriteRecipe,
 }) {
   const {
     setClipboard,
     setShare,
   } = useContext(DrinkRecipesContext);
+
+  const history = useHistory();
+  const { location: { pathname } } = history;
 
   const [newHref, setHref] = useState('');
 
@@ -65,7 +71,8 @@ function CardRecipes({ index,
         >
           {name}
         </button>
-        <p data-testid={ `${index}-horizontal-done-date` }>{`Feita em: ${doneDate}`}</p>
+        {pathname === '/receitas-feitas'
+        && <p data-testid={ `${index}-horizontal-done-date` }>{`Feita em: ${doneDate}`}</p>}
         <input
           type="image"
           src={ shareIcon }
@@ -74,17 +81,25 @@ function CardRecipes({ index,
           data-testid={ `${index}-horizontal-share-btn` }
           onClick={ () => copyOnClipboard(id, type) }
         />
-        {type === 'comida'
-          && tagName
-            .map((tag) => (
-              <span
-                key={ tag }
-                className="tag"
-                data-testid={ `${index}-${tag}-horizontal-tag` }
-              >
-                {tag}
-              </span>
-            ))}
+        {pathname === '/receitas-favoritas'
+        && <input
+          type="image"
+          src={ blackHeartIcon }
+          alt="favoritar"
+          data-testid={ `${index}-horizontal-favorite-btn` }
+          onClick={ onClickRemoveFavoriteRecipe }
+        />}
+        {pathname === '/receitas-feitas'
+        && type === 'comida'
+        && tagName
+          .map((tag) => (
+            <span
+              key={ tag }
+              data-testid={ `${index}-${tag}-horizontal-tag` }
+            >
+              {tag}
+            </span>
+          ))}
       </div>
     </div>
   );
