@@ -1,10 +1,111 @@
 // Tela de receitas favoritas: `/receitas-favoritas`.
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import '../styles/recipes.css';
 import Header from '../components/Header';
+import CardRecipes from '../components/CardRecipes ';
+import { removeFavoriteRecipe } from '../helpers/favoriteDrinks';
 
 function Favorites() {
+  const [favoriteRecipe, setFavoriteRecipe] = useState([]);
+
+  const [favoriteRecipeFilter, setFavoriteRecipeFilter] = useState([]);
+
+  useEffect(() => {
+    const favoriteRecipeStorage = localStorage.getItem('favoriteRecipes');
+
+    if (favoriteRecipeStorage) {
+      setFavoriteRecipe(JSON.parse(favoriteRecipeStorage));
+      setFavoriteRecipeFilter(JSON.parse(favoriteRecipeStorage));
+    }
+  }, []);
+
+  const handleRemoveFavoriteRecipe = (id) => {
+    removeFavoriteRecipe(id);
+    const favoriteRecipeStorage = localStorage.getItem('favoriteRecipes');
+    if (favoriteRecipeStorage) {
+      setFavoriteRecipe(JSON.parse(favoriteRecipeStorage));
+      setFavoriteRecipeFilter(JSON.parse(favoriteRecipeStorage));
+    }
+  };
+
+  const validaFilter = (filtro, dados) => {
+    if (filtro === 'Food') {
+      const filterFood = dados.filter((recipe) => recipe.type === 'comida');
+      setFavoriteRecipeFilter(filterFood);
+    } else if (filtro === 'Drink') {
+      const filterDrink = dados.filter((recipe) => recipe.type === 'bebida');
+      setFavoriteRecipeFilter(filterDrink);
+    } else {
+      setFavoriteRecipeFilter(dados);
+    }
+  };
+
+  const history = useHistory();
+
+  const handleFilterClick = (value) => {
+    validaFilter(value, favoriteRecipe);
+  };
+
+  const handleCardClick = (id, type) => {
+    if (type === 'comida') {
+      history.push(`/comidas/${id}`);
+    } else {
+      history.push(`/bebidas/${id}`);
+    }
+  };
+
   return (
-    <Header title="Receitas Favoritas" isEnableSearchIcon={ false } />
+    <div>
+      <Header title="Receitas Favoritas" isEnableSearchIcon={ false } />
+      <div className="cardDoneRecipes">
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ (event) => handleFilterClick(event.target.value) }
+          value="All"
+        >
+          All
+
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ (event) => handleFilterClick(event.target.value) }
+          value="Food"
+        >
+          Food
+
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ (event) => handleFilterClick(event.target.value) }
+          value="Drink"
+        >
+          Drink
+
+        </button>
+      </div>
+      {favoriteRecipeFilter
+        .map((recipe, index) => (
+          <CardRecipes
+            key={ `${recipe.name}-${index}` }
+            index={ index }
+            type={ recipe.type }
+            category={ recipe.category }
+            image={ recipe.image }
+            doneDate={ recipe.doneDate }
+            tagName={ recipe.tags }
+            name={ recipe.name }
+            area={ recipe.area }
+            alcoholicOrNot={ recipe.alcoholicOrNot }
+            id={ recipe.id }
+            onClick={ () => handleCardClick(recipe.id, recipe.type) }
+            onClickRemoveFavoriteRecipe={ () => handleRemoveFavoriteRecipe(recipe.id) }
+          />
+        )) }
+    </div>
   );
 }
 
