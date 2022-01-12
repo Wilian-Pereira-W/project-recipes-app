@@ -83,7 +83,7 @@ function FinishedRecipes() {
           Drink
         </button>
       </div>
-      <section className="done-recipes-container">
+      <section className="done-recipes-cards-container">
         {doneRecipesFilter
           .map((recipe, index) => (
             <CardRecipes

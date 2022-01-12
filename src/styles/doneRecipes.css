@@ -31,7 +31,7 @@
   width: 25%;
 }
 
-.done-recipes-container {
+.done-recipes-cards-container {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -48,18 +48,18 @@
   width: 90%;
 }
 
-.done-recipes-card > button {
+.done-recipes-card .img-container {
   border: none;
   width: 50%;
 }
 
-.done-recipes-card img {
+.done-recipes-card .img-container img {
   border-radius: 6px 0 0 6px;
   height: 100%;
   width: 100%;
 }
 
-.done-recipes-card > div {
+.done-recipes-info {
   border-radius: 0 6px 6px 0;
   display: flex;
   flex-direction: column;
@@ -70,17 +70,17 @@
   width: 50%;
 }
 
-.done-recipes-card > div p {
+.done-recipes-info p {
   font-size: 0.9rem;
   margin: 0;
 }
 
-.done-recipes-card > div p:first-child {
+.done-recipes-info p:first-child {
   font-size: 0.9rem;
   max-width: 11ch;
 }
 
-.done-recipes-card > div .tag {
+.done-recipes-info .tag {
   align-self: baseline;
   background-color: thistle;
   border-radius: 6px;
@@ -89,11 +89,11 @@
   padding: 1px 5px;
 }
 
-.done-recipes-card > div button {
+.done-recipes-name {
   background: none;
   border: none;
   color: #fdfffc;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
   width: 100%;
@@ -104,4 +104,8 @@
   right: 10px;
   top: 10px;
   width: 30px;
+}
+
+.tags-container {
+  overflow: hidden;
 }

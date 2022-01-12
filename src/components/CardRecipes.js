@@ -48,6 +48,7 @@ function CardRecipes({ index,
     <div className="done-recipes-card">
       <button
         type="button"
+        className="img-container"
         onClick={ onClick }
       >
         <img
@@ -56,7 +57,7 @@ function CardRecipes({ index,
           alt={ name }
         />
       </button>
-      <div>
+      <div className="done-recipes-info">
         {type === 'comida'
           ? (
             <p data-testid={ `${index}-horizontal-top-text` }>
@@ -66,7 +67,7 @@ function CardRecipes({ index,
         <button
           type="button"
           onClick={ onClick }
-          className="done-recipes-link"
+          className="done-recipes-name"
           data-testid={ `${index}-horizontal-name` }
         >
           {name}
@@ -95,7 +96,7 @@ function CardRecipes({ index,
         {pathname === '/receitas-feitas'
         && type === 'comida'
         && (
-          <div>
+          <div className="tags-container">
             {tagName.map((tag) => (
               <span
                 key={ tag }
