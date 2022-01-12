@@ -1,14 +1,15 @@
 // Tela de receitas feitas: `/receitas-feitas`;
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../styles/doneRecipes.css';
 import Header from '../components/Header';
 import CardRecipes from '../components/CardRecipes ';
+import { DrinkRecipesContext } from '../context/RecipesContext';
 
 function FinishedRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
-
   const [doneRecipesFilter, setDoneRecipesFilter] = useState([]);
+  const { share, setShare } = useContext(DrinkRecipesContext);
 
   useEffect(() => {
     const doneRecipesStorage = localStorage.getItem('doneRecipes');
@@ -47,6 +48,14 @@ function FinishedRecipes() {
 
   return (
     <div>
+      { share
+        && (
+          <div className="alert-container">
+            <div className="alert">
+              <p>Link copiado!</p>
+              <button type="button" onClick={ () => setShare(false) }>X</button>
+            </div>
+          </div>)}
       <Header title="Receitas Feitas" isEnableSearchIcon={ false } />
       <div className="done-recipes-categories">
         <button

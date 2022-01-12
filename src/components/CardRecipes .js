@@ -20,7 +20,6 @@ function CardRecipes({ index,
 }) {
   const {
     setClipboard,
-    share,
     setShare,
   } = useContext(DrinkRecipesContext);
 
@@ -41,14 +40,6 @@ function CardRecipes({ index,
 
   return (
     <div className="done-recipes-card">
-      { share
-        && (
-          <div className="alert-container">
-            <div className="alert">
-              <p>Link copiado!</p>
-              <button type="button" onClick={ () => setShare(false) }>X</button>
-            </div>
-          </div>)}
       <button
         type="button"
         onClick={ onClick }
@@ -74,23 +65,25 @@ function CardRecipes({ index,
         >
           {name}
         </button>
-        <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
+        <p data-testid={ `${index}-horizontal-done-date` }>{`Feita em: ${doneDate}`}</p>
         <input
           type="image"
           src={ shareIcon }
           alt="compartilhar"
+          className="done-recipes-share-icon"
           data-testid={ `${index}-horizontal-share-btn` }
           onClick={ () => copyOnClipboard(id, type) }
         />
         {type === 'comida'
           && tagName
             .map((tag) => (
-              <p
+              <span
                 key={ tag }
+                className="tag"
                 data-testid={ `${index}-${tag}-horizontal-tag` }
               >
                 {tag}
-              </p>
+              </span>
             ))}
       </div>
     </div>
