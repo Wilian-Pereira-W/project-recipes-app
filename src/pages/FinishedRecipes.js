@@ -1,7 +1,7 @@
 // Tela de receitas feitas: `/receitas-feitas`;
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import '../styles/recipes.css';
+import '../styles/doneRecipes.css';
 import Header from '../components/Header';
 import CardRecipes from '../components/CardRecipes ';
 
@@ -18,7 +18,6 @@ function FinishedRecipes() {
       setDoneRecipesFilter(JSON.parse(doneRecipesStorage));
     }
   }, []);
-  // criar no context
 
   const validaFiltro = (filtro, dados) => {
     if (filtro === 'Food') {
@@ -49,7 +48,7 @@ function FinishedRecipes() {
   return (
     <div>
       <Header title="Receitas Feitas" isEnableSearchIcon={ false } />
-      <div className="cardDoneRecipes">
+      <div className="done-recipes-categories">
         <button
           type="button"
           data-testid="filter-by-all-btn"
@@ -57,7 +56,6 @@ function FinishedRecipes() {
           value="All"
         >
           All
-
         </button>
         <button
           type="button"
@@ -66,7 +64,6 @@ function FinishedRecipes() {
           value="Food"
         >
           Food
-
         </button>
         <button
           type="button"
@@ -75,26 +72,27 @@ function FinishedRecipes() {
           value="Drink"
         >
           Drink
-
         </button>
       </div>
-      {doneRecipesFilter
-        .map((recipe, index) => (
-          <CardRecipes
-            key={ `${recipe.name}-${index}` }
-            index={ index }
-            type={ recipe.type }
-            category={ recipe.category }
-            image={ recipe.image }
-            doneDate={ recipe.doneDate }
-            tagName={ recipe.tags }
-            name={ recipe.name }
-            area={ recipe.area }
-            alcoholicOrNot={ recipe.alcoholicOrNot }
-            id={ recipe.id }
-            onClick={ () => handleCardClick(recipe.id, recipe.type) }
-          />
-        )) }
+      <section className="done-recipes-container">
+        {doneRecipesFilter
+          .map((recipe, index) => (
+            <CardRecipes
+              key={ `${recipe.name}-${index}` }
+              index={ index }
+              type={ recipe.type }
+              category={ recipe.category }
+              image={ recipe.image }
+              doneDate={ recipe.doneDate }
+              tagName={ recipe.tags }
+              name={ recipe.name }
+              area={ recipe.area }
+              alcoholicOrNot={ recipe.alcoholicOrNot }
+              id={ recipe.id }
+              onClick={ () => handleCardClick(recipe.id, recipe.type) }
+            />
+          )) }
+      </section>
     </div>
   );
 }

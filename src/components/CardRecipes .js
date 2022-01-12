@@ -40,7 +40,7 @@ function CardRecipes({ index,
   }, []);
 
   return (
-    <div>
+    <div className="done-recipes-card">
       { share
         && (
           <div className="alert-container">
@@ -49,33 +49,30 @@ function CardRecipes({ index,
               <button type="button" onClick={ () => setShare(false) }>X</button>
             </div>
           </div>)}
+      <button
+        type="button"
+        onClick={ onClick }
+      >
+        <img
+          data-testid={ `${index}-horizontal-image` }
+          src={ image }
+          alt={ name }
+        />
+      </button>
       <div>
-        <button
-          type="button"
-          onClick={ onClick }
-        >
-          <img
-            data-testid={ `${index}-horizontal-image` }
-            src={ image }
-            alt={ name }
-          />
-        </button>
-        {
-          type === 'comida' ? (
-            <p
-              data-testid={ `${index}-horizontal-top-text` }
-            >
-              {
-                `${area} - ${category}`
-              }
+        {type === 'comida'
+          ? (
+            <p data-testid={ `${index}-horizontal-top-text` }>
+              {`${area} - ${category}`}
             </p>)
-            : <p data-testid={ `${index}-horizontal-top-text` }>{`${alcoholicOrNot}`}</p>
-        }
+          : <p data-testid={ `${index}-horizontal-top-text` }>{`${alcoholicOrNot}`}</p>}
         <button
           type="button"
           onClick={ onClick }
+          className="done-recipes-link"
+          data-testid={ `${index}-horizontal-name` }
         >
-          <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+          {name}
         </button>
         <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
         <input
@@ -86,16 +83,15 @@ function CardRecipes({ index,
           onClick={ () => copyOnClipboard(id, type) }
         />
         {type === 'comida'
-        && tagName
-          .map((tag) => (
-            <p
-              key={ tag }
-              data-testid={ `${index}-${tag}-horizontal-tag` }
-            >
-              {tag}
-
-            </p>
-          ))}
+          && tagName
+            .map((tag) => (
+              <p
+                key={ tag }
+                data-testid={ `${index}-${tag}-horizontal-tag` }
+              >
+                {tag}
+              </p>
+            ))}
       </div>
     </div>
   );
