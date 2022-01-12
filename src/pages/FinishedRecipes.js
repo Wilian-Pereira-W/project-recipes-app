@@ -1,47 +1,23 @@
 // Tela de receitas feitas: `/receitas-feitas`;
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../styles/recipes.css';
 import Header from '../components/Header';
 import CardRecipes from '../components/CardRecipes ';
 
-const recipeList = [{
-  id: '52771',
-  type: 'comida',
-  area: 'Italian',
-  category: 'Vegetarian',
-  alcoholicOrNot: '',
-  name: 'Spicy Arrabiata Penne',
-  image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-  doneDate: '23/06/2020',
-  tags: ['Pasta', 'Curry'],
-},
-{
-  id: '178319',
-  type: 'bebida',
-  area: '',
-  category: 'Cocktail',
-  alcoholicOrNot: 'Alcoholic',
-  name: 'Aquamarine',
-  image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-  doneDate: '23/06/2020',
-  tags: [],
-}];
-
 function FinishedRecipes() {
-  const [doneRecipes, setDoneRecipes] = useState(recipeList);
+  const [doneRecipes, setDoneRecipes] = useState([]);
 
-  const [doneRecipesFilter, setDoneRecipesFilter] = useState(recipeList);
+  const [doneRecipesFilter, setDoneRecipesFilter] = useState([]);
 
-  // useEffect(() => {
-  //   const doneRecipesStorage = localStorage.getItem('doneRecipes');
+  useEffect(() => {
+    const doneRecipesStorage = localStorage.getItem('doneRecipes');
 
-  //   if (doneRecipesStorage) {
-  //     setDoneRecipes(JSON.parse(doneRecipesStorage));
-  //     setDoneRecipesFilter(JSON.parse(doneRecipesStorage));
-  // validaFiltro('All', JSON.parse(doneRecipesStorage));
-  //   }
-  // }, []);
+    if (doneRecipesStorage) {
+      setDoneRecipes(JSON.parse(doneRecipesStorage));
+      setDoneRecipesFilter(JSON.parse(doneRecipesStorage));
+    }
+  }, []);
   // criar no context
 
   const validaFiltro = (filtro, dados) => {
