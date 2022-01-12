@@ -20,7 +20,6 @@ function CardRecipes({ index,
 }) {
   const {
     setClipboard,
-    share,
     setShare,
   } = useContext(DrinkRecipesContext);
 
@@ -40,62 +39,52 @@ function CardRecipes({ index,
   }, []);
 
   return (
-    <div>
-      { share
-        && (
-          <div className="alert-container">
-            <div className="alert">
-              <p>Link copiado!</p>
-              <button type="button" onClick={ () => setShare(false) }>X</button>
-            </div>
-          </div>)}
+    <div className="done-recipes-card">
+      <button
+        type="button"
+        onClick={ onClick }
+      >
+        <img
+          data-testid={ `${index}-horizontal-image` }
+          src={ image }
+          alt={ name }
+        />
+      </button>
       <div>
-        <button
-          type="button"
-          onClick={ onClick }
-        >
-          <img
-            data-testid={ `${index}-horizontal-image` }
-            src={ image }
-            alt={ name }
-          />
-        </button>
-        {
-          type === 'comida' ? (
-            <p
-              data-testid={ `${index}-horizontal-top-text` }
-            >
-              {
-                `${area} - ${category}`
-              }
+        {type === 'comida'
+          ? (
+            <p data-testid={ `${index}-horizontal-top-text` }>
+              {`${area} - ${category}`}
             </p>)
-            : <p data-testid={ `${index}-horizontal-top-text` }>{`${alcoholicOrNot}`}</p>
-        }
+          : <p data-testid={ `${index}-horizontal-top-text` }>{`${alcoholicOrNot}`}</p>}
         <button
           type="button"
           onClick={ onClick }
+          className="done-recipes-link"
+          data-testid={ `${index}-horizontal-name` }
         >
-          <p data-testid={ `${index}-horizontal-name` }>{name}</p>
+          {name}
         </button>
-        <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
+        <p data-testid={ `${index}-horizontal-done-date` }>{`Feita em: ${doneDate}`}</p>
         <input
           type="image"
           src={ shareIcon }
           alt="compartilhar"
+          className="done-recipes-share-icon"
           data-testid={ `${index}-horizontal-share-btn` }
           onClick={ () => copyOnClipboard(id, type) }
         />
         {type === 'comida'
-        && tagName
-          .map((tag) => (
-            <p
-              key={ tag }
-              data-testid={ `${index}-${tag}-horizontal-tag` }
-            >
-              {tag}
-
-            </p>
-          ))}
+          && tagName
+            .map((tag) => (
+              <span
+                key={ tag }
+                className="tag"
+                data-testid={ `${index}-${tag}-horizontal-tag` }
+              >
+                {tag}
+              </span>
+            ))}
       </div>
     </div>
   );
