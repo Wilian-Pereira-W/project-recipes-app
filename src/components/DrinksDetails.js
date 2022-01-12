@@ -1,5 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import React, { useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { drinksAPI } from '../services/resquestAPI';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -12,12 +13,8 @@ import copyOnClipboard from '../helpers/copyOnClipboard';
 import handleFavoriteRecipes from '../helpers/handleFavoriteRecipes';
 import IngredientsCheckbox from './IngredientsCheckbox';
 import IngredientsList from './IngredientsList';
-import { doneDrinksRecipes } from '../helpers/doneRecipes';
 
-function DrinksDetails() {
-  const [checked, setChecked] = useState([]);
-  const [isDisabled, setIsDisabled] = useState(true);
-
+function DrinksDetails({ checked, setChecked }) {
   const { drinksDetails,
     setShare,
     setClipboard,
@@ -57,27 +54,6 @@ function DrinksDetails() {
     const dependencies = { ID, setIsFavorite };
     handleFavoriteRecipes(dependencies);
   }, [ID, setIsFavorite]);
-
-  useEffect(() => {
-    const inProgressDefault = { cocktails: {}, meals: {} };
-    const inProgressRecipes = JSON.parse(localStorage
-      .getItem('inProgressRecipes')) || inProgressDefault;
-    if (inProgressRecipes.cocktails[ID]) {
-      setChecked(inProgressRecipes.cocktails[ID]);
-    }
-    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
-  }, [ID, setChecked]);
-
-  useEffect(() => {
-    const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    Object.assign(inProgressRecipes.cocktails, { [ID]: checked });
-    if (inProgressRecipes.cocktails[ID].length === Object.entries(ingredients).length) {
-      setIsDisabled(false);
-    } else {
-      setIsDisabled(true);
-    }
-    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
-  }, [ID, checked, ingredients]);
 
   return (
     <div>
@@ -154,21 +130,13 @@ function DrinksDetails() {
         <h5>Instructions</h5>
         <p data-testid="instructions">{strInstructions}</p>
       </section>
-      { checkPathInProgress && (
-        <Link to="/receitas-feitas">
-          <button
-            type="button"
-            className="finish-recipe-btn"
-            data-testid="finish-recipe-btn"
-            disabled={ isDisabled }
-            onClick={ () => doneDrinksRecipes(drinksDetails) }
-          >
-            Finalizar Receita
-          </button>
-        </Link>
-      )}
     </div>
   );
 }
+
+DrinksDetails.propTypes = {
+  checked: PropTypes.arrayOf.isRequired,
+  setChecked: PropTypes.func.isRequired,
+};
 
 export default DrinksDetails;

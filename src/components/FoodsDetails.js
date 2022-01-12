@@ -1,5 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import React, { useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { foodsAPI } from '../services/resquestAPI';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -12,12 +13,8 @@ import copyOnClipboard from '../helpers/copyOnClipboard';
 import handleFavoriteRecipes from '../helpers/handleFavoriteRecipes';
 import IngredientsCheckbox from './IngredientsCheckbox';
 import IngredientsList from './IngredientsList';
-import { doneFoodsRecipes } from '../helpers/doneRecipes';
 
-function FoodsDetails() {
-  const [checked, setChecked] = useState([]);
-  const [isDisabled, setIsDisabled] = useState(true);
-
+function FoodsDetails({ checked, setChecked }) {
   const {
     mealsDetails,
     setMealsDetails,
@@ -60,27 +57,6 @@ function FoodsDetails() {
     const dependencies = { ID, setIsFavorite };
     handleFavoriteRecipes(dependencies);
   }, [ID, setIsFavorite]);
-
-  useEffect(() => {
-    const inProgressDefault = { cocktails: {}, meals: {} };
-    const inProgressRecipes = JSON.parse(localStorage
-      .getItem('inProgressRecipes')) || inProgressDefault;
-    if (inProgressRecipes.meals[ID]) {
-      setChecked(inProgressRecipes.meals[ID]);
-    }
-    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
-  }, [ID, setChecked]);
-
-  useEffect(() => {
-    const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    Object.assign(inProgressRecipes.meals, { [ID]: checked });
-    if (inProgressRecipes.meals[ID].length === Object.entries(ingredients).length) {
-      setIsDisabled(false);
-    } else {
-      setIsDisabled(true);
-    }
-    localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
-  }, [ID, checked, ingredients]);
 
   return (
     <div>
@@ -152,21 +128,13 @@ function FoodsDetails() {
         <h5>Instructions</h5>
         <p data-testid="instructions">{strInstructions}</p>
       </section>
-      { checkPathInProgress && (
-        <Link to="/receitas-feitas">
-          <button
-            type="button"
-            className="finish-recipe-btn"
-            data-testid="finish-recipe-btn"
-            disabled={ isDisabled }
-            onClick={ () => doneFoodsRecipes(mealsDetails) }
-          >
-            Finalizar Receita
-          </button>
-        </Link>
-      )}
     </div>
   );
 }
+
+FoodsDetails.propTypes = {
+  checked: PropTypes.arrayOf.isRequired,
+  setChecked: PropTypes.func.isRequired,
+};
 
 export default FoodsDetails;
