@@ -92,11 +92,11 @@ function CardRecipes({ index,
           data-testid={ `${index}-horizontal-favorite-btn` }
           onClick={ onClickRemoveFavoriteRecipe }
         />}
-        <div>
-          {pathname === '/receitas-feitas'
-          && type === 'comida'
-          && tagName
-            .map((tag) => (
+        {pathname === '/receitas-feitas'
+        && type === 'comida'
+        && (
+          <div>
+            {tagName.map((tag) => (
               <span
                 key={ tag }
                 className="tag"
@@ -105,7 +105,7 @@ function CardRecipes({ index,
                 {tag}
               </span>
             ))}
-        </div>
+          </div>)}
       </div>
     </div>
   );
