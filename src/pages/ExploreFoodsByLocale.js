@@ -36,7 +36,7 @@ function ExploreFoodsByLocale() {
   };
 
   return (
-    <div className="exploreByArea">
+    <div className="explore-by-area">
       <Header title="Explorar Origem" isEnableSearchIcon />
       <div>
         <select
@@ -49,7 +49,6 @@ function ExploreFoodsByLocale() {
             value="All"
           >
             All
-
           </option>
           {mealsOrigin
             .map((origem, index) => (
@@ -59,7 +58,6 @@ function ExploreFoodsByLocale() {
                 value={ origem.strArea }
               >
                 {origem.strArea}
-
               </option>
             ))}
         </select>

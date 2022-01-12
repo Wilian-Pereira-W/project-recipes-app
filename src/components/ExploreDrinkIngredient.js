@@ -29,7 +29,7 @@ function ExploreDrinkIngredient() {
         type="button"
         key={ index }
         data-testid={ `${index}-ingredient-card` }
-        className="cardIngrediente"
+        className="ingredient-card"
         onClick={ () => ingredientDrinkFilter(drink.strIngredient1) }
       >
         <img

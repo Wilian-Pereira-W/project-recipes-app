@@ -34,10 +34,6 @@
   width: 70%;
 }
 
-.exploreDrink {
-  margin-top: 150px;
-}
-
 .explore-food, .explore-drink {
   align-items: center;
   background-position: center;
@@ -73,15 +69,15 @@
   width: 70%;
 }
 
-.exploreFoodIngredient {
+.explore-food-ingredients {
   margin-top: 150px;
 }
 
-.exploreDrinkIngredient {
+.explore-drink-ingredients {
   margin-top: 150px;
 }
 
-.cardIngrediente {
+.ingredient-card {
   background-color: #fafafa;
   border: none;
   border-radius: 6px;
@@ -93,6 +89,6 @@
   width: 150px;
 }
 
-.exploreByArea {
+.explore-by-area {
   margin-top: 60px;
 }
