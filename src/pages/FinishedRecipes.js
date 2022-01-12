@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../styles/doneRecipes.css';
 import Header from '../components/Header';
-import CardRecipes from '../components/CardRecipes ';
+import CardRecipes from '../components/CardRecipes';
 import { DrinkRecipesContext } from '../context/RecipesContext';
 
 function FinishedRecipes() {

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import '../styles/recipes.css';
 import Header from '../components/Header';
-import CardRecipes from '../components/CardRecipes ';
+import CardRecipes from '../components/CardRecipes';
 import { removeFavoriteRecipe } from '../helpers/favoriteDrinks';
 
 function Favorites() {

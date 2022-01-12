@@ -56,10 +56,11 @@ header h1 {
   margin: 0;
   padding: 0 8px;
   position: absolute;
+  right: 42px;
   text-align: center;
   text-shadow: 5px 5px 2px rgb(15, 15, 15);
   top: 12px;
-  width: 267px;
+  width: calc(100% - 84px);
 }
 
 header .search-top-btn {
