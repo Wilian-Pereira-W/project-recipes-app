@@ -44,6 +44,9 @@ function DrinksRecipeDetails() {
 
   useEffect(() => {
     setShowButton(verifyDoneRecipe(ID));
+  }, [ID]);
+
+  useEffect(() => {
     setInProgress(verifyInProgressDrinks(ID));
   }, [ID]);
 
