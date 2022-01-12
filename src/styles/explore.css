@@ -38,8 +38,39 @@
   margin-top: 150px;
 }
 
-.exploreFood {
-  margin-top: 150px;
+.explore-food, .explore-drink {
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  row-gap: 30px;
+  width: 100%;
+}
+
+.explore-drink {
+  background-image: url('../images/background-explore-drinks.jpg');
+  background-size: 219%;
+}
+
+.explore-food {
+  background-image: url('../images/background-explore-foods.jpg');
+  background-position: top;
+  background-size: 139%;
+}
+
+.explore-food button, .explore-drink button {
+  background-color: rgba(17, 16, 16, 0.897);
+  border: 1px solid #d87d49af;
+  border-radius: 6px;
+  box-shadow: 0 0 5px 1px #ce841544;
+  color: #cfcfcf;
+  font-family: Ovsyanka-press , sans-serif;
+  font-size: 1.3em;
+  padding: 15px;
+  width: 70%;
 }
 
 .exploreFoodIngredient {

@@ -11,7 +11,7 @@ function ExploreDrink() {
   };
 
   return (
-    <div className="exploreDrink">
+    <div className="explore-drink">
       <button
         type="button"
         data-testid="explore-by-ingredient"

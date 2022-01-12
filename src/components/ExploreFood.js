@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { foodsAPI } from '../services/resquestAPI';
+import '../styles/explore.css';
 
 function ExploreFood() {
   const history = useHistory();
@@ -10,7 +11,7 @@ function ExploreFood() {
     history.push(`/comidas/${idMeal}`);
   };
   return (
-    <div className="exploreFood">
+    <div className="explore-food">
       <button
         type="button"
         data-testid="explore-by-ingredient"
