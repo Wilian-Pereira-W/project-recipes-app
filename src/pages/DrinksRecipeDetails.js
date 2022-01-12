@@ -27,6 +27,7 @@ function DrinksRecipeDetails() {
   const { mealsRecipes } = useContext(FoodRecipesContext);
 
   const { pathname } = useLocation();
+  const pathnameBase = pathname.split('/')[0];
   const ID = pathname.split('/')[2];
 
   useEffect(() => {
@@ -66,13 +67,15 @@ function DrinksRecipeDetails() {
           .map(({ idMeal, strMeal, strMealThumb }, index) => (
             index < MAX_CARDS
             && (
-              <Card
-                key={ idMeal }
-                id={ idMeal }
-                index={ index }
-                name={ strMeal }
-                img={ strMealThumb }
-              />
+              <Link to={ `${pathnameBase}/comidas/${idMeal}` }>
+                <Card
+                  key={ idMeal }
+                  id={ idMeal }
+                  index={ index }
+                  name={ strMeal }
+                  img={ strMealThumb }
+                />
+              </Link>
             )
           )) }
       </div>
