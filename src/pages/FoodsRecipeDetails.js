@@ -9,11 +9,13 @@ import '../styles/details.css';
 import '../styles/recipes.css';
 import FoodsDetails from '../components/FoodsDetails';
 import { verifyDoneRecipe } from '../helpers/doneRecipes';
+import { verifyInProgressMeals } from '../helpers/verifyInProgress';
 
 const MAX_CARDS = 6;
 
 function FoodsRecipeDetails() {
   const [showButton, setShowButton] = useState();
+  const [inProgress, setInProgress] = useState(false);
 
   const {
     mealsDetails,
@@ -50,6 +52,10 @@ function FoodsRecipeDetails() {
 
   useEffect(() => {
     setShowButton(verifyDoneRecipe(ID));
+  }, [ID]);
+
+  useEffect(() => {
+    setInProgress(verifyInProgressMeals(ID));
   }, [ID]);
 
   return (
@@ -95,7 +101,7 @@ function FoodsRecipeDetails() {
             className="start-recipe-btn"
             data-testid="start-recipe-btn"
           >
-            Iniciar Receita
+            {inProgress ? 'Continuar Receita' : 'Iniciar Receita'}
           </button>
         </Link>
       )}
