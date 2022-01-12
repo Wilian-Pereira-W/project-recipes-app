@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { HeaderContext } from '../context/RecipesContext';
-import profileIcon from '../images/profileIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
+import profileIcon from '../images/profileIconYellow.svg';
+import searchIcon from '../images/searchIconYellow.svg';
 import '../styles/header.css';
 import SearchInput from './SearchInput';
 

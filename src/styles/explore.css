@@ -3,23 +3,32 @@
   src: url('./fonts/Malvie\ Trial.otf') format('opentype');
 }
 
+@font-face {
+  font-family: Ovsyanka-press;
+  src: url('./fonts/Ovsyanka-press.ttf') format('opentype');
+}
+
 .ctn-explore {
   align-items: center;
-  background-color: #fdfffc;
+  background-image: url('../images/background-explore.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   box-shadow: inset 0 -50px 20px 0 rgba(36, 33, 33, 0.664);
   display: flex;
   flex-direction: column;
   gap: 30px;
   height: 100vh;
   justify-content: center;
+  opacity: 95%;
 }
 
 .ctn-explore button {
-  background-color: #701d28;
-  border: none;
-  border-radius: 5px;
-  color: #fdfffc;
-  font-family: Malvie Trial , sans-serif;
+  background-color: rgba(17, 17, 17, 0.897);
+  border: 1px solid #d87d49af;
+  border-radius: 6px;
+  box-shadow: 0 0 5px 1px #ce841544;
+  color: #cfcfcf;
+  font-family: Ovsyanka-press , sans-serif;
   font-size: 1.3em;
   padding: 15px;
   width: 70%;

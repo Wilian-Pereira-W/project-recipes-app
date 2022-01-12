@@ -5,7 +5,7 @@
 }
 
 footer {
-  background-color: #701d28;
+  background-image: url('../images/background-header-footer.png');
   bottom: 0;
   display: flex;
   justify-content: space-around;

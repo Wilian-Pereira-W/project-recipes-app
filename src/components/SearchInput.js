@@ -56,13 +56,14 @@ function SearchInput({ title }) {
     <div className="searchBar">
       <input
         data-testid="search-input"
+        className="search-input"
         type="text"
         value={ search }
+        placeholder="Digite aqui..."
         onChange={ (event) => setSearch(event.target.value) }
       />
 
       <label htmlFor="ingredients">
-        Ingrediente
         <input
           id="ingredients"
           value="Ingrediente"
@@ -70,11 +71,11 @@ function SearchInput({ title }) {
           name="filters"
           onChange={ (event) => setFilters(event.target.value) }
           data-testid="ingredient-search-radio"
+          className="ingredient-search-radio"
         />
+        Ingrediente
       </label>
-
       <label htmlFor="name">
-        Nome
         <input
           id="name"
           value="Nome"
@@ -82,11 +83,11 @@ function SearchInput({ title }) {
           name="filters"
           onChange={ (event) => setFilters(event.target.value) }
           data-testid="name-search-radio"
+          className="ingredient-search-radio"
         />
+        Nome
       </label>
-
       <label htmlFor="first-letter">
-        Primeira Letra
         <input
           id="first-letter"
           value="Primeira Letra"
@@ -94,7 +95,9 @@ function SearchInput({ title }) {
           name="filters"
           onChange={ (event) => setFilters(event.target.value) }
           data-testid="first-letter-search-radio"
+          className="ingredient-search-radio"
         />
+        Primeira Letra
       </label>
 
       <button

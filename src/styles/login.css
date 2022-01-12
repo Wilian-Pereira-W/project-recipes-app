@@ -3,6 +3,21 @@
   src: url('./fonts/Malvie\ Trial.otf') format('opentype');
 }
 
+@font-face {
+  font-family: Timberline;
+  src: url('./fonts/Timberline.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: Ovsyanka-press;
+  src: url('./fonts/Ovsyanka-press.ttf') format('opentype');
+}
+
+@font-face {
+  font-family: Foodpacker;
+  src: url('./fonts/Foodpacker.otf') format('opentype');
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,38 +26,39 @@
 
 .ctn-login {
   align-items: center;
-  background-color: #701d28;
+  background-image: url('../images/miti-qYreP9QOdrk-unsplash\ \(1\).jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   height: 100vh;
+  opacity: 95%;
   padding: 25px;
   width: 100%;
 }
 
-.ctn-login .food-gif {
-  border-radius: 50%;
-  height: 200px;
-  margin: 25px 0;
-  width: 200px;
-}
 
 .ctn-login h1 {
-  color: #fdfffc;
-  font-family: Malvie Trial , sans-serif;
-  margin: 10px 0;
+  color: #cea315;
+  font-family: Timberline , sans-serif;
+  font-size: 60px;
+  margin: 170px 0 30px;
+  transform: rotateX(0deg) rotateY(342deg) rotateZ(350deg);
 }
 
 .ctn-login h2 {
-  color: #fdfffc;
-  font-family: Malvie Trial , sans-serif;
-  font-size: 100px;
-  margin: 0;
+  color: #db6548e1;
+  font-family: Foodpacker , sans-serif;
+  font-size: 23px;
+  margin: 0 0 10px;
 }
 
 .ctn-login form {
   align-items: center;
   display: flex;
   flex-direction: column;
+  padding: 5px;
   width: 100%;
 }
 
@@ -50,19 +66,29 @@
   width: 80%;
 }
 
+
 .ctn-login form input {
-  background-color: #fdfffc;
-  border: none;
+  background-color: transparent;
+  border: 1px solid #d87d49af;
   border-radius: 5px;
+  box-shadow: 0 0 8px 2px #ce841527;
+  color: #dd9a1e;
+  margin-top: 5px;
   padding: 8px;
   width: 100%;
 }
 
+.ctn-login form input::placeholder {
+  color: #dd9a1e;
+}
+
 .ctn-login form button {
-  border: none;
+  background-color: transparent;
+  border: 1px solid #adadad;
   border-radius: 5px;
-  color: #701d28;
-  font-family: Malvie Trial , sans-serif;
+  color: #ad8944;
+  font-family: Ovsyanka-press , sans-serif;
+  letter-spacing: 3px;
   margin-bottom: 25px;
   margin-top: 10px;
   padding: 10px;
@@ -70,5 +96,7 @@
 }
 
 .ctn-login form button:enabled {
-  background-color: #fdfffc;
+  border: 1px solid #f17108;
+  color: #f8e807;
+  letter-spacing: 3px;
 }

@@ -3,9 +3,24 @@
   src: url('./fonts/Malvie\ Trial.otf') format('opentype');
 }
 
+@font-face {
+  font-family: Ovsyanka-press;
+  src: url('./fonts/Ovsyanka-press.ttf') format('opentype');
+}
+
 * {
   font-family: Montserrat , sans-serif;
   list-style: none;
+}
+
+.details-container {
+  background-color: rgb(12, 11, 11);
+  opacity: 95%;
+}
+
+.details-container-in--progress {
+  background-color: rgb(12, 11, 11);
+  opacity: 95%;
 }
 
 .recipe-photo {
@@ -16,12 +31,13 @@
 }
 
 .recipe-title {
-  background-color: #701d28;
-  color: #fdfffc;
-  font-family: Malvie Trial , sans-serif;
+  background-image: url('../images/background-header-footer.png');
+  color: #cea315;
+  display: flex;
+  font-family: Ovsyanka-press , sans-serif;
+  justify-content: center;
   letter-spacing: 3px;
-  padding: 10px;
-  text-align: center;
+  padding: 8px 1px 1px;
   width: 100%;
 }
 
@@ -34,10 +50,12 @@
 }
 
 .icons > input {
-  margin-left: 10px;
+  margin-left: 20px;
+  width: 30px;
 }
 
 .recipe-text-details {
+  color: #b6b6b6;
   display: flex;
   flex-direction: column;
   padding: 12px;
@@ -45,8 +63,13 @@
 }
 
 .recipe-text-details h5 {
+  color: #cea315;
   letter-spacing: 3px;
   padding-bottom: 5px;
+}
+
+.recipe-category {
+  color: #db6548e1;
 }
 
 .ingredients-list {
@@ -69,6 +92,7 @@
   margin: 0 0 60px;
   overflow-x: scroll;
   overflow-y: hidden;
+  padding-top: 4px;
   white-space: nowrap;
   width: 100%;
 }
@@ -80,10 +104,10 @@
 }
 
 .start-recipe-btn, .finish-recipe-btn {
-  background-color: #701d28;
+  background-image: url('../images/background-header-footer.png');
   border: none;
   bottom: 0;
-  color: #fdfffc;
+  color: #c99d4b;
   font-family: Malvie Trial , sans-serif;
   font-size: 1.4rem;
   height: 64px;

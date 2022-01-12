@@ -22,7 +22,7 @@ function Drinks() {
   };
 
   return (
-    <>
+    <div className="food--drink-page-container">
       <Header title="Bebidas" isEnableSearchIcon />
       <div className="ctn-btn-categories">
         <button
@@ -56,7 +56,7 @@ function Drinks() {
           )) }
       </section>
       <Footer />
-    </>
+    </div>
   );
 }
 

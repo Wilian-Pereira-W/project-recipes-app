@@ -35,7 +35,7 @@ function RecipeDrinksInProgress() {
   }, [ID, checked, ingredients]);
 
   return (
-    <>
+    <div className="details-container-in--progress">
       { share
       && (
         <div className="alert-container">
@@ -56,7 +56,7 @@ function RecipeDrinksInProgress() {
           Finalizar Receita
         </button>
       </Link>
-    </>
+    </div>
   );
 }
 

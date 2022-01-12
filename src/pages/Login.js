@@ -3,7 +3,6 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { LoginContext } from '../context/RecipesContext';
 import '../styles/login.css';
-import foodGif from '../images/ezgif.com-gif-maker.gif';
 
 export default function Login() {
   const { user, setUser, isDisabled, setUserStorage } = useContext(LoginContext);
@@ -11,9 +10,8 @@ export default function Login() {
 
   return (
     <div className="ctn-login">
-      <img className="food-gif" src={ foodGif } alt="food" />
-      <h1>My Recipes</h1>
-      <h2>~</h2>
+      <h1>Quack Foods</h1>
+      <h2>[ Sua receita a um clique! ]</h2>
       <form
         onSubmit={ (event) => {
           setUserStorage(event);

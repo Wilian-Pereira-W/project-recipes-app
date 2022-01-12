@@ -1,23 +1,30 @@
 .profile {
   align-items: center;
+  background-image: url('../images/background-profile.jpg');
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
+  opacity: 95%;
   row-gap: 20px;
   width: 100%;
 }
 
 .profile h3 {
+  color: #cfcfcf;
   font-size: 1.3rem;
   overflow-wrap: break-word;
 }
 
 .profile > button {
-  background-color: #701d28;
-  border: none;
-  border-radius: 5px;
-  color: #fdfffc;
+  background-color: rgba(17, 17, 17, 0.897);
+  border: 1px solid #d87d49af;
+  border-radius: 6px;
+  box-shadow: 0 0 5px 1px #ce841544;
+  color: #cfcfcf;
   font-family: Malvie Trial , sans-serif;
   font-size: 1.3em;
   padding: 15px;

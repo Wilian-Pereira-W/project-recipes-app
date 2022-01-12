@@ -3,21 +3,27 @@
   src: url('./fonts/Malvie\ Trial.otf') format('opentype');
 }
 
+.food--drink-page-container {
+  opacity: 95%;
+}
+
 .ctn-btn-categories {
+  background-color: rgb(12, 11, 11);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 10px 0;
+  padding: 8px 0 0;
   position: absolute;
   top: 58px;
   width: 100%;
 }
 
 .ctn-btn-categories button {
-  background-color: #701d28;
-  border: none;
+  background-color: transparent;
+  border: 1px solid #d87d49af;
   border-radius: 6px;
-  color: #fdfffc;
+  box-shadow: 0 0 5px 1px #ce841544;
+  color: #b6b6b6;
   font-family: Malvie Trial , sans-serif;
   height: 35px;
   margin-bottom: 10px;
@@ -27,11 +33,11 @@
 }
 
 .ctn-btn-categories button:focus {
-  background-color: #c97516;
+  background-color: #4b2c09;
 }
 
 .ctn-card-recipes {
-  background-color: #fdfffc;
+  background-color: rgb(12, 11, 11);
   display: flex;
   flex-wrap: wrap;
   gap: 15px 0;
@@ -42,10 +48,11 @@
 }
 
 .card-recipes {
-  background-color: #fafafa;
+  background-image: url('../images/background-header-footer.png');
+  background-position: center;
   border: none;
   border-radius: 6px;
-  box-shadow: -6px 4px 20px 1px rgb(0 0 0 / 25%);
+  box-shadow: 0 0 3px 3px #81818154;
   display: flex;
   flex-direction: column;
   height: 150px;
@@ -55,7 +62,6 @@
 
 .card-recipes img {
   border-radius: 6px 6px 0 0;
-  box-shadow: 0 10px 16px 5px rgba(255, 255, 255, 0.534);
   max-height: 100px;
   object-fit: cover;
   object-position: center 7%;
@@ -63,7 +69,7 @@
 }
 
 .card-name {
-  color: #ad2a25;
+  color: #b6b6b6;
   font-family: Malvie Trial , sans-serif;
   font-size: 18px;
   line-height: 23px;
@@ -72,6 +78,7 @@
   overflow: hidden;
   overflow-wrap: break-word;
   padding: 2px 8px 8px;
+  text-shadow: 5px 5px 2px rgb(15, 15, 15);
 }
 
 .cardDoneRecipes {
