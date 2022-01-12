@@ -47,7 +47,7 @@ function FinishedRecipes() {
   };
 
   return (
-    <div>
+    <div className="done-recipes">
       { share
         && (
           <div className="alert-container">

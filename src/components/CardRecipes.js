@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import shareIcon from '../images/shareIcon.svg';
+import shareIcon from '../images/shareIconYellow.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { DrinkRecipesContext } from '../context/RecipesContext';
 
@@ -92,17 +92,20 @@ function CardRecipes({ index,
           data-testid={ `${index}-horizontal-favorite-btn` }
           onClick={ onClickRemoveFavoriteRecipe }
         />}
-        {pathname === '/receitas-feitas'
-        && type === 'comida'
-        && tagName
-          .map((tag) => (
-            <span
-              key={ tag }
-              data-testid={ `${index}-${tag}-horizontal-tag` }
-            >
-              {tag}
-            </span>
-          ))}
+        <div>
+          {pathname === '/receitas-feitas'
+          && type === 'comida'
+          && tagName
+            .map((tag) => (
+              <span
+                key={ tag }
+                className="tag"
+                data-testid={ `${index}-${tag}-horizontal-tag` }
+              >
+                {tag}
+              </span>
+            ))}
+        </div>
       </div>
     </div>
   );
