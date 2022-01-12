@@ -72,7 +72,10 @@ function CardRecipes({ index,
           {name}
         </button>
         {pathname === '/receitas-feitas'
-        && <p data-testid={ `${index}-horizontal-done-date` }>{`Feita em: ${doneDate}`}</p>}
+          && (
+            <p data-testid={ `${index}-horizontal-done-date` }>
+              {`Feita em: ${doneDate}`}
+            </p>)}
         <input
           type="image"
           src={ shareIcon }
