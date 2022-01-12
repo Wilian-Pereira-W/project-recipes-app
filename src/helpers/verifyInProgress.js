@@ -1,10 +1,13 @@
 export function verifyInProgressDrinks(id) {
-  const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
-  const teste = inProgressRecipes.cocktails[id].length;
-  return console.log(teste);
+  const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'))
+    || { cocktails: {}, meals: {} };
+  const keys = Object.keys(inProgressRecipes.cocktails);
+  return keys.includes(id);
 }
 
 export function verifyInProgressMeals(id) {
-  const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
-  return inProgressRecipes.meals[id].length > 0;
+  const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'))
+    || { cocktails: {}, meals: {} };
+  const keys = Object.keys(inProgressRecipes.meals);
+  return keys.includes(id);
 }
