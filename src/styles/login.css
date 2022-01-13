@@ -69,7 +69,7 @@
 
 .ctn-login form input {
   background-color: transparent;
-  border: 1px solid #d87d49af;
+  border: 1px solid #915431;
   border-radius: 5px;
   box-shadow: 0 0 8px 2px #ce841527;
   color: #dd9a1e;
@@ -80,6 +80,11 @@
 
 .ctn-login form input::placeholder {
   color: #dd9a1e;
+}
+
+.ctn-login form input:-webkit-autofill {
+  box-shadow: 0 0 0 30px rgba(12, 11, 11, 0.945) inset , 0 0 8px 2px #ce841527;
+  -webkit-text-fill-color: #dd9a1e;
 }
 
 .ctn-login form button {
