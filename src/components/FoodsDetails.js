@@ -68,7 +68,12 @@ function FoodsDetails({ checked, setChecked }) {
       />
       <h3 className="recipe-title" data-testid="recipe-title">{strMeal}</h3>
       <div className="icons-and-category">
-        <span data-testid="recipe-category">{strCategory}</span>
+        <span
+          className="recipe-category"
+          data-testid="recipe-category"
+        >
+          {strCategory}
+        </span>
         <div className="icons">
           <input
             type="image"

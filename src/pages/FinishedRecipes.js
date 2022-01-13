@@ -1,7 +1,7 @@
 // Tela de receitas feitas: `/receitas-feitas`;
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import '../styles/doneRecipes.css';
+import '../styles/favoriteAndDoneRecipes.css';
 import Header from '../components/Header';
 import CardRecipes from '../components/CardRecipes';
 import { DrinkRecipesContext } from '../context/RecipesContext';
@@ -83,7 +83,7 @@ function FinishedRecipes() {
           Drink
         </button>
       </div>
-      <section className="done-recipes-cards-container">
+      <section className="cards-container">
         {doneRecipesFilter
           .map((recipe, index) => (
             <CardRecipes

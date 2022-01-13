@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import shareIcon from '../images/shareIconYellow.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIconYellow.svg';
 import { DrinkRecipesContext } from '../context/RecipesContext';
 
 const HREF_LENGTH = 22;
@@ -45,7 +45,7 @@ function CardRecipes({ index,
   }, []);
 
   return (
-    <div className="done-recipes-card">
+    <div className="recipes-card">
       <button
         type="button"
         className="img-container"
@@ -57,7 +57,7 @@ function CardRecipes({ index,
           alt={ name }
         />
       </button>
-      <div className="done-recipes-info">
+      <div className="recipes-info">
         {type === 'comida'
           ? (
             <p data-testid={ `${index}-horizontal-top-text` }>
@@ -67,21 +67,21 @@ function CardRecipes({ index,
         <button
           type="button"
           onClick={ onClick }
-          className="done-recipes-name"
+          className="recipes-name"
           data-testid={ `${index}-horizontal-name` }
         >
           {name}
         </button>
         {pathname === '/receitas-feitas'
           && (
-            <p data-testid={ `${index}-horizontal-done-date` }>
+            <p className="done-date" data-testid={ `${index}-horizontal-done-date` }>
               {`Feita em: ${doneDate}`}
             </p>)}
         <input
           type="image"
           src={ shareIcon }
           alt="compartilhar"
-          className="done-recipes-share-icon"
+          className="share-icon"
           data-testid={ `${index}-horizontal-share-btn` }
           onClick={ () => copyOnClipboard(id, type) }
         />
@@ -89,6 +89,7 @@ function CardRecipes({ index,
         && <input
           type="image"
           src={ blackHeartIcon }
+          className="favorite-icon"
           alt="favoritar"
           data-testid={ `${index}-horizontal-favorite-btn` }
           onClick={ onClickRemoveFavoriteRecipe }

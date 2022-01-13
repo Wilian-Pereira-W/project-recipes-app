@@ -1,15 +1,16 @@
 // Tela de receitas favoritas: `/receitas-favoritas`.
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import '../styles/recipes.css';
+import '../styles/favoriteAndDoneRecipes.css';
 import Header from '../components/Header';
 import CardRecipes from '../components/CardRecipes';
 import { removeFavoriteRecipe } from '../helpers/favoriteDrinks';
+import { DrinkRecipesContext } from '../context/RecipesContext';
 
 function Favorites() {
   const [favoriteRecipe, setFavoriteRecipe] = useState([]);
-
   const [favoriteRecipeFilter, setFavoriteRecipeFilter] = useState([]);
+  const { share, setShare } = useContext(DrinkRecipesContext);
 
   useEffect(() => {
     const favoriteRecipeStorage = localStorage.getItem('favoriteRecipes');
@@ -56,9 +57,17 @@ function Favorites() {
   };
 
   return (
-    <div>
+    <div className="favorite-recipes">
+      { share
+        && (
+          <div className="alert-container">
+            <div className="alert">
+              <p>Link copiado!</p>
+              <button type="button" onClick={ () => setShare(false) }>X</button>
+            </div>
+          </div>)}
       <Header title="Receitas Favoritas" isEnableSearchIcon={ false } />
-      <div className="cardDoneRecipes">
+      <div className="favorite-recipes-categories">
         <button
           type="button"
           data-testid="filter-by-all-btn"
@@ -66,7 +75,6 @@ function Favorites() {
           value="All"
         >
           All
-
         </button>
         <button
           type="button"
@@ -75,7 +83,6 @@ function Favorites() {
           value="Food"
         >
           Food
-
         </button>
         <button
           type="button"
@@ -84,27 +91,28 @@ function Favorites() {
           value="Drink"
         >
           Drink
-
         </button>
       </div>
-      {favoriteRecipeFilter
-        .map((recipe, index) => (
-          <CardRecipes
-            key={ `${recipe.name}-${index}` }
-            index={ index }
-            type={ recipe.type }
-            category={ recipe.category }
-            image={ recipe.image }
-            doneDate={ recipe.doneDate }
-            tagName={ recipe.tags }
-            name={ recipe.name }
-            area={ recipe.area }
-            alcoholicOrNot={ recipe.alcoholicOrNot }
-            id={ recipe.id }
-            onClick={ () => handleCardClick(recipe.id, recipe.type) }
-            onClickRemoveFavoriteRecipe={ () => handleRemoveFavoriteRecipe(recipe.id) }
-          />
-        )) }
+      <section className="cards-container">
+        {favoriteRecipeFilter
+          .map((recipe, index) => (
+            <CardRecipes
+              key={ `${recipe.name}-${index}` }
+              index={ index }
+              type={ recipe.type }
+              category={ recipe.category }
+              image={ recipe.image }
+              doneDate={ recipe.doneDate }
+              tagName={ recipe.tags }
+              name={ recipe.name }
+              area={ recipe.area }
+              alcoholicOrNot={ recipe.alcoholicOrNot }
+              id={ recipe.id }
+              onClick={ () => handleCardClick(recipe.id, recipe.type) }
+              onClickRemoveFavoriteRecipe={ () => handleRemoveFavoriteRecipe(recipe.id) }
+            />
+          )) }
+      </section>
     </div>
   );
 }

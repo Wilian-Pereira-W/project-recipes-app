@@ -1,0 +1,145 @@
+@font-face {
+  font-family: Malvie Trial;
+  src: url('./fonts/Malvie\ Trial.otf') format('opentype');
+}
+
+@font-face {
+  font-family: Ovsyanka-press;
+  src: url('./fonts/Ovsyanka-press.ttf') format('opentype');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.done-recipes, .favorite-recipes {
+  background-color: rgb(12, 11, 11);
+  min-height: 100vh;
+  opacity: 95%;
+}
+
+.done-recipes-categories, .favorite-recipes-categories {
+  display: flex;
+  gap: 10px;
+  justify-content: space-evenly;
+  padding: 75px 0 5px;
+}
+
+.done-recipes-categories > button, .favorite-recipes-categories > button {
+  background-color: transparent;
+  border: 1px solid #d87d49af;
+  border-radius: 6px;
+  box-shadow: 0 0 5px 1px #ce841544;
+  color: #b6b6b6;
+  font-family: Malvie Trial , sans-serif;
+  height: 35px;
+  margin-bottom: 10px;
+  outline: none;
+  padding: 5px;
+  width: 25%;
+}
+
+.cards-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.recipes-card {
+  background-image: url('/static/media/background-header-footer.96c51865.png');
+  border-radius: 6px;
+  color: #fdfffc;
+  display: flex;
+  height: 140px;
+  margin-bottom: 12px;
+  width: 90%;
+}
+
+.recipes-card .img-container {
+  border: none;
+  width: 40%;
+}
+
+.recipes-card .img-container img {
+  border-radius: 6px 0 0 6px;
+  height: 100%;
+  width: 100%;
+}
+
+.recipes-info {
+  border-radius: 0 6px 6px 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 5px 10px;
+  position: relative;
+  row-gap: 10px;
+  width: 60%;
+}
+
+.recipes-info p:first-child {
+  color: #db6548e1;
+  font-family: Malvie Trial , sans-serif;
+  font-size: 0.9rem;
+  line-height: 15px;
+  margin: 0;
+  max-width: 15ch;
+}
+
+.recipes-info .tag {
+  align-self: baseline;
+  background-color: transparent;
+  border: 1px solid #d87d49af;
+  border-radius: 6px;
+  box-shadow: 0 0 3px 1px #ce841544;
+  color: #b6b6b6;
+  display: inline-block;
+  font-family: Malvie Trial , sans-serif;
+  font-size: 0.8rem;
+  margin: 2px 7px 2px 0;
+  padding: 1px 5px;
+  white-space: normal;
+}
+
+.done-date {
+  color: #b6b6b6;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 0 3px #db6548e1;
+}
+
+.recipes-name {
+  background: none;
+  border: none;
+  color: #cea315;
+  font-family: Ovsyanka-press , sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  max-width: 20ch;
+  overflow-x: hidden;
+  text-align: start;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.share-icon, .favorite-icon {
+  position: absolute;
+  right: 10px;
+  width: 23px;
+}
+
+.favorite-icon {
+  bottom: 10px;
+}
+
+.tags-container {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}

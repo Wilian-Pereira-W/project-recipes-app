@@ -1,3 +1,5 @@
+/* stylelint-disable property-no-unknown */
+
 @font-face {
   font-family: Malvie Trial;
   src: url('./fonts/Malvie\ Trial.otf') format('opentype');
@@ -81,11 +83,14 @@ iframe {
 }
 
 .ingredient-step {
+  accent-color: #db6548e1;
   margin-right: 10px;
 }
 
 .ingredient-step:checked + span {
   text-decoration: line-through;
+  text-decoration-color: #db6548e1;
+  text-decoration-style: double;
 }
 
 .carousel {
@@ -117,11 +122,13 @@ iframe {
   height: 64px;
   padding: 8px;
   position: fixed;
+  transition: all 0.3s;
   width: 100%;
 }
 
 .finish-recipe-btn:disabled {
-  background-color: #aa9797;
+  background-image: url('../images/background-disabled-button.png');
+  color: #b6b6b6a2;
 }
 
 .alert-container {
