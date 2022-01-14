@@ -5,13 +5,14 @@ import { DrinkRecipesContext } from '../context/RecipesContext';
 
 function ExploreDrinkIngredient() {
   const { setDrinksRecipes } = useContext(DrinkRecipesContext);
+  const [drinksList, setDrinksList] = useState([]);
   const history = useHistory();
   const MAX_CARDS = 12;
-  const [cocktails, setMeals] = useState([]);
+
   useEffect(() => {
     (async () => {
       const { drinks } = await drinksAPI('list.php?i=list');
-      setMeals(drinks);
+      setDrinksList(drinks);
     })();
   }, []);
 
@@ -24,27 +25,30 @@ function ExploreDrinkIngredient() {
   };
 
   return (
-    cocktails.slice(0, MAX_CARDS).map((drink, index) => (
-      <button
-        type="button"
-        key={ index }
-        data-testid={ `${index}-ingredient-card` }
-        className="ingredient-card"
-        onClick={ () => ingredientDrinkFilter(drink.strIngredient1) }
-      >
-        <img
-          src={
-            `https://www.thecocktaildb.com/images/ingredients/${drink.strIngredient1}-Small.png`
-          }
-          alt={ drink.strIngredient1 }
-          data-testid={ `${index}-card-img` }
-        />
-        <p data-testid={ `${index}-card-name` }>
-          { drink.strIngredient1 }
-        </p>
-      </button>
-    ))
-
+    <section className="ctn-cards-explore">
+      {drinksList.slice(0, MAX_CARDS).map((drink, index) => (
+        <button
+          type="button"
+          key={ index }
+          data-testid={ `${index}-ingredient-card` }
+          className="ingredient-card"
+          onClick={ () => ingredientDrinkFilter(drink.strIngredient1) }
+        >
+          <img
+            src={
+              `https://www.thecocktaildb.com/images/ingredients/${drink.strIngredient1}-Small.png`
+            }
+            alt={ drink.strIngredient1 }
+            data-testid={ `${index}-card-img` }
+          />
+          <p
+            data-testid={ `${index}-card-name` }
+          >
+            { drink.strIngredient1 }
+          </p>
+        </button>
+      ))}
+    </section>
   );
 }
 

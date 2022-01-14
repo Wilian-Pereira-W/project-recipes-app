@@ -69,14 +69,6 @@
   width: 70%;
 }
 
-.explore-food-ingredients {
-  margin-top: 150px;
-}
-
-.explore-drink-ingredients {
-  margin-top: 150px;
-}
-
 .ingredient-card {
   background-color: #fafafa;
   border: none;
@@ -89,6 +81,76 @@
   width: 150px;
 }
 
+.explore-food-ingredients, .explore-drink-ingredients {
+  background-image: url('../images/background-explore.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0 -50px 20px 0 rgba(36, 33, 33, 0.664);
+  opacity: 95%;
+  padding: 70px 0 75px;
+  width: 100%;
+}
+
+.ctn-cards-explore {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px 0;
+  justify-content: space-evenly;
+}
+
+.ctn-cards-explore > button {
+  background-image: url('/static/media/background-header-footer.96c51865.png');
+  background-position: center;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 0 3px 3px #81818154;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-between;
+  width: 150px;
+}
+
+.ctn-cards-explore > button img {
+  border-radius: 6px 6px 0 0;
+  max-height: 100px;
+  object-fit: cover;
+  object-position: center 7%;
+  width: 100%;
+}
+
+.ctn-cards-explore > button p {
+  color: #b6b6b6;
+  font-family: Malvie Trial , sans-serif;
+  font-size: 18px;
+  line-height: 23px;
+  margin: 0;
+  max-height: 50px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  padding: 2px 8px 8px;
+  text-shadow: 5px 5px 2px rgb(15 15 15);
+}
+
 .explore-by-area {
-  margin-top: 60px;
+  background-color: rgb(12, 11, 11);
+  display: flex;
+  justify-content: center;
+  opacity: 95%;
+}
+
+.explore-by-area-dropdown {
+  background-color: transparent;
+  border: 1px solid #d87d49af;
+  border-radius: 6px;
+  box-shadow: 0 0 5px 1px #ce841544;
+  color: #b6b6b6;
+  font-family: Malvie Trial , sans-serif;
+  font-size: 1.2rem;
+  height: 35px;
+  outline: none;
+  padding: 0 5px;
+  position: absolute;
+  top: 85px;
+  width: 90%;
 }

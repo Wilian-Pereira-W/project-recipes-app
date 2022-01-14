@@ -18,7 +18,6 @@ function ExploreFood() {
         onClick={ () => history.push('/explorar/comidas/ingredientes') }
       >
         Por Ingredientes
-
       </button>
       <button
         type="button"
@@ -26,7 +25,6 @@ function ExploreFood() {
         onClick={ () => history.push('/explorar/comidas/area') }
       >
         Por Local de Origem
-
       </button>
       <button
         type="button"
@@ -34,7 +32,6 @@ function ExploreFood() {
         onClick={ handleRandomFood }
       >
         Me Surpreenda!
-
       </button>
     </div>
   );

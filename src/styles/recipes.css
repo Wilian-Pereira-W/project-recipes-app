@@ -44,6 +44,7 @@
   justify-content: space-around;
   margin-bottom: 58px;
   margin-top: 143px;
+  min-height: 100vh;
   padding: 15px 0;
 }
 

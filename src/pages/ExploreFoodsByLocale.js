@@ -36,12 +36,13 @@ function ExploreFoodsByLocale() {
   };
 
   return (
-    <div className="explore-by-area">
+    <div>
       <Header title="Explorar Origem" isEnableSearchIcon />
-      <div>
+      <div className="explore-by-area">
         <select
           data-testid="explore-by-area-dropdown"
           name="select"
+          className="explore-by-area-dropdown"
           onClick={ (event) => filterByArea(event.target.value) }
         >
           <option
