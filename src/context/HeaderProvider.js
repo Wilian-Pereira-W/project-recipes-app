@@ -89,6 +89,7 @@ function HeaderProvider({ children }) {
 
   const context = {
     showDisplay,
+    setShowDisplay,
     handleClick,
     setFilters,
     search,

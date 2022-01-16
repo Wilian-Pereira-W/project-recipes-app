@@ -14,6 +14,7 @@ function SearchInput({ title }) {
     handleSearchDrinks,
     meal,
     drink,
+    setShowDisplay,
   } = useContext(HeaderContext);
 
   const history = useHistory();
@@ -103,7 +104,10 @@ function SearchInput({ title }) {
       <button
         type="button"
         data-testid="exec-search-btn"
-        onClick={ () => handleFoodAndDrink(title) }
+        onClick={ () => {
+          handleFoodAndDrink(title);
+          setShowDisplay(false);
+        } }
       >
         Buscar
       </button>
