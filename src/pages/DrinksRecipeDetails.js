@@ -10,6 +10,7 @@ import '../styles/recipes.css';
 import DrinksDetails from '../components/DrinksDetails';
 import { verifyDoneRecipe } from '../helpers/doneRecipes';
 import { verifyInProgressDrinks } from '../helpers/verifyInProgress';
+import Alert from '../components/Alert';
 
 const MAX_CARDS = 6;
 
@@ -21,7 +22,6 @@ function DrinksRecipeDetails() {
     drinksDetails,
     setDrinksDetails,
     share,
-    setShare,
     setIngredients,
   } = useContext(DrinkRecipesContext);
   const { mealsRecipes } = useContext(FoodRecipesContext);
@@ -54,13 +54,7 @@ function DrinksRecipeDetails() {
   return (
     <div className="details-container">
       { share
-        && (
-          <div className="alert-container">
-            <div className="alert">
-              <p>Link copiado!</p>
-              <button type="button" onClick={ () => setShare(false) }>X</button>
-            </div>
-          </div>)}
+        && <Alert /> }
       <DrinksDetails />
       <div className="carousel">
         { mealsRecipes

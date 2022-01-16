@@ -6,11 +6,12 @@ import Header from '../components/Header';
 import CardRecipes from '../components/CardRecipes';
 import { removeFavoriteRecipe } from '../helpers/favoriteDrinks';
 import { DrinkRecipesContext } from '../context/RecipesContext';
+import Alert from '../components/Alert';
 
 function Favorites() {
   const [favoriteRecipe, setFavoriteRecipe] = useState([]);
   const [favoriteRecipeFilter, setFavoriteRecipeFilter] = useState([]);
-  const { share, setShare } = useContext(DrinkRecipesContext);
+  const { share } = useContext(DrinkRecipesContext);
 
   useEffect(() => {
     const favoriteRecipeStorage = localStorage.getItem('favoriteRecipes');
@@ -59,13 +60,7 @@ function Favorites() {
   return (
     <div className="favorite-recipes">
       { share
-        && (
-          <div className="alert-container">
-            <div className="alert">
-              <p>Link copiado!</p>
-              <button type="button" onClick={ () => setShare(false) }>X</button>
-            </div>
-          </div>)}
+        && <Alert /> }
       <Header title="Receitas Favoritas" isEnableSearchIcon={ false } />
       <div className="favorite-recipes-categories">
         <button

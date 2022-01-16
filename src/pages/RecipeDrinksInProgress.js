@@ -1,12 +1,13 @@
 // Tela de receita em processo de bebida: `/bebidas/{id-da-receita}/in-progress`;
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import Alert from '../components/Alert';
 import DrinksDetails from '../components/DrinksDetails';
 import { DrinkRecipesContext } from '../context/RecipesContext';
 import { doneDrinksRecipes } from '../helpers/doneRecipes';
 
 function RecipeDrinksInProgress() {
-  const { share, setShare, ingredients, drinksDetails } = useContext(DrinkRecipesContext);
+  const { share, ingredients, drinksDetails } = useContext(DrinkRecipesContext);
   const [isDisabled, setIsDisabled] = useState(true);
   const [checked, setChecked] = useState([]);
 
@@ -37,13 +38,7 @@ function RecipeDrinksInProgress() {
   return (
     <div className="details-container-in--progress">
       { share
-      && (
-        <div className="alert-container">
-          <div className="alert">
-            <p>Link copiado!</p>
-            <button type="button" onClick={ () => setShare(false) }>X</button>
-          </div>
-        </div>)}
+      && <Alert /> }
       <DrinksDetails checked={ checked } setChecked={ setChecked } />
       <Link to="/receitas-feitas">
         <button

@@ -10,6 +10,7 @@ import '../styles/recipes.css';
 import FoodsDetails from '../components/FoodsDetails';
 import { verifyDoneRecipe } from '../helpers/doneRecipes';
 import { verifyInProgressMeals } from '../helpers/verifyInProgress';
+import Alert from '../components/Alert';
 
 const MAX_CARDS = 6;
 
@@ -26,7 +27,6 @@ function FoodsRecipeDetails() {
   const {
     drinksRecipes,
     share,
-    setShare,
     setIngredients,
   } = useContext(DrinkRecipesContext);
 
@@ -62,13 +62,7 @@ function FoodsRecipeDetails() {
   return (
     <div className="details-container">
       { share
-        && (
-          <div className="alert-container">
-            <div className="alert">
-              <p>Link copiado!</p>
-              <button type="button" onClick={ () => setShare(false) }>X</button>
-            </div>
-          </div>)}
+        && <Alert /> }
       <FoodsDetails />
       <iframe
         data-testid="video"

@@ -5,11 +5,12 @@ import '../styles/favoriteAndDoneRecipes.css';
 import Header from '../components/Header';
 import CardRecipes from '../components/CardRecipes';
 import { DrinkRecipesContext } from '../context/RecipesContext';
+import Alert from '../components/Alert';
 
 function FinishedRecipes() {
   const [doneRecipes, setDoneRecipes] = useState([]);
   const [doneRecipesFilter, setDoneRecipesFilter] = useState([]);
-  const { share, setShare } = useContext(DrinkRecipesContext);
+  const { share } = useContext(DrinkRecipesContext);
 
   useEffect(() => {
     const doneRecipesStorage = localStorage.getItem('doneRecipes');
@@ -49,13 +50,7 @@ function FinishedRecipes() {
   return (
     <div className="done-recipes">
       { share
-        && (
-          <div className="alert-container">
-            <div className="alert">
-              <p>Link copiado!</p>
-              <button type="button" onClick={ () => setShare(false) }>X</button>
-            </div>
-          </div>)}
+        && <Alert /> }
       <Header title="Receitas Feitas" isEnableSearchIcon={ false } />
       <div className="done-recipes-categories">
         <button
