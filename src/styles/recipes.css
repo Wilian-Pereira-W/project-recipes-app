@@ -37,6 +37,7 @@
 }
 
 .ctn-card-recipes {
+  align-content: flex-start;
   background-color: rgb(12, 11, 11);
   display: flex;
   flex-wrap: wrap;
