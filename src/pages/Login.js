@@ -20,6 +20,7 @@ export default function Login() {
       >
         <label htmlFor="email-input">
           <input
+            autoComplete="off"
             id="email-input"
             type="email"
             onChange={ ({ target: { value } }) => setUser({ ...user, email: value }) }
