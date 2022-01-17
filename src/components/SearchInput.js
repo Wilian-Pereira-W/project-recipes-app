@@ -107,6 +107,7 @@ function SearchInput({ title }) {
         onClick={ () => {
           handleFoodAndDrink(title);
           setShowDisplay(false);
+          setSearch('');
         } }
       >
         Buscar
