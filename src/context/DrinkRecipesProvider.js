@@ -11,6 +11,7 @@ function DrinkRecipesProvider({ children }) {
   const [selectedCategoryDrinks, setSelectedCategoryDrinks] = useState('');
   const [drinksDetails, setDrinksDetails] = useState({});
   const [share, setShare] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isFavorite, setIsFavorite] = useState(false);
   const [ingredients, setIngredients] = useState({});
 
@@ -48,6 +49,10 @@ function DrinkRecipesProvider({ children }) {
     localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
   }, []);
 
+  useEffect(() => {
+    console.log(isLoading);
+  }, [isLoading]);
+
   const context = {
     drinksRecipes,
     drinksCategories,
@@ -64,6 +69,8 @@ function DrinkRecipesProvider({ children }) {
     setIsFavorite,
     ingredients,
     setIngredients,
+    isLoading,
+    setIsLoading,
   };
 
   return (

@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Card from '../components/Card';
 import Categories from '../components/Categories';
 import '../styles/recipes.css';
+import Loading from '../components/Loading';
 
 function Drinks() {
   const history = useHistory();
@@ -15,6 +16,7 @@ function Drinks() {
   const { drinksRecipes,
     drinksCategories,
     setSelectedCategoryDrinks,
+    isLoading,
   } = useContext(DrinkRecipesContext);
 
   const handleCardClick = (id) => {
@@ -22,41 +24,45 @@ function Drinks() {
   };
 
   return (
-    <div className="food--drink-page-container">
-      <Header title="Bebidas" isEnableSearchIcon />
-      <div className="ctn-btn-categories">
-        <button
-          type="button"
-          name="All"
-          data-testid="All-category-filter"
-          onClick={ ({ target: { name } }) => setSelectedCategoryDrinks(name) }
-        >
-          All
-        </button>
-        { drinksCategories.map(({ strCategory }, index) => (
-          index < MAX_CATEGORIES && (
-            <Categories key={ index } categoryName={ strCategory } title="Bebidas" />
-          )
-        )) }
-      </div>
-      <section className="ctn-card-recipes">
-        { drinksRecipes
-          .map(({ idDrink, strDrink, strDrinkThumb }, index) => (
-            index < MAX_CARDS
-            && (
-              <Card
-                key={ idDrink }
-                id={ idDrink }
-                index={ index }
-                name={ strDrink }
-                img={ strDrinkThumb }
-                onClick={ () => handleCardClick(idDrink) }
-              />
-            )
-          )) }
-      </section>
-      <Footer />
-    </div>
+    isLoading
+      ? <Loading />
+      : (
+        <div className="food--drink-page-container">
+          <Header title="Bebidas" isEnableSearchIcon />
+          <div className="ctn-btn-categories">
+            <button
+              type="button"
+              name="All"
+              data-testid="All-category-filter"
+              onClick={ ({ target: { name } }) => setSelectedCategoryDrinks(name) }
+            >
+              All
+            </button>
+            { drinksCategories.map(({ strCategory }, index) => (
+              index < MAX_CATEGORIES && (
+                <Categories key={ index } categoryName={ strCategory } title="Bebidas" />
+              )
+            )) }
+          </div>
+          <section className="ctn-card-recipes">
+            { drinksRecipes
+              .map(({ idDrink, strDrink, strDrinkThumb }, index) => (
+                index < MAX_CARDS
+                && (
+                  <Card
+                    key={ idDrink }
+                    id={ idDrink }
+                    index={ index }
+                    name={ strDrink }
+                    img={ strDrinkThumb }
+                    onClick={ () => handleCardClick(idDrink) }
+                  />
+                )
+              )) }
+          </section>
+          <Footer />
+        </div>
+      )
   );
 }
 
