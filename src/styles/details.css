@@ -21,11 +21,13 @@ iframe {
 
 .details-container {
   background-color: rgb(12, 11, 11);
+  min-height: 100vh;
   opacity: 95%;
 }
 
 .details-container-in--progress {
   background-color: rgb(12, 11, 11);
+  min-height: 100vh;
   opacity: 95%;
 }
 
