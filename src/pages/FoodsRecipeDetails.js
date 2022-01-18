@@ -85,9 +85,8 @@ function FoodsRecipeDetails() {
           .map(({ idDrink, strDrink, strDrinkThumb }, index) => (
             index < MAX_CARDS
                 && (
-                  <Link to={ `${pathnameBase}/bebidas/${idDrink}` }>
+                  <Link to={ `${pathnameBase}/bebidas/${idDrink}` } key={ idDrink }>
                     <Card
-                      key={ idDrink }
                       id={ idDrink }
                       index={ index }
                       name={ strDrink }
