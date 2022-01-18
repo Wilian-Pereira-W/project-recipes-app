@@ -43,7 +43,7 @@ function ExploreFoodsByLocale() {
           data-testid="explore-by-area-dropdown"
           name="select"
           className="explore-by-area-dropdown"
-          onClick={ (event) => filterByArea(event.target.value) }
+          onChange={ (event) => filterByArea(event.target.value) }
         >
           <option
             data-testid="All-option"
