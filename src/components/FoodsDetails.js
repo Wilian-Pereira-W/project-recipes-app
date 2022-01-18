@@ -139,12 +139,12 @@ function FoodsDetails({ checked, setChecked }) {
 
 FoodsDetails.propTypes = {
   checked: PropTypes.arrayOf(PropTypes.number),
-  setChecked: PropTypes.string,
+  setChecked: PropTypes.func,
 };
 
 FoodsDetails.defaultProps = {
   checked: [],
-  setChecked: '',
+  setChecked: null,
 };
 
 export default FoodsDetails;

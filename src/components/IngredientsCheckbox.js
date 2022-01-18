@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 function IngredientsCheckbox(props) {
-  const { checked, setChecked, key, ingredient, index } = props;
+  const { checked, setChecked, ingredient, index } = props;
+
   return (
     <label
       htmlFor={ `${index}-ingredient-step` }
-      key={ key }
       data-testid={ `${index}-ingredient-step` }
     >
       <input
@@ -28,14 +28,10 @@ function IngredientsCheckbox(props) {
 }
 
 IngredientsCheckbox.propTypes = {
-  checked: PropTypes.shape({
-    filter: PropTypes.func,
-    includes: PropTypes.func,
-  }).isRequired,
-  index: PropTypes.number.isRequired,
-  ingredient: PropTypes.arrayOf.isRequired,
-  key: PropTypes.number.isRequired,
+  checked: PropTypes.arrayOf(PropTypes.number).isRequired,
   setChecked: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  ingredient: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default IngredientsCheckbox;
