@@ -1,6 +1,6 @@
 // Tela de detalhes de uma receita de bebida: `/bebidas/{id-da-receita}`;
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { drinksAPI } from '../services/resquestAPI';
 import Card from '../components/Card';
@@ -12,12 +12,14 @@ import { verifyDoneRecipe } from '../helpers/doneRecipes';
 import { verifyInProgressDrinks } from '../helpers/verifyInProgress';
 import Alert from '../components/Alert';
 import Loading from '../components/Loading';
+import GoBack from '../components/GoBack';
 
 const MAX_CARDS = 6;
 
 function DrinksRecipeDetails() {
   const [showButton, setShowButton] = useState(true);
   const [inProgress, setInProgress] = useState(false);
+  const history = useHistory();
 
   const {
     drinksDetails,
@@ -62,6 +64,7 @@ function DrinksRecipeDetails() {
     <div className="details-container">
       { isLoading && <Loading /> }
       { share && <Alert /> }
+      <GoBack history={ history } />
       <DrinksDetails />
       <div className="carousel">
         { mealsRecipes

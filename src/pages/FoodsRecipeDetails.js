@@ -1,6 +1,6 @@
 // Tela de detalhes de uma receita de comida: `/comidas/{id-da-receita}`;
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { foodsAPI } from '../services/resquestAPI';
 import ingredientsAndMeasures from '../helpers/ingredientsAndMeasures';
@@ -12,12 +12,14 @@ import { verifyDoneRecipe } from '../helpers/doneRecipes';
 import { verifyInProgressMeals } from '../helpers/verifyInProgress';
 import Alert from '../components/Alert';
 import Loading from '../components/Loading';
+import GoBack from '../components/GoBack';
 
 const MAX_CARDS = 6;
 
 function FoodsRecipeDetails() {
   const [showButton, setShowButton] = useState();
   const [inProgress, setInProgress] = useState(false);
+  const history = useHistory();
 
   const {
     mealsDetails,
@@ -70,6 +72,7 @@ function FoodsRecipeDetails() {
     <div className="details-container">
       { isLoading && <Loading /> }
       { share && <Alert /> }
+      <GoBack history={ history } />
       <FoodsDetails />
       <iframe
         data-testid="video"

@@ -19,6 +19,25 @@ iframe {
   width: 100%;
 }
 
+.btn-go-back {
+  align-items: center;
+  background-color: rgb(12, 11, 11);
+  border: 1px solid #d87d49af;
+  border-radius: 6px;
+  box-shadow: 0 0 5px 1px #ce841544;
+  color: #b6b6b6;
+  display: flex;
+  font-family: Malvie Trial , sans-serif;
+  font-size: 24px;
+  height: 35px;
+  justify-content: center;
+  left: 12px;
+  outline: none;
+  position: absolute;
+  top: 12px;
+  width: 40px;
+}
+
 .details-container {
   background-color: rgb(12, 11, 11);
   min-height: 100vh;
