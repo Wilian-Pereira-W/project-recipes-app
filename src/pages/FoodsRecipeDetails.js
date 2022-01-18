@@ -11,6 +11,7 @@ import FoodsDetails from '../components/FoodsDetails';
 import { verifyDoneRecipe } from '../helpers/doneRecipes';
 import { verifyInProgressMeals } from '../helpers/verifyInProgress';
 import Alert from '../components/Alert';
+import Loading from '../components/Loading';
 
 const MAX_CARDS = 6;
 
@@ -28,11 +29,17 @@ function FoodsRecipeDetails() {
     drinksRecipes,
     share,
     setIngredients,
+    isLoading,
+    setIsLoading,
   } = useContext(DrinkRecipesContext);
 
   const { pathname } = useLocation();
   const pathnameBase = pathname.split('/')[0];
   const ID = pathname.split('/')[2];
+
+  useEffect(() => {
+    setIsLoading(true);
+  }, [setIsLoading]);
 
   useEffect(() => {
     (async () => {
@@ -61,8 +68,8 @@ function FoodsRecipeDetails() {
 
   return (
     <div className="details-container">
-      { share
-        && <Alert /> }
+      { isLoading && <Loading /> }
+      { share && <Alert /> }
       <FoodsDetails />
       <iframe
         data-testid="video"
@@ -77,31 +84,31 @@ function FoodsRecipeDetails() {
         { drinksRecipes
           .map(({ idDrink, strDrink, strDrinkThumb }, index) => (
             index < MAX_CARDS
-            && (
-              <Link to={ `${pathnameBase}/bebidas/${idDrink}` }>
-                <Card
-                  key={ idDrink }
-                  id={ idDrink }
-                  index={ index }
-                  name={ strDrink }
-                  img={ strDrinkThumb }
-                />
-              </Link>
-            )
+                && (
+                  <Link to={ `${pathnameBase}/bebidas/${idDrink}` }>
+                    <Card
+                      key={ idDrink }
+                      id={ idDrink }
+                      index={ index }
+                      name={ strDrink }
+                      img={ strDrinkThumb }
+                    />
+                  </Link>
+                )
           )) }
       </div>
       {!showButton
-      && (
-        <Link to={ `/comidas/${ID}/in-progress` }>
-          <button
-            type="button"
-            className="start-recipe-btn"
-            data-testid="start-recipe-btn"
-          >
-            {inProgress ? 'Continuar Receita' : 'Iniciar Receita'}
-          </button>
-        </Link>
-      )}
+          && (
+            <Link to={ `/comidas/${ID}/in-progress` }>
+              <button
+                type="button"
+                className="start-recipe-btn"
+                data-testid="start-recipe-btn"
+              >
+                {inProgress ? 'Continuar Receita' : 'Iniciar Receita'}
+              </button>
+            </Link>
+          )}
     </div>
   );
 }

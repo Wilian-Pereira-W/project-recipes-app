@@ -24,30 +24,28 @@ function Drinks() {
   };
 
   return (
-    isLoading
-      ? <Loading />
-      : (
-        <div className="food--drink-page-container">
-          <Header title="Bebidas" isEnableSearchIcon />
-          <div className="ctn-btn-categories">
-            <button
-              type="button"
-              name="All"
-              data-testid="All-category-filter"
-              onClick={ ({ target: { name } }) => setSelectedCategoryDrinks(name) }
-            >
-              All
-            </button>
-            { drinksCategories.map(({ strCategory }, index) => (
-              index < MAX_CATEGORIES && (
-                <Categories key={ index } categoryName={ strCategory } title="Bebidas" />
-              )
-            )) }
-          </div>
-          <section className="ctn-card-recipes">
-            { drinksRecipes
-              .map(({ idDrink, strDrink, strDrinkThumb }, index) => (
-                index < MAX_CARDS
+    <div className="food--drink-page-container">
+      { isLoading && <Loading /> }
+      <Header title="Bebidas" isEnableSearchIcon />
+      <div className="ctn-btn-categories">
+        <button
+          type="button"
+          name="All"
+          data-testid="All-category-filter"
+          onClick={ ({ target: { name } }) => setSelectedCategoryDrinks(name) }
+        >
+          All
+        </button>
+        { drinksCategories.map(({ strCategory }, index) => (
+          index < MAX_CATEGORIES && (
+            <Categories key={ index } categoryName={ strCategory } title="Bebidas" />
+          )
+        )) }
+      </div>
+      <section className="ctn-card-recipes">
+        { drinksRecipes
+          .map(({ idDrink, strDrink, strDrinkThumb }, index) => (
+            index < MAX_CARDS
                 && (
                   <Card
                     key={ idDrink }
@@ -58,11 +56,10 @@ function Drinks() {
                     onClick={ () => handleCardClick(idDrink) }
                   />
                 )
-              )) }
-          </section>
-          <Footer />
-        </div>
-      )
+          )) }
+      </section>
+      <Footer />
+    </div>
   );
 }
 
