@@ -49,10 +49,6 @@ function DrinkRecipesProvider({ children }) {
     localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipes));
   }, []);
 
-  useEffect(() => {
-    console.log(isLoading);
-  }, [isLoading]);
-
   const context = {
     drinksRecipes,
     drinksCategories,
