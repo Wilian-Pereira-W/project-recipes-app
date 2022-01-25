@@ -17,7 +17,7 @@
 .done-recipes, .favorite-recipes {
   background-color: rgb(12, 11, 11);
   min-height: 100vh;
-  opacity: 0.95;
+  opacity: 0.96;
 }
 
 .done-recipes-categories, .favorite-recipes-categories {
