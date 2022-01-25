@@ -48,7 +48,7 @@
 
 .explore-drink {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) , url('../images/kevin-kelly-PPneSBqfCCU-unsplash.jpg');
-  background-size: contain;
+  background-size: cover;
 }
 
 .explore-food {
