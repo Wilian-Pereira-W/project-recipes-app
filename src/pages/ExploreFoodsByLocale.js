@@ -40,6 +40,7 @@ function ExploreFoodsByLocale() {
       <Header title="Explorar Origem" isEnableSearchIcon />
       <div className="explore-by-area">
         <select
+          size="3"
           data-testid="explore-by-area-dropdown"
           name="select"
           className="explore-by-area-dropdown"
