@@ -4,15 +4,15 @@
 }
 
 .food--drink-page-container {
-  opacity: 0.95;
+  opacity: 0.96;
 }
 
 .ctn-btn-categories {
   background-color: rgb(12, 11, 11);
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  padding: 8px 0 0;
+  justify-content: space-between;
+  padding: 8px 20px 0;
   position: absolute;
   top: 58px;
   width: 100%;
@@ -29,7 +29,7 @@
   margin-bottom: 10px;
   outline: none;
   padding: 5px;
-  width: 100px;
+  width: 30%;
 }
 
 .ctn-btn-categories button:focus {
@@ -42,14 +42,15 @@
   display: flex;
   flex-wrap: wrap;
   gap: 15px 0;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 58px;
   margin-top: 143px;
   min-height: 100vh;
-  padding: 15px 0;
+  padding: 15px 20px;
 }
 
 .card-recipes {
+  align-items: center;
   background-image: url('../images/background-header-footer.png');
   background-position: center;
   border: none;
@@ -57,12 +58,20 @@
   box-shadow: 0 0 3px 3px #81818154;
   display: flex;
   flex-direction: column;
-  height: 150px;
   justify-content: space-between;
+  max-height: 250px;
+  width: 47%;
+}
+
+.card-recipes-recommendations {
+  align-items: center;
+  background-image: url('../images/background-header-footer.png');
+  background-position: center;
+  border: none;
   width: 150px;
 }
 
-.card-recipes img {
+.card-recipes img, .card-recipes-recommendations img {
   border-radius: 6px 6px 0 0;
   max-height: 100px;
   object-fit: cover;
