@@ -1,14 +1,18 @@
 // Tela de explorar: `/explorar`;
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../styles/explore.css';
+import { DrinkRecipesContext } from '../context/RecipesContext';
+import Loading from '../components/Loading';
 
 function Explore() {
+  const { isLoading } = useContext(DrinkRecipesContext);
   const history = useHistory();
   return (
     <div className="ctn-explore">
+      { isLoading && <Loading /> }
       <Header title="Explorar" isEnableSearchIcon={ false } />
       <button
         type="button"

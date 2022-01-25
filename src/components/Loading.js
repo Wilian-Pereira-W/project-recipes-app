@@ -3,7 +3,7 @@ import { DrinkRecipesContext } from '../context/RecipesContext';
 import '../styles/loading.css';
 
 function Loading() {
-  const TIMEOUT = 1000;
+  const TIMEOUT = 700;
   const { setIsLoading } = useContext(DrinkRecipesContext);
 
   setTimeout(() => {
