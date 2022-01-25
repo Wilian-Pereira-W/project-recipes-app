@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { DrinkRecipesContext, FoodRecipesContext } from '../context/RecipesContext';
 import { drinksAPI } from '../services/resquestAPI';
-import Card from '../components/Card';
 import ingredientsAndMeasures from '../helpers/ingredientsAndMeasures';
 import '../styles/details.css';
 import '../styles/recipes.css';
@@ -13,6 +12,7 @@ import { verifyInProgressDrinks } from '../helpers/verifyInProgress';
 import Alert from '../components/Alert';
 import Loading from '../components/Loading';
 import GoBack from '../components/GoBack';
+import CardRecommendations from '../components/CardRecommendations';
 
 const MAX_CARDS = 6;
 
@@ -72,7 +72,7 @@ function DrinksRecipeDetails() {
             index < MAX_CARDS
                 && (
                   <Link to={ `${pathnameBase}/comidas/${idMeal}` } key={ idMeal }>
-                    <Card
+                    <CardRecommendations
                       id={ idMeal }
                       index={ index }
                       name={ strMeal }

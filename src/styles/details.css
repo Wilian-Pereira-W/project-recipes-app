@@ -41,13 +41,13 @@ iframe {
 .details-container {
   background-color: rgb(12, 11, 11);
   min-height: 100vh;
-  opacity: 0.95;
+  opacity: 0.96;
 }
 
 .details-container-in--progress {
   background-color: rgb(12, 11, 11);
   min-height: 100vh;
-  opacity: 0.95;
+  opacity: 0.96;
 }
 
 .recipe-photo {
@@ -128,7 +128,7 @@ iframe {
   width: 100%;
 }
 
-.carousel .card-recipes {
+.carousel .card-recipes-recommendations {
   display: inline-block;
   margin-left: 20px;
   white-space: normal;
